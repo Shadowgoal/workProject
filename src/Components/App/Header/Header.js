@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as S from './styled';
-
+import { connect } from 'react-redux';
+import { onOpenModal } from './../../../redux/action'
 
 class Header extends Component {
     render () {
@@ -8,11 +9,20 @@ class Header extends Component {
             <S.Header>
                 <S.Logo></S.Logo>
                 <S.SignField>
-                    <S.SignInBtn>Sign in</S.SignInBtn>
-                    <S.CreateAccBtn>Create account</S.CreateAccBtn>
+                    <S.SignInBtn onClick={this.props.onOpenModal}>Sign in</S.SignInBtn>
+                    <S.CreateAccBtn onClick={this.props.onOpenModal}>Create account</S.CreateAccBtn>
                 </S.SignField>
             </S.Header>
         )
     }
 }
-export default Header;
+const mapStateToProps = (state) => {
+    return {
+    isModalOpened: state.isModalOpened,
+    }
+}
+
+const mapDispatchToProps = {
+    onOpenModal,
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -5,6 +5,7 @@ export const Header = styled.header`
     position: absolute;
     width: inherit;
     height: 381px;
+    border-top: 4px solid #f50;
 `
 
 export const Logo = styled.div`
@@ -32,6 +33,10 @@ export const SignInBtn = styled.button`
     border: 1px solid white;
     border-radius: 15%;
     margin-right: 8px;
+    cursor: pointer;
+    :hover {
+        border: 2px solid white;
+    }
 `
 
 export const CreateAccBtn = styled.button`
@@ -41,4 +46,5 @@ export const CreateAccBtn = styled.button`
     border: none;
     border-radius: 15%;
     color: white;
+    cursor: pointer;
 `

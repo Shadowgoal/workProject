@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as S from './styled';
 import { withRouter } from 'react-router-dom';
 import Header from './Header/Header';
-import { BrowserRouter as Link, NavLink} from 'react-router-dom';
+import Modal from './Modal/Modal';
 
 
 class App extends Component {
@@ -13,9 +13,12 @@ class App extends Component {
     
     render () {
         return (
-            <S.Container>
-                <Header />
-            </S.Container>
+            <S.MainContainer>
+                <S.Container>
+                    <Header />
+                    <Modal />
+                </S.Container>
+            </S.MainContainer>
         );
     }
 }
