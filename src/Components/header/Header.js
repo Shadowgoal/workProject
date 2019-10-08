@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as S from './styled';
+import MainTitle from './mainTitle/MainTitle';
 import { connect } from 'react-redux';
 import { onOpenModal } from './../../redux/action';
 
@@ -14,6 +15,7 @@ class Header extends Component {
             Create account
           </S.CreateAccBtn>
         </S.SignField>
+        <MainTitle />
       </S.Header>
     );
   }

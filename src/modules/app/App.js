@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as S from './styled';
 import { withRouter } from 'react-router-dom';
 import Header from './../../components/header/Header';
-import Modal from './../../components/modal/Modal';
+import Modal from './../../components/header/modal/Modal';
 
 class App extends Component {
     

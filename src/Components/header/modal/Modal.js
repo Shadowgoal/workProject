@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as S from './styled';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
-import { onCloseModal } from './../../redux/action';
+import { onCloseModal } from '../../../redux/action';
 import { Form, Field } from 'react-final-form';
 
 

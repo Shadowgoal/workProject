@@ -15,6 +15,7 @@ export const ModalWindow = styled.div`
   left: calc(50% - 250px);
   box-shadow: 1px 3px 7px 4px grey;
   z-index: 2;
+  transition: top 4s linear;
   visibility: ${ModalWindow => (ModalWindow.visible ? 'visible' : 'hidden')};
 `;
 
