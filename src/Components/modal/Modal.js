@@ -17,17 +17,11 @@ class Modal extends Component {
   onSubmit = async values => {
     const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
     await sleep(300);
-    const user = {
-        username: values.username,
-        email: values.email,
-        password: values.password,
-        confirm: values.confirm
+    if (values.email && values.password && values.username && values.confirm) {
+      this.setState({
+        isLoggedin: true,
+      })
     }
-
-    this.setState({
-      user,
-      isLoggedin: true,
-    })
     console.log(this.state)
       
     
@@ -51,12 +45,18 @@ class Modal extends Component {
               const errors = {};
               if (!user.username) {
                 errors.username = 'Required';
+              } else if(user.username.length < 3) {
+                errors.username = 'Username length should be greater than 3'
               }
               if (!user.email) {
                 errors.email = 'Reguired';
+              } else if (!user.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
+                errors.email = 'Invalid email';
               }
               if (!user.password) {
                 errors.password = 'Required';
+              } else if(user.password.length < 6) {
+                errors.password = 'Password should have more than 6 symbols';
               }
               if (!user.confirm) {
                 errors.confirm = 'Required';
@@ -65,7 +65,7 @@ class Modal extends Component {
               }
               return errors;
             }}
-            render={({ handleSubmit, invalid }) => (
+            render={({ handleSubmit, invalid, submitting }) => (
               <S.RegisterForm onSubmit={handleSubmit}>
                 <S.CreateAcc>Create Account</S.CreateAcc>
                 <Field name="username">
@@ -118,7 +118,7 @@ class Modal extends Component {
                   )}
                 </Field>
                 <S.ButtonField className="buttons">
-                  <S.RegisterButton onClick={this.onSubmit} type="submit" disabled={invalid}>
+                  <S.RegisterButton onClick={this.onSubmit} type="submit" disabled={submitting}>
                     {this.state.isLoggedin ? <Redirect push to='/upload' /> : <Redirect to='/' />}
                     Sign in
                   </S.RegisterButton>
