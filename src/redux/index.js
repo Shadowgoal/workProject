@@ -3,6 +3,7 @@ import { createStore } from 'redux';
 
 const initialState = {
     isModalOpened: false,
+    isValid: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -16,6 +17,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isModalOpened: false,
+            }
+        case 'ValidationUsername' :
+            return {
+                ...state,
+                isValid: true
             }
         default:
             return state
