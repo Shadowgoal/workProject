@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import * as S from './styled';
-import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
-import { onCloseModal } from '../../../redux/action';
+import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
 
+import { validation } from './validation';
+import { onCloseModal } from 'redux/action';
 
-
+import * as S from './styled';
 
 class Modal extends Component {
   state = {
@@ -14,17 +14,14 @@ class Modal extends Component {
     isLoggedin: false,
   };
   
-  onSubmit = async values => {
-    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
-    await sleep(300);
+  onSubmit = (values) => {
     if (values.email && values.password && values.username && values.confirm) {
       this.setState({
         isLoggedin: true,
       })
     }
     console.log(this.state)
-      
-    
+       
   };
 
 
@@ -41,30 +38,7 @@ class Modal extends Component {
           <Form
             onSubmit={this.onSubmit}
             initialValues={this.state}
-            validate={user => {
-              const errors = {};
-              if (!user.username) {
-                errors.username = 'Required';
-              } else if(user.username.length < 3) {
-                errors.username = 'Username length should be greater than 3'
-              }
-              if (!user.email) {
-                errors.email = 'Reguired';
-              } else if (!user.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
-                errors.email = 'Invalid email';
-              }
-              if (!user.password) {
-                errors.password = 'Required';
-              } else if(user.password.length < 6) {
-                errors.password = 'Password should have more than 6 symbols';
-              }
-              if (!user.confirm) {
-                errors.confirm = 'Required';
-              } else if (user.confirm !== user.password) {
-                errors.confirm = 'Must match';
-              }
-              return errors;
-            }}
+            validate={validation}
             render={({ handleSubmit, invalid, submitting }) => (
               <S.RegisterForm onSubmit={handleSubmit}>
                 <S.CreateAcc>Create Account</S.CreateAcc>
