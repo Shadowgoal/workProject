@@ -1,26 +1,47 @@
 {
-  "extends": ["airbnb", "prettier", "prettier/react"],
-  "plugins": ["prettier"],
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true
+  },
+  "plugins": [
+    "import",
+    "jsx-a11y",
+    "react",
+    "redux-saga"
+  ],
   "rules": {
-    "react/jsx-filename-extension": [
-      1,
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/no-unresolved": "off",
+    "linebreak-style": "off",
+    "padding-line-between-statements": [
+      "error",
       {
-        "extensions": [".js", ".jsx"]
+        "blankLine": "always",
+        "prev": "export",
+        "next": "*"
       }
     ],
-    "react/prop-types": 0,
-    "no-underscore-dangle": 0,
-    "import/imports-first": ["error", "absolute-first"],
-    "import/newline-after-import": "error"
-  },
-  "globals": {
-    "window": true,
-    "document": true,
-    "localStorage": true,
-    "FormData": true,
-    "FileReader": true,
-    "Blob": true,
-    "navigator": true
-  },
-  "parser": "babel-eslint"
+    "max-len": ["error", {
+      "code": 120,
+      "ignoreComments": true,
+      "ignoreRegExpLiterals": true,
+      "ignoreUrls": true,
+      "tabWidth": 2
+    }],
+    "react/jsx-props-no-spreading": "off",
+    "react/static-property-placement": ["warn", "static public field"],
+    "react/state-in-constructor": "off",
+    "no-multiple-empty-lines": ["error", {"max": 1 }],
+    "no-param-reassign": "warn",
+    "no-underscore-dangle": "warn",
+    "no-unused-expressions": ["error", { "allowTaggedTemplates": true }],
+    "react/destructuring-assignment": "off",
+    "react/forbid-prop-types": "off",
+    "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
+    "react/jsx-one-expression-per-line": "off",
+    "react/no-array-index-key": "off",
+    "react/no-did-mount-set-state": "warn"
+  }
 }

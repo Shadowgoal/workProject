@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Form, Field } from 'react-final-form';
+import { Form } from 'react-final-form';
 
+import Input from './Input';
 import { validation } from './validation';
 import { onCloseModal } from 'redux/action';
 
@@ -39,61 +40,15 @@ class Modal extends Component {
             onSubmit={this.onSubmit}
             initialValues={this.state}
             validate={validation}
-            render={({ handleSubmit, invalid, submitting }) => (
+            render={({ handleSubmit, submitting }) => (
               <S.RegisterForm onSubmit={handleSubmit}>
                 <S.CreateAcc>Create Account</S.CreateAcc>
-                <Field name="username">
-                  {({ input, meta }) => (
-                    <S.InputField>
-                      <S.Label>Username</S.Label>
-                      <S.Input {...input} id="username" type="text" placeholder="Username" />
-                      {meta.error && meta.touched && (
-                        <S.InputError>{meta.error}</S.InputError>
-                      )}
-                    </S.InputField>
-                  )}
-                </Field>
-                <Field name="email">
-                  {({ input, meta }) => (
-                    <S.InputField>
-                      <S.Label>Email</S.Label>
-                      <S.Input {...input} id="email" type="text" placeholder="Email" />
-                      {meta.error && meta.touched && (
-                        <S.InputError>{meta.error}</S.InputError>
-                      )}
-                    </S.InputField>
-                  )}
-                </Field>
-                <Field name="password">
-                  {({ input, meta }) => (
-                    <S.InputField>
-                      <S.Label>Password</S.Label>
-                      <S.Input
-                        {...input}
-                        id="password"
-                        type="password"
-                        placeholder="Password"
-                      />
-                      {meta.error && meta.touched && (
-                        <S.InputError>{meta.error}</S.InputError>
-                      )}
-                    </S.InputField>
-                  )}
-                </Field>
-                <Field name="confirm">
-                  {({ input, meta }) => (
-                    <S.InputField>
-                      <S.Label>Confirm Password</S.Label>
-                      <S.Input {...input} id="confirm" type="password" placeholder="Confirm" />
-                      {meta.error && meta.touched && (
-                        <S.InputError>{meta.error}</S.InputError>
-                      )}
-                    </S.InputField>
-                  )}
-                </Field>
-                <S.ButtonField className="buttons">
-                  <S.RegisterButton onClick={this.onSubmit} type="submit" disabled={submitting}>
-                    {this.state.isLoggedin ? <Redirect push to='/upload' /> : <Redirect to='/' />}
+                <Input type="text" name='username' placeholder='Username' />
+                <Input type="text" name='email' placeholder='Email' />
+                <Input type="password" name='password' placeholder='Password' />
+                <Input type="password" name='confirm' placeholder='Confirm' />
+                <S.ButtonField>
+                  <S.RegisterButton to='/upload' onClick={this.onSubmit} type="submit" disabled={submitting}>
                     Sign in
                   </S.RegisterButton>
                   <S.CloseButton

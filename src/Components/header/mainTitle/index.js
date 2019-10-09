@@ -15,7 +15,7 @@ const MainTitle = (props) => {
       </S.ButtonContainer>
     </S.Container>
   );
-}
+};
 
 const mapStateToProps = state => {
   return {

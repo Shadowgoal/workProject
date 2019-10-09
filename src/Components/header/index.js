@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Logo from './Logo';
 import Buttons from './Buttons';
@@ -6,8 +6,7 @@ import MainTitle from './MainTitle';
 
 import * as S from './styled';
 
-class Header extends Component {
-  render() {
+const Header = () => {
     return (
       <S.Header>
         <Logo />
@@ -15,7 +14,6 @@ class Header extends Component {
         <MainTitle />
       </S.Header>
     );
-  }
-}
+};
 
 export default Header;

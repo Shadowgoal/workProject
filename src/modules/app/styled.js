@@ -6,11 +6,11 @@ export const MainContainer = styled.div`
 `
 export const Container = styled.div`
   position: absolute;
-  width: 1050px;
+  width: 1240px;
   height: 100%;
   background: ghostwhite;
   margin: auto;
-  left: calc(50% - 525px);
+  left: calc(50% - 620px);
 `
 
 export const RouteBtn = styled.button`

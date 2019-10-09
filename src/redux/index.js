@@ -2,8 +2,8 @@ import { createStore } from 'redux';
 
 const initialState = {
   isModalOpened: false,
-  isValid: false
-}
+  isLoggedIn: false,
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -11,21 +11,21 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isModalOpened: true,
-    }
+    };
     case 'CLOSE_MODAL' :
       return {
         ...state,
         isModalOpened: false,
-      }
+      };
     case 'ValidationUsername' :
       return {
         ...state,
         isValid: true
-      }
+      };
     default:
       return state
   }
-}
+};
 
 const store = createStore(reducer);
 

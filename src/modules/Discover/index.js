@@ -1,12 +1,11 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-import MainHeader from 'components/MainHeader'
+import MainHeader from 'components/MainHeader';
 
 import * as S from './styled';
 
-
-const Upload = () => {
+const Discover = () => {
   return (
     <S.Container>
       <MainHeader />
@@ -14,4 +13,4 @@ const Upload = () => {
   );
 }
 
-export default withRouter(Upload);
+export default withRouter(Discover);

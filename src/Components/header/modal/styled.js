@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   width: 100%;
@@ -38,33 +39,6 @@ export const CloseModalX = styled.span`
     right: 2%;
     cursor: pointer;
 `
-export const Link = styled.a`
-  text-decoration: none;
-`
-
-export const InputField = styled.div`
-  display: grid;
-  width: 45%;
-  height: 53px;
-  margin: 0 auto;
-  margin-top: 10px;
-`;
-
-export const Label = styled.label`
-  margin: 0 auto;
-`;
-
-export const InputError = styled.span`
-  color: red;
-  font-size: x-small;
-`;
-
-export const Input = styled.input`
-    border: none;
-    border-bottom: 1px solid lightslategrey;
-    outline: none;
-    height: 25px;
-`
 
 export const ButtonField = styled.div`
   position: absolute;
@@ -83,7 +57,7 @@ export const CreateAcc = styled.span`
     font-weight: 500;
 `
 
-export const RegisterButton = styled.button`
+export const RegisterButton = styled(Link)`
   background-color: #f50;
   border: none;
   border-radius: 15%;
@@ -92,13 +66,22 @@ export const RegisterButton = styled.button`
   cursor: pointer;
   margin-right: 15px;
   outline: none;
+  text-decoration: none;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 80px;
+  color: black;
+  text-align: center;
+  font-size: 14px;
+  padding-top: 5px;
 `;
 
 export const CloseButton = styled.button`
   background: dimgrey;
   border: none;
   width: 80px;
-  height: 30px;
+  height: 35px;
   border-radius: 15%;
   right: 10%;
   cursor: pointer;

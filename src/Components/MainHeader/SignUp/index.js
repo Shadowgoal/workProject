@@ -17,7 +17,6 @@ const Buttons = (props) => {
     </S.SignField>
   )
 };
-
 const mapStateToProps = state => {
   return {
     isModalOpened: state.isModalOpened

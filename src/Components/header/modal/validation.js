@@ -1,3 +1,5 @@
+import { emailValidation } from 'utils';
+
 export const validation = (user) => {
   const errors = {};
   if (!user.username) {
@@ -7,7 +9,7 @@ export const validation = (user) => {
   }
   if (!user.email) {
     errors.email = 'Reguired';
-  } else if (!user.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
+  } else if (!user.email.match({emailValidation})) {
     errors.email = 'Invalid email';
   }
   if (!user.password) {

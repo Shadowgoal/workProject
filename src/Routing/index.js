@@ -6,6 +6,7 @@ import store from 'redux/index';
 
 import App from 'modules/App';
 import Upload from 'modules/Upload';
+import Discover from 'modules/Discover';
 
 const AppRouter = () => {
   return(
@@ -13,9 +14,10 @@ const AppRouter = () => {
       <Router>
         <Route exact path="/" component={App} />
         <Route path="/upload" component={Upload} />
+        <Route path="/discover" component={Discover} />
       </Router>
     </Provider>
   )
-}
+};
 
 export default AppRouter;
