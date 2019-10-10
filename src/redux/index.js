@@ -17,10 +17,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         isModalOpened: false,
       };
-    case 'ValidationUsername' :
+    case 'LOGIN' :
       return {
         ...state,
-        isValid: true
+        isLoggedIn: true,
       };
     default:
       return state

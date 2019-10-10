@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const InputField = styled.div`
   display: grid;
-  width: 45%;
+  width: 200px;
   height: 53px;
   margin: 0 auto;
   margin-top: 10px;

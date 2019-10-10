@@ -5,13 +5,12 @@ import MainHeader from 'components/MainHeader'
 
 import * as S from './styled';
 
-
 const Upload = () => {
   return (
     <S.Container>
       <MainHeader />
     </S.Container>
   );
-}
+};
 
 export default withRouter(Upload);

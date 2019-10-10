@@ -14,7 +14,7 @@ const NavSearch = () => {
     <S.Container>
       <Form
         onSubmit={onSubmit}
-        render={({ handleSubmit, submitting }) => (
+        render={({ handleSubmit }) => (
           <S.SearchForm onSubmit={handleSubmit}>
             <Field name="searchValue">
               {({ input }) => (

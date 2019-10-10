@@ -1,66 +1,33 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Form } from 'react-final-form';
 
-import Input from './Input';
-import { validation } from './validation';
-import { onCloseModal } from 'redux/action';
+import { onCloseModal, onRegister } from 'redux/action';
+import { validation } from './validation'
+import RegisterForm from './Form';
 
 import * as S from './styled';
 
 class Modal extends Component {
-  state = {
-    user: {},
-    isLoggedin: false,
+  onSubmit = () => {
+    if (validation) {
+      console.log(this.props);
+      this.props.onRegister();
+      this.props.onCloseModal();
+      this.props.history.push('/upload');
+    }   
   };
-  
-  onSubmit = (values) => {
-    if (values.email && values.password && values.username && values.confirm) {
-      this.setState({
-        isLoggedin: true,
-      })
-    }
-    console.log(this.state)
-       
-  };
-
-
-  render() {
+  render () {  
     return (
       <S.Container>
         <S.ModalWindowShadow
           visible={this.props.isModalOpened}
           onClick={this.props.onCloseModal}
         >
-            <S.CloseModalX>x</S.CloseModalX>
+          <S.CloseModalX>x</S.CloseModalX>
         </S.ModalWindowShadow>
         <S.ModalWindow visible={this.props.isModalOpened}>
-          <Form
-            onSubmit={this.onSubmit}
-            initialValues={this.state}
-            validate={validation}
-            render={({ handleSubmit, submitting }) => (
-              <S.RegisterForm onSubmit={handleSubmit}>
-                <S.CreateAcc>Create Account</S.CreateAcc>
-                <Input type="text" name='username' placeholder='Username' />
-                <Input type="text" name='email' placeholder='Email' />
-                <Input type="password" name='password' placeholder='Password' />
-                <Input type="password" name='confirm' placeholder='Confirm' />
-                <S.ButtonField>
-                  <S.RegisterButton to='/upload' onClick={this.onSubmit} type="submit" disabled={submitting}>
-                    Sign in
-                  </S.RegisterButton>
-                  <S.CloseButton
-                    type="button"
-                    onClick={this.props.onCloseModal}
-                  >
-                    Close
-                  </S.CloseButton>
-                </S.ButtonField>
-              </S.RegisterForm>
-            )}
-          />
+          <RegisterForm onSubmit={this.onSubmit} />
         </S.ModalWindow>
       </S.Container>
     );
@@ -69,12 +36,14 @@ class Modal extends Component {
 
 const mapStateToProps = state => {
   return {
-    isModalOpened: state.isModalOpened
+    isModalOpened: state.isModalOpened,
+    isLoggedIn: state.isLoggedIn
   };
 };
 
 const mapDispatchToProps = {
   onCloseModal,
+  onRegister,
 };
 export default connect(
   mapStateToProps,

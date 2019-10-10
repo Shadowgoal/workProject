@@ -9,7 +9,7 @@ export const validation = (user) => {
   }
   if (!user.email) {
     errors.email = 'Reguired';
-  } else if (!user.email.match({emailValidation})) {
+  } else if (!emailValidation(user.email)) {
     errors.email = 'Invalid email';
   }
   if (!user.password) {
