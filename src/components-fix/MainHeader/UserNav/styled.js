@@ -1,0 +1,100 @@
+import styled from 'styled-components';
+
+export const UserNavContainer = styled.div`
+  display: ${(userNavigation) => (userNavigation.vision ? 'block' : 'none')};
+`;
+
+export const UserImage = styled.div`
+  background: url(https://pngimage.net/wp-content/uploads/2018/06/no-user-image-png.png);
+  border-radius: 50%;
+  background-size: 20px, 20px;
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+`;
+
+export const UserNameContainer = styled.span`
+  color: #ccc;
+  font-size: 16px;
+  margin-bottom: 4px;
+`;
+
+export const UserDropDown = styled.div`
+  background: url(https://www.bounteous.com/sites/default/files/luna-migrate/down-arrow.png);
+  width: 15px;
+  height: 9px;
+  background-size: 15px,10px;
+  margin-right: 10px;
+`;
+
+export const DropDownContainer = styled.div`
+  color: #999;
+  z-index: 999;
+  position: fixed;
+  width: 140px;
+  font-size: 14px;
+  display: none;
+  top: 46px;
+`;
+
+export const UserContainer = styled.div`
+  background: inherit;
+  width: 200px;
+  padding: 10px 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  :hover ${DropDownContainer} {
+    display: block;
+  };
+  :hover {
+    background: #111;
+  };
+`;
+
+export const DropDownProfileIcon = styled.div`
+  background: url(https://i1.wp.com/tavistockconsulting.co.uk/wp-content/uploads/2017/09/profile-icon-9.png?ssl=1);
+  width: 20px;
+  height: 20px;
+  background-size: 20px, 20px;
+  margin: 0 15px 0 5px;
+`;
+
+export const DropDownLikesIcon = styled.div`
+  background: url(http://www.myiconfinder.com/uploads/iconsets/256-256-37ca743a29e155658596b7f6310b8d53-heart.png);
+  width: 20px;
+  height: 20px;
+  background-size: 20px, 20px;
+  margin: 0 15px 0 5px;
+`;
+
+export const DropDownPlaylistsIcon = styled.div`
+  background: url(https://cdn0.iconfinder.com/data/icons/material-design-glyph/24/playlist-512.png);
+  width: 20px;
+  height: 20px;
+  background-size: 20px, 20px;
+  margin: 0 15px 0 5px;
+`;
+
+export const DropDownText = styled.span`
+  color: #999;
+`;
+
+export const DropDownItem = styled.div`
+  background-color: #111;
+  height: 20px;
+  padding: 10px 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  cursor: pointer;
+  :hover {
+    background: #333;
+  };
+  :hover ${DropDownText} {
+    color: white;
+  }
+`;

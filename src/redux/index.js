@@ -7,23 +7,23 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'OPEN_MODAL' :
+    case 'OPEN_MODAL':
       return {
         ...state,
         isModalOpened: true,
-    };
-    case 'CLOSE_MODAL' :
+      };
+    case 'CLOSE_MODAL':
       return {
         ...state,
         isModalOpened: false,
       };
-    case 'LOGIN' :
+    case 'LOGIN':
       return {
         ...state,
         isLoggedIn: true,
       };
     default:
-      return state
+      return state;
   }
 };
 
