@@ -8,4 +8,4 @@ export const Header = styled.header`
   border-top: 4px solid #f50;
 `;
 
-export const blanc = () => ('smth');
+export const blank = () => {};

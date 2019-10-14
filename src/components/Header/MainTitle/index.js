@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 import * as S from './styled';
 
@@ -27,4 +28,4 @@ class MainTitle extends Component {
   }
 }
 
-export default MainTitle;
+export default withRouter(MainTitle);

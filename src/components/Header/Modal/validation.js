@@ -22,7 +22,8 @@ export const validation = (user) => {
   } else if (user.confirm !== user.password) {
     errors.confirm = 'Must match';
   }
+  console.log(errors);
   return errors;
 };
 
-export const blanc = () => ('smth');
+export const blank = () => {};

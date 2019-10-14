@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import Input from './Input';
-
 export const FormContainer = styled.div`
 
 `;
@@ -18,11 +16,12 @@ export const CreateAcc = styled.span`
   color: dimgrey;
   margin: 0 auto;
   text-align: center;
-  width: 100%;
-  position: relative;
   left: calc(50% - 111px);
   font-size: xx-large;
   font-weight: 500;
+  display: flex;
+  margin: 20px 0 20px 0;
+  justify-content: center;
 `;
 
 export const RegisterButton = styled.button`
@@ -47,7 +46,4 @@ export const CloseButton = styled.button`
 `;
 
 export const RegisterForm = styled.form`
-  ${Input}:first-child {
-    margin-top: 30px;
-  };
 `;

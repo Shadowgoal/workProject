@@ -11,4 +11,4 @@ export const PlayControlContainer = styled.div`
   visibility: ${(vision) => (vision.visible ? 'visible' : 'hidden')};
 `;
 
-export const blanc = () => ('smth');
+export const blank = () => {};

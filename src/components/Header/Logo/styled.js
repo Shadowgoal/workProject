@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Logo = styled.div`
+const Logo = styled.div`
   background: url(https://a-v2.sndcdn.com/assets/images/header/cloud-e365a47.png) no-repeat 12px 11px;
   position: absolute;
   width: 60px;
@@ -9,5 +9,4 @@ export const Logo = styled.div`
   left: 2%;
 `;
 
-export const blanc = () => ('smth');
-
+export default Logo;

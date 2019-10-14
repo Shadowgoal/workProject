@@ -12,4 +12,4 @@ export const BodyContainer = styled.div`
   height: 100%;
 `;
 
-export const blanc = () => ('smth');
+export const blank = () => {};

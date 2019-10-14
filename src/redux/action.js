@@ -14,7 +14,8 @@ export const onCloseModal = () => ({
   isModalOpened: false,
 });
 
-export const onRegister = () => ({
+export const onRegister = (user) => ({
   type: LOGIN,
   isLoggedIn: true,
+  payload: user,
 });

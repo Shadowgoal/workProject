@@ -11,7 +11,6 @@ import * as S from './styled';
 
 class Modal extends Component {
   static propTypes = {
-    isLoggedIn: PropTypes.bool.isRequired,
     isModalOpened: PropTypes.bool.isRequired,
     onRegister: PropTypes.func.isRequired,
     onCloseModal: PropTypes.func.isRequired,
@@ -19,8 +18,7 @@ class Modal extends Component {
   }
 
   onSubmit = () => {
-    if (validation) {
-      console.log(this.props.isLoggedIn);
+    if (validation === {}) {
       this.props.onRegister();
       this.props.onCloseModal();
       this.props.history.push('/upload');

@@ -5,4 +5,4 @@ export const Container = styled.div`
   height: 100%;
 `;
 
-export const blanc = () => ('smth');
+export const blank = () => {};

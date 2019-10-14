@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Logo from './Logo';
 import Buttons from './Buttons';
 import MainTitle from './MainTitle';
 
 import * as S from './styled';
+import Logo from './Logo/styled';
 
 const Header = () => (
   <S.Header>
