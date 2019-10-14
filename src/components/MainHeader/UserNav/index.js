@@ -9,7 +9,7 @@ const UserNav = (props) => (
     <S.UserContainer>
       <S.UserImage />
       <S.UserNameContainer>
-        Username
+        {localStorage.getItem('username')}
       </S.UserNameContainer>
       <S.UserDropDown />
       <S.DropDownContainer>

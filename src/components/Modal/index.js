@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { onCloseModal, onRegister } from 'redux/action';
-import { validation } from './validation';
 import RegisterForm from './Form';
 
 import * as S from './styled';
@@ -17,12 +16,12 @@ class Modal extends Component {
     history: PropTypes.object.isRequired,
   }
 
-  onSubmit = () => {
-    if (validation === {}) {
-      this.props.onRegister();
-      this.props.onCloseModal();
-      this.props.history.push('/upload');
-    }
+  onSubmit = (values) => {
+    console.log(values);
+    this.props.onRegister();
+    this.props.onCloseModal();
+    localStorage.setItem('username', values.username);
+    this.props.history.push('/upload');
   }
 
   render() {

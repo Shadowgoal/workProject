@@ -3,7 +3,6 @@ import { createStore } from 'redux';
 const initialState = {
   isModalOpened: false,
   isLoggedIn: false,
-  user: {},
 };
 
 const reducer = (state = initialState, action) => {

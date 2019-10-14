@@ -18,8 +18,8 @@ export const InputError = styled.span`
 `;
 
 export const Input = styled.input`
-    border: none;
-    border-bottom: 1px solid lightslategrey;
-    outline: none;
-    height: 25px;
+  border: none;
+  border-bottom: 1px solid lightslategrey;
+  outline: none;
+  height: 25px;
 `;
