@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import RegisterForm from 'components/Header/Modal/Form';
-import { validation } from 'components/Header/Modal/validation';
+import RegisterForm from 'components/Modal/Form';
+import { validation } from 'components/Modal/validation';
 
 import * as S from './styled';
 

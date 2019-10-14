@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import Header from 'components/Header';
-import Modal from 'components/Header/Modal';
+import Modal from 'components/Modal';
 
 import * as S from './styled';
 

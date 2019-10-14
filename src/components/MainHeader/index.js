@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Modal from 'components/Header/Modal';
+import Modal from 'components/Modal';
 import HomeBtn from './HomeBtn';
 import Nav from './Nav';
 import NavSearch from './NavSearch';

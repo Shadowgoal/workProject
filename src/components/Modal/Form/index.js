@@ -14,7 +14,7 @@ const RegisterForm = (props) => (
     <Form
       onSubmit={props.onSubmit}
       validate={validation}
-      render={({ handleSubmit }) => (
+      render={({ handleSubmit, valid }) => (
         <S.RegisterForm onSubmit={handleSubmit}>
           <S.CreateAcc>Create Account</S.CreateAcc>
           <FormInput type="text" name="username" placeholder="Username" />
@@ -25,6 +25,7 @@ const RegisterForm = (props) => (
             <S.RegisterButton
               onClick={props.onSubmit}
               type="submit"
+              disabled={!valid}
             >
               Sign in
             </S.RegisterButton>
