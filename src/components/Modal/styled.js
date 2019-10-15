@@ -13,7 +13,7 @@ export const ModalWindow = styled.div`
   top: 20%;
   left: calc(50% - 220px);
   box-shadow: 1px 3px 7px 4px grey;
-  z-index: 2;
+  z-index: 1000;
   visibility: ${(vision) => (vision.visible ? 'visible' : 'hidden')};
 `;
 

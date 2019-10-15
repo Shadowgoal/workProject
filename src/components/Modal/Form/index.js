@@ -23,7 +23,6 @@ const RegisterForm = (props) => (
           <FormInput type="password" name="confirm" placeholder="Confirm" />
           <S.ButtonField>
             <S.RegisterButton
-              onClick={props.onSubmit}
               type="submit"
               disabled={!valid}
             >

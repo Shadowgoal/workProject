@@ -4,9 +4,6 @@ export const Container = styled.div`
   height: 100%;
   width: 300px;
   float: right;
-  padding: 30px;
-  padding-top: 76px;
-  padding-bottom: 0;
 `;
 
 export const MostPopularContainer = styled.article`

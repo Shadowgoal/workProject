@@ -4,15 +4,6 @@ export const UserNavContainer = styled.div`
   display: ${(userNavigation) => (userNavigation.vision ? 'block' : 'none')};
 `;
 
-export const UserImage = styled.div`
-  background: url(https://pngimage.net/wp-content/uploads/2018/06/no-user-image-png.png);
-  border-radius: 50%;
-  background-size: 20px, 20px;
-  width: 20px;
-  height: 20px;
-  margin-left: 10px;
-`;
-
 export const UserNameContainer = styled.span`
   color: #ccc;
   font-size: 16px;

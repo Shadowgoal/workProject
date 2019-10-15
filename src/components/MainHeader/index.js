@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Modal from 'components/Modal';
 import HomeBtn from './HomeBtn';
 import Nav from './Nav';
 import NavSearch from './NavSearch';
@@ -11,7 +10,6 @@ import * as S from './styled';
 
 const MainHeader = () => (
   <S.Header>
-    <Modal />
     <S.Container>
       <HomeBtn />
       <Nav />

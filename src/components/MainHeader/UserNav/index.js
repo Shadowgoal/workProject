@@ -2,14 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import UserImage from 'components/UserImage/styled';
 import * as S from './styled';
 
-const UserNav = (props) => (
-  <S.UserNavContainer vision={props.isLoggedIn}>
+const UserNav = ({ isLoggedIn, user }) => (
+  <S.UserNavContainer vision={isLoggedIn}>
     <S.UserContainer>
-      <S.UserImage />
+      <UserImage />
       <S.UserNameContainer>
-        {localStorage.getItem('username')}
+        {user.username}
       </S.UserNameContainer>
       <S.UserDropDown />
       <S.DropDownContainer>
@@ -38,9 +39,13 @@ const UserNav = (props) => (
 
 UserNav.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({ isLoggedIn: state.isLoggedIn });
+const mapStateToProps = ({ user, isLoggedIn }) => ({
+  isLoggedIn,
+  user,
+});
 
 const mapDispatchToProps = {};
 

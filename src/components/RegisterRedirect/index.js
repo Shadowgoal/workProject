@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 import RegisterForm from 'components/Modal/Form';
 import { validation } from 'components/Modal/validation';
@@ -31,4 +32,4 @@ class RegisterRedirect extends Component {
   }
 }
 
-export default RegisterRedirect;
+export default withRouter(RegisterRedirect);

@@ -18,7 +18,7 @@ class Modal extends Component {
 
   onSubmit = (values) => {
     console.log(values);
-    this.props.onRegister();
+    this.props.onRegister(values);
     this.props.onCloseModal();
     localStorage.setItem('username', values.username);
     this.props.history.push('/upload');
