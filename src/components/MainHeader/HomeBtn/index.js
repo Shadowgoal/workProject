@@ -1,25 +1,23 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useLocation } from 'react-router';
+import { useSelector } from 'react-redux';
 
 import * as S from './styled';
 
-const HomeBtn = (props) => (
-  <S.Btn to="/">
-    <S.Logo />
-    <S.TextLogo isVisible={props.isLoggedIn}>
-      SOUNDCLOUD
-    </S.TextLogo>
-  </S.Btn>
-);
-
-HomeBtn.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
+const HomeBtn = () => {
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  useLocation();
+  return (
+    <S.Btn to={{
+      pathname: '/',
+    }}
+    >
+      <S.Logo />
+      <S.TextLogo isVisible={isLoggedIn}>
+        SOUNDCLOUD
+      </S.TextLogo>
+    </S.Btn>
+  );
 };
 
-const mapStateToProps = (state) => ({ isLoggedIn: state.isLoggedIn });
-
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(HomeBtn));
+export default HomeBtn;

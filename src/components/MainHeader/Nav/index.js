@@ -1,33 +1,25 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useLocation } from 'react-router';
+import { useSelector } from 'react-redux';
 
 import * as S from './styled';
 
-const Nav = (props) => (
-  <S.Container>
-    <S.NavBtn to={props.isLoggedIn ? '/discover' : '/'}>
-      Home
-    </S.NavBtn>
-    <S.NavBtn to={props.isLoggedIn ? '/discover' : '/register'}>
-      Stream
-    </S.NavBtn>
-    <S.NavBtn to={props.isLoggedIn ? '/discover' : '/register'}>
-      Library
-    </S.NavBtn>
-  </S.Container>
-);
-
-Nav.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
+const Nav = () => {
+  useLocation();
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  return (
+    <S.Container>
+      <S.NavBtn to={isLoggedIn ? '/discover' : '/'}>
+        Home
+      </S.NavBtn>
+      <S.NavBtn to={isLoggedIn ? '/discover' : '/register'}>
+        Stream
+      </S.NavBtn>
+      <S.NavBtn to={isLoggedIn ? '/discover' : '/register'}>
+        Library
+      </S.NavBtn>
+    </S.Container>
+  );
 };
 
-const mapStateToProps = (state) => ({
-  isModalOpened: state.isModalOpened,
-  isLoggedIn: state.isLoggedIn,
-});
-
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Nav));
+export default Nav;

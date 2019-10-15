@@ -21,9 +21,21 @@ const Weekly = () => {
         <S.TitleText>All of SoundCloud. Just for you.</S.TitleText>
       </S.TitleContainer>
       <S.SelectionPlaylistContainer>
-        {
-          tracks.map((track) => (<div key={track.id}>{track.name}</div>))
-        }
+        <S.TrackContainer>
+          {
+            tracks.map((track) => (
+              <S.Track key={track.id}>
+                <S.TrackArtist>
+                  {track.artist}
+                </S.TrackArtist>
+                -
+                <S.TrackName>
+                  {track.name}
+                </S.TrackName>
+              </S.Track>
+            ))
+          }
+        </S.TrackContainer>
       </S.SelectionPlaylistContainer>
     </S.Container>
   );

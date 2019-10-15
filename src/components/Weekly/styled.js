@@ -29,4 +29,26 @@ export const SelectionPlaylistContainer = styled.div`
   margin-bottom: 15px;
 `;
 
+export const TrackContainer = styled.div`
+  float: right;
+  padding: 20px;
+  width: 65%;
+`;
+
+export const Track = styled.div`
+  padding: 10px;
+  :hover {
+    background-color: bisque;
+    opacity: 0.5;
+  };
+`;
+
+export const TrackName = styled.span`
+  color: white;
+`;
+
+export const TrackArtist = styled.span`
+  color: hsla(0,0%,100%,.7);;
+`;
+
 export const blank = () => {};

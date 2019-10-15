@@ -1,57 +1,30 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { onCloseModal, onRegister } from 'redux/action';
 import RegisterForm from './Form';
 
 import * as S from './styled';
 
-class Modal extends Component {
-  static propTypes = {
-    isModalOpened: PropTypes.bool.isRequired,
-    onRegister: PropTypes.func.isRequired,
-    onCloseModal: PropTypes.func.isRequired,
-    history: PropTypes.object.isRequired,
-  }
-
-  onSubmit = (values) => {
-    console.log(values);
-    this.props.onRegister(values);
-    this.props.onCloseModal();
-    localStorage.setItem('username', values.username);
-    this.props.history.push('/upload');
-  }
-
-  render() {
-    return (
-      <S.Container>
-        <S.ModalWindowShadow
-          visible={this.props.isModalOpened}
-          onClick={this.props.onCloseModal}
-        >
-          <S.CloseModalX>x</S.CloseModalX>
-        </S.ModalWindowShadow>
-        <S.ModalWindow visible={this.props.isModalOpened}>
-          <RegisterForm onSubmit={this.onSubmit} />
-        </S.ModalWindow>
-      </S.Container>
-    );
-  }
-}
-
-const mapStateToProps = (state) => ({
-  isModalOpened: state.isModalOpened,
-  isLoggedIn: state.isLoggedIn,
-});
-
-const mapDispatchToProps = {
-  onCloseModal,
-  onRegister,
+const Modal = () => {
+  const isModalOpened = useSelector((state) => state.isModalOpened);
+  const dispatch = useDispatch();
+  const onCloseModal = useCallback(
+    () => dispatch({ type: 'CLOSE_MODAL' }),
+    [dispatch],
+  );
+  return (
+    <S.Container>
+      <S.ModalWindowShadow
+        visible={isModalOpened}
+        onClick={onCloseModal}
+      >
+        <S.CloseModalX>x</S.CloseModalX>
+      </S.ModalWindowShadow>
+      <S.ModalWindow visible={isModalOpened}>
+        <RegisterForm />
+      </S.ModalWindow>
+    </S.Container>
+  );
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withRouter(Modal));
+export default Modal;

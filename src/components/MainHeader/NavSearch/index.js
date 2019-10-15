@@ -3,16 +3,15 @@ import { Form, Field } from 'react-final-form';
 
 import * as S from './styled';
 
-const onSubmit = (value) => {
-  if (value.searchValue) {
-    console.log(value);
-  }
-};
-
 const NavSearch = () => (
   <S.Container>
     <Form
-      onSubmit={onSubmit}
+      onSubmit={(values) => {
+        if (values.searchValue) {
+          console.log(values);
+          values.searchValue = '';
+        }
+      }}
       render={({ handleSubmit }) => (
         <S.SearchForm onSubmit={handleSubmit}>
           <Field name="searchValue">
@@ -22,7 +21,6 @@ const NavSearch = () => (
           </Field>
           <S.SearchBtn
             type="submit"
-            onClick={onSubmit}
           />
         </S.SearchForm>
       )}
