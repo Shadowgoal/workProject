@@ -1,7 +1,6 @@
 import { createStore } from 'redux';
-import instance from 'http/index';
 
-let initialState = {
+const initialState = {
   isModalOpened: false,
   isLoggedIn: false,
   user: {
@@ -11,13 +10,6 @@ let initialState = {
     confirm: '',
   },
 };
-
-instance.get('/tracks')
-  .then((response) => {
-    console.log(response.data);
-    initialState = response.data;
-    console.log(initialState);
-  });
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

@@ -1,26 +1,32 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useState, useEffect } from 'react';
 
+import instance from 'http/index';
 import * as S from './styled';
 
-const Weekly = (tracks) => (
-  <S.Container>
-    <S.TitleContainer>
-      <S.Title>SoundCloud Weekly</S.Title>
-      <S.TitleText>All of SoundCloud. Just for you.</S.TitleText>
-    </S.TitleContainer>
-    <S.SelectionPlaylistContainer>
-      {
-        Object.keys(tracks).map((track, trackId = track.id) => (
-          console.log(track, trackId)
-        ))
-      }
-    </S.SelectionPlaylistContainer>
-  </S.Container>
-);
+const Weekly = () => {
+  const [tracks, setTraks] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      const data = await instance.get('/tracks').then((response) => response.data);
+      setTraks(data.tracks);
+    }
 
-const mapStateToProps = ({ tracks }) => ({ tracks });
+    fetchData();
+  }, []);
 
-const mapDispatchToProps = {};
+  return (
+    <S.Container>
+      <S.TitleContainer>
+        <S.Title>SoundCloud Weekly</S.Title>
+        <S.TitleText>All of SoundCloud. Just for you.</S.TitleText>
+      </S.TitleContainer>
+      <S.SelectionPlaylistContainer>
+        {
+          tracks.map((track) => (<div key={track.id}>{track.name}</div>))
+        }
+      </S.SelectionPlaylistContainer>
+    </S.Container>
+  );
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Weekly);
+export default Weekly;
