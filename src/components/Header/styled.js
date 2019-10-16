@@ -6,6 +6,17 @@ export const Header = styled.header`
   width: inherit;
   height: 381px;
   border-top: 4px solid #f50;
+  display: flex;
+  justify-content: center;
+`;
+
+export const LogoBtnContainer = styled.div`
+  width: 90%;
+  height: 50px;
+  padding: 20px;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const blank = () => {};

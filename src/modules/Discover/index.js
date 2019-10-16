@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import MainHeader from 'components/MainHeader';
@@ -7,14 +7,17 @@ import RightSideBar from 'components/RightSideBar';
 
 import * as S from './styled';
 
-const Discover = () => (
-  <S.Container>
-    <MainHeader />
-    <S.BodyContainer>
-      <DiscoverContainer />
-      <RightSideBar />
-    </S.BodyContainer>
-  </S.Container>
-);
+const Discover = () => {
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  return (
+    <S.Container>
+      <MainHeader isModalOpened={isModalOpened} setIsModalOpened={setIsModalOpened} />
+      <S.BodyContainer>
+        <DiscoverContainer />
+        <RightSideBar />
+      </S.BodyContainer>
+    </S.Container>
+  );
+};
 
 export default withRouter(Discover);

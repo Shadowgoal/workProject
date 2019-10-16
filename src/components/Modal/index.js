@@ -1,30 +1,27 @@
-import React, { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import RegisterForm from './Form';
 
 import * as S from './styled';
 
-const Modal = () => {
-  const isModalOpened = useSelector((state) => state.isModalOpened);
-  const dispatch = useDispatch();
-  const onCloseModal = useCallback(
-    () => dispatch({ type: 'CLOSE_MODAL' }),
-    [dispatch],
-  );
-  return (
-    <S.Container>
-      <S.ModalWindowShadow
-        visible={isModalOpened}
-        onClick={onCloseModal}
-      >
-        <S.CloseModalX>x</S.CloseModalX>
-      </S.ModalWindowShadow>
-      <S.ModalWindow visible={isModalOpened}>
-        <RegisterForm />
-      </S.ModalWindow>
-    </S.Container>
-  );
+const Modal = ({ isModalOpened, setIsModalOpened }) => (
+  <S.Container>
+    <S.ModalWindowShadow
+      visible={isModalOpened}
+      onClick={() => setIsModalOpened(false)}
+    >
+      <S.CloseModalX>x</S.CloseModalX>
+    </S.ModalWindowShadow>
+    <S.ModalWindow visible={isModalOpened}>
+      <RegisterForm setIsModalOpened={setIsModalOpened} />
+    </S.ModalWindow>
+  </S.Container>
+);
+
+Modal.propTypes = {
+  isModalOpened: PropTypes.bool.isRequired,
+  setIsModalOpened: PropTypes.func.isRequired,
 };
 
 export default Modal;

@@ -10,7 +10,6 @@ const Weekly = () => {
       const data = await instance.get('/tracks').then((response) => response.data);
       setTraks(data.tracks);
     }
-
     fetchData();
   }, []);
 

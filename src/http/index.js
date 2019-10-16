@@ -23,4 +23,6 @@ mock.onGet('/tracks').reply(200, {
   ],
 });
 
+mock.onPut('/users').reply(204);
+
 export default instance;

@@ -2,28 +2,26 @@ import React, { useCallback } from 'react';
 import { Form } from 'react-final-form';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import FormInput from './Input';
 import { validation } from '../validation';
 
 import * as S from './styled';
 
-const RegisterForm = () => {
+const RegisterForm = ({ setIsModalOpened }) => {
   const dispatch = useDispatch();
-  const onCloseModal = useCallback(
-    () => dispatch({ type: 'CLOSE_MODAL' }),
-    [dispatch],
-  );
   const onRegister = useCallback(
     () => dispatch({ type: 'LOGIN' }),
     [dispatch],
   );
+  const closeModal = () => setIsModalOpened(false);
   const location = useHistory();
   const onSubmit = (values) => {
     console.log(values);
     onRegister(values);
-    onCloseModal();
     localStorage.setItem('username', values.username);
+    closeModal();
     location.push('/upload');
   };
   return (
@@ -47,7 +45,7 @@ const RegisterForm = () => {
               </S.RegisterButton>
               <S.CloseButton
                 type="button"
-                onClick={onCloseModal}
+                onClick={() => setIsModalOpened(false)}
               >
                 Close
               </S.CloseButton>
@@ -57,6 +55,10 @@ const RegisterForm = () => {
       />
     </S.FormContainer>
   );
+};
+
+RegisterForm.propTypes = {
+  setIsModalOpened: PropTypes.func.isRequired,
 };
 
 export default RegisterForm;

@@ -5,6 +5,7 @@ export const SignField = styled.div`
   width: 200px;
   height: 39px;
   padding: 7px 0 0 9px;
+  float: right;
 `;
 
 export const SignInBtn = styled.button`

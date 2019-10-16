@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   position: absolute;
@@ -28,13 +29,16 @@ export const ButtonContainer = styled.div`
 
 `;
 
-export const SignUpBtn = styled.button`
+export const SignUpBtn = styled(Link)`
   border: none;
   width: 200px;
-  height: 40px;
+  padding: 10px 0;
+  text-decoration: none;
   border-radius: 8px;
   background: #f50;
   color: white;
   cursor: pointer;
   outline: none;
+  display: inline-block;
+  font-size: 15px;
 `;
