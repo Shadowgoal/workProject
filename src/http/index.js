@@ -23,9 +23,16 @@ mock.onGet('/tracks').reply(200, {
   ],
 });
 
-mock.onPost('/signup').reply((config) => {
-  console.log(config);
-});
+mock.onPost('/signup').reply((config) => new Promise((resolve) => {
+  setTimeout(() => {
+    resolve([200, {
+      user: {
+        ...JSON.parse(config.data),
+      },
+      token: 'asdasdasd',
+    }]);
+  }, 10000);
+}));
 
 mock.onGet('/signup').reply(200);
 
