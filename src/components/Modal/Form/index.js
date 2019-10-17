@@ -3,7 +3,9 @@ import { Form } from 'react-final-form';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import qs from 'qs';
 
+import instance from 'http/index';
 import FormInput from './Input';
 import { validation } from '../validation';
 
@@ -17,13 +19,16 @@ const RegisterForm = ({ setIsModalOpened }) => {
   );
   const closeModal = () => setIsModalOpened(false);
   const location = useHistory();
-  const onSubmit = (values) => {
-    console.log(values);
-    onRegister(values);
-    localStorage.setItem('username', values.username);
+
+  async function onSubmit(user) {
+    const data = await instance.post('/signup', qs.stringify(user)).then((response) => response.data);
+    console.log(data.user);
+    onRegister(user);
+    sessionStorage.setItem('username', user.username);
     closeModal();
     location.push('/upload');
-  };
+  }
+
   return (
     <S.FormContainer>
       <Form

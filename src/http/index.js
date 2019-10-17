@@ -23,6 +23,10 @@ mock.onGet('/tracks').reply(200, {
   ],
 });
 
-mock.onPut('/users').reply(204);
+mock.onPost('/signup').reply((config) => {
+  console.log(config);
+});
+
+mock.onGet('/signup').reply(200);
 
 export default instance;
