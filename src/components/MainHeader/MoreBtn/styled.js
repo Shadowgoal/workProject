@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+export const MainContainer = styled.div`
+`;
+
 export const Container = styled.div`
   height: 46px;
   display: inline-flex;
@@ -34,15 +37,30 @@ export const DropDown = styled.div`
   z-index: 2;
   display: none;
   background: #111;
-  color: red;
   position: absolute;
   top: 46px;
   width: 160px;
   right: 22px;
   border-top: 1px solid #333;
+  transition: all .5s ease;
+`;
+
+export const DropDownBox = styled.div`
+  border-bottom: 1px solid #333;
 `;
 
 export const DropDownElem = styled.div`
+  color: #ccc;
+  font-size: 14px;
+  padding: 8px;
+  :hover {
+    background: #333;
+    color: white;
+  };
+`;
+
+export const DropDownLogOut = styled.div`
+  display: ${(logout) => (logout.visible ? 'block' : 'none')};
   color: #ccc;
   font-size: 14px;
   padding: 8px;
@@ -61,6 +79,7 @@ export const MoreBtn = styled.div`
     background: #111;
   };
   :hover ${DropDown} {
+    transform: translateY(0);
     display: block;
   };
 `;

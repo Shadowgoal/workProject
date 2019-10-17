@@ -10,7 +10,7 @@ export const UserNameContainer = styled.span`
   margin-bottom: 4px;
 `;
 
-export const UserDropDown = styled.div`
+export const UserDropDownArrow = styled.div`
   background: url(https://www.bounteous.com/sites/default/files/luna-migrate/down-arrow.png);
   width: 15px;
   height: 9px;

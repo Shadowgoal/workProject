@@ -4,11 +4,11 @@ import { useSelector } from 'react-redux';
 
 import * as S from './styled';
 
-const Buttons = ({ setIsModalOpened }) => {
+const Buttons = ({ setIsModalOpened, setIsLogInModalOpened }) => {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   return (
     <S.SignField vision={isLoggedIn}>
-      <S.SignInBtn onClick={() => setIsModalOpened(true)}>
+      <S.SignInBtn onClick={() => setIsLogInModalOpened(true)}>
         Sign in
       </S.SignInBtn>
       <S.CreateAccBtn onClick={() => setIsModalOpened(true)}>
@@ -20,6 +20,7 @@ const Buttons = ({ setIsModalOpened }) => {
 
 Buttons.propTypes = {
   setIsModalOpened: PropTypes.func.isRequired,
+  setIsLogInModalOpened: PropTypes.func.isRequired,
 };
 
 export default Buttons;

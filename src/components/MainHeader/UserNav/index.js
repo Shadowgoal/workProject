@@ -11,9 +11,9 @@ const UserNav = () => {
       <S.UserContainer>
         <UserImage />
         <S.UserNameContainer>
-          {localStorage.getItem('username')}
+          {sessionStorage.getItem('username')}
         </S.UserNameContainer>
-        <S.UserDropDown />
+        <S.UserDropDownArrow />
         <S.DropDownContainer>
           <S.DropDownItem>
             <S.DropDownProfileIcon />

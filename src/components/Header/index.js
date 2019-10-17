@@ -7,11 +7,11 @@ import MainTitle from './MainTitle';
 import * as S from './styled';
 import Logo from './Logo/styled';
 
-const Header = ({ setIsModalOpened }) => (
+const Header = ({ setIsModalOpened, setIsLogInModalOpened }) => (
   <S.Header>
     <S.LogoBtnContainer>
       <Logo />
-      <Buttons setIsModalOpened={setIsModalOpened} />
+      <Buttons setIsModalOpened={setIsModalOpened} setIsLogInModalOpened={setIsLogInModalOpened} />
     </S.LogoBtnContainer>
     <MainTitle />
   </S.Header>
@@ -19,6 +19,7 @@ const Header = ({ setIsModalOpened }) => (
 
 Header.propTypes = {
   setIsModalOpened: PropTypes.func.isRequired,
+  setIsLogInModalOpened: PropTypes.func.isRequired,
 };
 
 export default Header;

@@ -9,9 +9,15 @@ import * as S from './styled';
 
 const Register = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
+  const [isLogInModalOpened, setIsLogInModalOpened] = useState(false);
   return (
     <S.Container>
-      <MainHeader isModalOpened={isModalOpened} setIsModalOpened={setIsModalOpened} />
+      <MainHeader
+        isModalOpened={isModalOpened}
+        setIsModalOpened={setIsModalOpened}
+        isLogInModalOpened={isLogInModalOpened}
+        setIsLogInModalOpened={setIsLogInModalOpened}
+      />
       <RegisterRedirect setIsModalOpened={setIsModalOpened} />
       <Footer />
     </S.Container>

@@ -18,7 +18,7 @@ export const SignInBtn = styled.button`
   margin-right: 8px;
   cursor: pointer;
   :hover {
-      border: 2px solid white;
+    border: 2px solid white;
   };
   outline: none;
 `;

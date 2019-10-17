@@ -1,18 +1,26 @@
 import { createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const initialState = {
   isLoggedIn: false,
-  user: {
-    username: '',
-    email: '',
-    password: '',
-    confirm: '',
-  },
+  user: {},
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'LOGIN':
+    case 'SIGN_UP':
+      return {
+        ...state,
+        isLoggedIn: true,
+        user: action.payload,
+      };
+    case 'LOG_OUT':
+      return {
+        ...state,
+        isLoggedIn: false,
+        user: {},
+      };
+    case 'LOG_IN':
       return {
         ...state,
         isLoggedIn: true,
@@ -23,6 +31,6 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-const store = createStore(reducer);
+const store = createStore(reducer, composeWithDevTools());
 
 export default store;

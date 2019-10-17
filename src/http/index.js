@@ -31,7 +31,13 @@ mock.onPost('/signup').reply((config) => new Promise((resolve) => {
       },
       token: 'asdasdasd',
     }]);
-  }, 10000);
+  }, 3000);
+}));
+
+mock.onPost('/logout').reply(() => new Promise((resolve) => {
+  setTimeout(() => {
+    resolve([200]);
+  }, 3000);
 }));
 
 mock.onGet('/signup').reply(200);

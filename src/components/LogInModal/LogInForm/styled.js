@@ -16,7 +16,7 @@ export const ButtonField = styled.div`
   margin-top: 20px;
 `;
 
-export const CreateAcc = styled.span`
+export const LogIn = styled.span`
   color: dimgrey;
   margin: 0 auto;
   text-align: center;
@@ -28,7 +28,7 @@ export const CreateAcc = styled.span`
   justify-content: center;
 `;
 
-export const RegisterButton = styled.button`
+export const LogInButton = styled.button`
   background: #f50;
   border: none;
   border-radius: 4px;
@@ -49,5 +49,5 @@ export const CloseButton = styled.button`
   cursor: pointer;
 `;
 
-export const RegisterForm = styled.form`
+export const LogInForm = styled.form`
 `;
