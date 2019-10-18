@@ -32,7 +32,10 @@ export const SelectionPlaylistContainer = styled.div`
 export const TrackContainer = styled.div`
   float: right;
   padding: 20px;
-  width: 65%;
+  width: 546px;;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Track = styled.div`

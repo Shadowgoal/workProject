@@ -10,9 +10,11 @@ import LogInInput from './LogInInput';
 import { validation } from './validation';
 
 import * as S from './styled';
+import { InputError } from './LogInInput/styled';
 
 const LogInForm = ({ setIsLogInModalOpened }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState('');
   const dispatch = useDispatch();
   const onLogIn = useCallback(
     () => dispatch({ type: 'LOG_IN' }),
@@ -23,13 +25,18 @@ const LogInForm = ({ setIsLogInModalOpened }) => {
 
   async function onSubmit(user) {
     setIsLoading(true);
-    const data = await instance.post('/signup', user)
-      .then((response) => response.data);
-    onLogIn(data.user);
-    sessionStorage.setItem('username', data.user.username);
-    sessionStorage.setItem('authToken', data.token);
-    closeModal();
-    location.push('/upload');
+    const data = await instance.post('/signin', user)
+      .then((response) => response.data)
+      .catch(() => ({ error: true, message: 'Incorrect password or email' }));
+    if (!data.error) {
+      onLogIn(data.user);
+      sessionStorage.setItem('username', data.user.username);
+      sessionStorage.setItem('authToken', data.token);
+      closeModal();
+      location.push('/upload');
+    } else {
+      setErrors(data.message);
+    }
     setIsLoading(false);
   }
 
@@ -44,6 +51,7 @@ const LogInForm = ({ setIsLogInModalOpened }) => {
             <S.LogIn>Log in</S.LogIn>
             <LogInInput type="text" name="username" placeholder="Username" />
             <LogInInput type="password" name="password" placeholder="Password" />
+            {errors && (<InputError>{errors}</InputError>)}
             <S.ButtonField>
               <S.LogInButton
                 type="submit"

@@ -10,7 +10,7 @@ export const Container = styled.div`
 
 export const BodyContainer = styled.div`
   display: inline-flex;
-  width: 1240px;
+  width: 1180px;
   height: 100%;
   margin-top: 46px;
   padding: 30px 30px 0px 30px;

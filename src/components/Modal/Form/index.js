@@ -10,9 +10,11 @@ import FormInput from './Input';
 import { validation } from '../validation';
 
 import * as S from './styled';
+import { InputError } from './Input/styled';
 
 const RegisterForm = ({ setIsModalOpened }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState('');
   const dispatch = useDispatch();
   const onRegister = useCallback(
     () => dispatch({ type: 'SIGN_UP' }),
@@ -21,17 +23,22 @@ const RegisterForm = ({ setIsModalOpened }) => {
   const closeModal = () => setIsModalOpened(false);
   const location = useHistory();
 
-  async function onSubmit(user) {
+  const onSubmit = async (user) => {
     setIsLoading(true);
     const data = await instance.post('/signup', user)
-      .then((response) => response.data);
-    onRegister(data.user);
-    sessionStorage.setItem('username', data.user.username);
-    sessionStorage.setItem('authToken', data.token);
-    closeModal();
-    location.push('/upload');
+      .then((response) => response.data)
+      .catch(() => ({ error: true, message: 'Password or email is already exists' }));
+    if (!data.error) {
+      onRegister(data.user);
+      sessionStorage.setItem('username', data.user.username);
+      sessionStorage.setItem('authToken', data.token);
+      closeModal();
+      location.push('/upload');
+    } else {
+      setErrors(data.message);
+    }
     setIsLoading(false);
-  }
+  };
 
   return (
     <S.FormContainer>
@@ -46,6 +53,7 @@ const RegisterForm = ({ setIsModalOpened }) => {
             <FormInput type="text" name="email" placeholder="Email" />
             <FormInput type="password" name="password" placeholder="Password" />
             <FormInput type="password" name="confirm" placeholder="Confirm" />
+            {errors && (<InputError>{errors}</InputError>)}
             <S.ButtonField>
               <S.RegisterButton
                 type="submit"

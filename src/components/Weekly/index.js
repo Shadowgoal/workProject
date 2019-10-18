@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
+import TracksLoading from 'components/TracksLoading';
 import instance from 'http/index';
 import * as S from './styled';
 
 const Weekly = () => {
-  const [tracks, setTraks] = useState([]);
+  const [tracks, setTracks] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     async function fetchData() {
+      setIsLoading(true);
       const data = await instance.get('/tracks').then((response) => response.data);
-      setTraks(data.tracks);
+      setTracks(data.tracks);
+      setIsLoading(false);
     }
     fetchData();
   }, []);
@@ -21,6 +25,7 @@ const Weekly = () => {
       </S.TitleContainer>
       <S.SelectionPlaylistContainer>
         <S.TrackContainer>
+          <TracksLoading isLoading={isLoading} />
           {
             tracks.map((track) => (
               <S.Track key={track.id}>

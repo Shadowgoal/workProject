@@ -24,7 +24,7 @@ export const ModalWindow = styled.div`
   box-shadow: 1px 3px 7px 4px grey;
   z-index: 1000;
   visibility: ${(vision) => (vision.visible ? 'visible' : 'hidden')};
-  animation: ${(vision) => (vision.visible ? fromTop : '')} 1s;
+  animation: ${(vision) => (vision.visible ? fromTop : '')} .5s;
 `;
 
 export const ModalWindowShadow = styled.div`

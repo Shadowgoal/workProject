@@ -2,7 +2,7 @@ import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 const initialState = {
-  isLoggedIn: false,
+  isLoggedIn: true,
   user: {},
 };
 

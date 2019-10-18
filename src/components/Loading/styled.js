@@ -19,6 +19,7 @@ export const MainContainer = styled.div`
   display: ${(cont) => (cont.visible ? 'flex' : 'none')};
   align-items: center;
   justify-content: center;
+  z-index: 1000;
 `;
 
 const rotate = keyframes`
@@ -35,6 +36,7 @@ export const LoadingIcon = styled.div`
   position: relative;
   width: 64px;
   height: 64px;
+  z-index: 1001;
 `;
 
 export const LoadingHelper = styled.div`
