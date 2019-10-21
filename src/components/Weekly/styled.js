@@ -40,6 +40,7 @@ export const TrackContainer = styled.div`
 
 export const Track = styled.div`
   padding: 10px;
+  cursor: pointer;
   :hover {
     background-color: bisque;
     opacity: 0.5;

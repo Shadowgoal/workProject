@@ -12,15 +12,17 @@ mock.onGet('/tracks').reply(() => new Promise((resolve) => {
       tracks: [
         {
           id: 1,
-          src: 'music/Zivert-Credo.mp3',
+          src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/wwy.mp3',
           artist: 'Zivert',
           name: 'Credo',
+          duration: 184,
         },
         {
           id: 2,
           src: 'music/Atl-Serpantin.mp3',
           artist: 'ATL',
           name: 'Serpantin',
+          duration: 169,
         },
       ],
     }]);

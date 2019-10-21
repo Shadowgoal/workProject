@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import TracksLoading from 'components/TracksLoading';
 import instance from 'http/index';
+
 import * as S from './styled';
 
 const Weekly = () => {
   const [tracks, setTracks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
@@ -28,7 +31,7 @@ const Weekly = () => {
           <TracksLoading isLoading={isLoading} />
           {
             tracks.map((track) => (
-              <S.Track key={track.id}>
+              <S.Track key={track.id} onClick={() => dispatch({ type: 'SET_CURRENT_TRACK', payload: track })}>
                 <S.TrackArtist>
                   {track.artist}
                 </S.TrackArtist>

@@ -17,15 +17,15 @@ const LogInForm = ({ setIsLogInModalOpened }) => {
   const [errors, setErrors] = useState('');
   const dispatch = useDispatch();
   const onLogIn = useCallback(
-    () => dispatch({ type: 'LOG_IN' }),
+    (user) => dispatch({ type: 'LOG_IN', payload: user }),
     [dispatch],
   );
   const closeModal = () => setIsLogInModalOpened(false);
   const location = useHistory();
 
-  async function onSubmit(user) {
+  async function onSubmit(values) {
     setIsLoading(true);
-    const data = await instance.post('/signin', user)
+    const data = await instance.post('/signin', values)
       .then((response) => response.data)
       .catch(() => ({ error: true, message: 'Incorrect password or email' }));
     if (!data.error) {

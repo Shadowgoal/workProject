@@ -17,15 +17,15 @@ const RegisterForm = ({ setIsModalOpened }) => {
   const [errors, setErrors] = useState('');
   const dispatch = useDispatch();
   const onRegister = useCallback(
-    () => dispatch({ type: 'SIGN_UP' }),
+    (user) => dispatch({ type: 'SIGN_UP', payload: user }),
     [dispatch],
   );
   const closeModal = () => setIsModalOpened(false);
   const location = useHistory();
 
-  const onSubmit = async (user) => {
+  const onSubmit = async (values) => {
     setIsLoading(true);
-    const data = await instance.post('/signup', user)
+    const data = await instance.post('/signup', values)
       .then((response) => response.data)
       .catch(() => ({ error: true, message: 'Password or email is already exists' }));
     if (!data.error) {

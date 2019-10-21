@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 const initialState = {
   isLoggedIn: true,
   user: {},
+  currentTrack: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -25,6 +26,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         isLoggedIn: true,
         user: action.payload,
+      };
+    case 'SET_CURRENT_TRACK':
+      return {
+        ...state,
+        currentTrack: action.payload,
       };
     default:
       return state;

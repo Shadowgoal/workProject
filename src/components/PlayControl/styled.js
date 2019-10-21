@@ -59,4 +59,12 @@ export const PrevBtn = styled.button`
   transform: rotate(180deg);
 `;
 
+export const CurrentTime = styled.span`
+  color: #f50;
+  margin-left: 20px;
+`;
+
+export const Duration = styled.span`
+`;
+
 export const blank = () => {};
