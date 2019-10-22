@@ -1,5 +1,6 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
+import * as zivert from '../music/Atl-Serpantin.mp3';
 
 const instance = axios.create({
   baseURL: 'https://some-domain.com/api/',
@@ -28,6 +29,8 @@ mock.onGet('/tracks').reply(() => new Promise((resolve) => {
     }]);
   }, 10);
 }));
+
+mock.onGet('/test.mp3').reply(() => zivert);
 
 mock.onPost('/signup').reply((config) => new Promise((resolve) => {
   setTimeout(() => {

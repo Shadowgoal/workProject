@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 import Scrubber from './Scrubber';
+import * as zivert from '../../music/Atl-Serpantin.mp3';
 
 import * as S from './styled';
 
@@ -9,7 +10,8 @@ const PlayControl = () => {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const currentTrack = useSelector((state) => state.currentTrack);
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioPlayer = document.getElementById('audio');
+  // const audioPlayer = document.getElementById('audio');
+  const audioPlayer = useRef(null);
 
   const convertTime = (timestamp) => {
     if (!timestamp) {
@@ -23,6 +25,7 @@ const PlayControl = () => {
     const time = `${minutes}:${seconds}`;
     return time;
   };
+
   const updateScrubber = (percent) => {
     const width = percent;
     return width;
@@ -30,7 +33,7 @@ const PlayControl = () => {
   const onPlayBtn = () => {
     if (!isPlaying) {
       setIsPlaying(true);
-      audioPlayer.play();
+      audioPlayer.current.play();
       setInterval(() => {
         const current = audioPlayer.currentTime;
         const dur = currentTrack.duration;
@@ -40,15 +43,15 @@ const PlayControl = () => {
       }, 1000);
     } else {
       setIsPlaying(false);
-      audioPlayer.pause();
+      audioPlayer.current.pause();
     }
   };
 
   return (
     <S.PlayControlContainer visible={isLoggedIn}>
       <S.PlayControlElements>
-        <audio autoPlay name="media" id="audio">
-          <source src={currentTrack.src} type="audio/mp3" />
+        <audio ref={audioPlayer} name="media" src={zivert} id="audio">
+          {/* <source src={`http:localhost:3002/music/Atl-Serpantin.mp3`} type="audio/mp3" /> */}
           <track kind="captions" />
         </audio>
         <S.PrevBtn />
