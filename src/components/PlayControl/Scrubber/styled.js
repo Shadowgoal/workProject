@@ -11,6 +11,6 @@ export const ProgressScrubber = styled.div`
   background: #f50;
   max-width: 100%;
   min-width: 0%;
-  width: ${(progress) => (progress.updateScrubber)};
+  width: ${(progress) => (progress.updateScrubber)}%;
   height: 2px;
 `;

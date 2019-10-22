@@ -27,6 +27,14 @@ export const SelectionPlaylistContainer = styled.div`
   background: linear-gradient(135deg, rgb(184, 148, 129) 0%, rgb(116, 83, 83) 100%);
   position: relative;
   margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const CoverContainer = styled.div`
+  padding: 20px;
+  padding-right: 0px;
+  background: url(${(cover) => (cover.cover)});
 `;
 
 export const TrackContainer = styled.div`

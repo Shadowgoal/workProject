@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 import * as S from './styled';
 
-const Scrubber = ({ updateScrubber }) => (
+const Scrubber = ({ progress }) => (
   <S.Scrubber>
-    <S.ProgressScrubber updateScrubber={updateScrubber} />
+    <S.ProgressScrubber updateScrubber={progress} />
   </S.Scrubber>
 );
 
 Scrubber.propTypes = {
-  updateScrubber: PropTypes.func.isRequired,
+  progress: PropTypes.number.isRequired,
 };
 
 export default Scrubber;

@@ -1,6 +1,9 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import * as zivert from '../music/Atl-Serpantin.mp3';
+import * as Atl from '../music/Atl-Serpantin.mp3';
+import * as Zivert from '../music/Zivert-Credo.mp3';
+import * as AtlCover from '../assets/TrackIcons/Atl-Serpantin.jpg';
+import * as ZivertCover from '../assets/TrackIcons/Zivert-Credo.jpg';
 
 const instance = axios.create({
   baseURL: 'https://some-domain.com/api/',
@@ -13,24 +16,26 @@ mock.onGet('/tracks').reply(() => new Promise((resolve) => {
       tracks: [
         {
           id: 1,
-          src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/wwy.mp3',
+          src: Zivert,
           artist: 'Zivert',
           name: 'Credo',
           duration: 184,
+          cover: ZivertCover,
+          liked: false,
         },
         {
           id: 2,
-          src: 'music/Atl-Serpantin.mp3',
+          src: Atl,
           artist: 'ATL',
           name: 'Serpantin',
           duration: 169,
+          cover: AtlCover,
+          liked: false,
         },
       ],
     }]);
   }, 10);
 }));
-
-mock.onGet('/test.mp3').reply(() => zivert);
 
 mock.onPost('/signup').reply((config) => new Promise((resolve) => {
   setTimeout(() => {

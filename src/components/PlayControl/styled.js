@@ -29,10 +29,10 @@ export const PlayBtn = styled.button`
   background: url(${(track) => (track.isPlaying
     ? 'http://simpleicon.com/wp-content/uploads/pause.png'
     : 'http://simpleicon.com/wp-content/uploads/play1.png')});
-  background-size: 38px;
-  width: 38px;
-  height: 38px;
-  margin-left: 3px;
+  background-size: 32px;
+  width: 32px;
+  height: 32px;
+  margin: 0px 10px 0px 12px;
   cursor: pointer;
 `;
 
@@ -41,9 +41,9 @@ export const NextBtn = styled.button`
   padding: 0;
   border: none;
   outline: none;
-  background-size: 18px;
-  width: 18px;
-  height: 18px;
+  background-size: 15px;
+  width: 15px;
+  height: 15px;
   cursor: pointer;
 `;
 
@@ -52,9 +52,9 @@ export const PrevBtn = styled.button`
   padding: 0;
   border: none;
   outline: none;
-  background-size: 18px;
-  width: 18px;
-  height: 18px;
+  background-size: 15px;
+  width: 15px;
+  height: 15px;
   cursor: pointer;
   transform: rotate(180deg);
 `;
