@@ -18,7 +18,11 @@ const LikedTracks = () => {
       <S.LikedTracksContainer>
         {
           likedTracks.map((track) => (
-            <S.LikedTrack key={track.id} onClick={() => dispatch({ type: 'SET_CURRENT_TRACK', payload: track })}>
+            <S.LikedTrack
+              key={track.id}
+              visible={track.id !== undefined}
+              onClick={() => dispatch({ type: 'SET_CURRENT_TRACK', payload: track })}
+            >
               <S.LikedTrackCover cover={track.cover} />
               <S.LikedTrackName>
                 {track.artist}

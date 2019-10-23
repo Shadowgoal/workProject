@@ -23,6 +23,11 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
+  for (let i = 0; i < state.currentPlaylist.length; i += 1) {
+    if (state.currentTrack.id === state.currentPlaylist[i].id) {
+      state.currentPlaylist[i].liked = state.currentTrack.liked;
+    }
+  }
   switch (action.type) {
     case 'SIGN_UP':
       return {
@@ -88,7 +93,7 @@ const reducer = (state = initialState, action) => {
         user: {
           ...state.user,
           likedTracks: [
-            ...state.user.likedTracks.filter((item) => item.id === action.likedTracks),
+            ...state.user.likedTracks.filter((index) => index.id !== action.likedTracks),
           ],
         },
       };

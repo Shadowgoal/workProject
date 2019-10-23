@@ -35,7 +35,11 @@ const Weekly = () => {
           <TracksLoading isLoading={isLoading} />
           {
             currentPlaylist.map((track) => (
-              <S.Track key={track.id} onClick={() => dispatch({ type: 'SET_CURRENT_TRACK', payload: track })}>
+              <S.Track
+                key={track.id}
+                visible={track.id !== undefined}
+                onClick={() => dispatch({ type: 'SET_CURRENT_TRACK', payload: track })}
+              >
                 <S.TrackArtist>
                   {track.artist}
                 </S.TrackArtist>

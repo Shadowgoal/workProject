@@ -46,6 +46,7 @@ export const LikedTracksContainer = styled.div`
 `;
 
 export const LikedTrack = styled.div`
+  display: ${(visible) => (visible.visible ? 'block' : 'none')};
   display: flex;
   align-items: center;
   padding: 10px 0;

@@ -14,7 +14,7 @@ const TrackInfo = () => {
     [dispatch],
   );
   const unlikeTrack = useCallback(
-    () => dispatch({ type: 'UNLIKE_TRACK' }),
+    (track) => dispatch({ type: 'UNLIKE_TRACK', likedTracks: track }),
     [dispatch],
   );
   const onLike = async () => {
