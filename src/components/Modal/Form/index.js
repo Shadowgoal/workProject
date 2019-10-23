@@ -63,7 +63,7 @@ const RegisterForm = ({ setIsModalOpened }) => {
               </S.RegisterButton>
               <S.CloseButton
                 type="button"
-                onClick={() => setIsModalOpened(false)}
+                onClick={closeModal}
               >
                 Close
               </S.CloseButton>

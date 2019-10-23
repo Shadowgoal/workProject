@@ -61,7 +61,7 @@ const LogInForm = ({ setIsLogInModalOpened }) => {
               </S.LogInButton>
               <S.CloseButton
                 type="button"
-                onClick={() => setIsLogInModalOpened(false)}
+                onClick={closeModal}
               >
                 Close
               </S.CloseButton>

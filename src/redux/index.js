@@ -7,8 +7,9 @@ import * as ZivertCover from '../assets/TrackIcons/Zivert-Credo.jpg';
 const initialState = {
   isLoggedIn: true,
   user: {
-    likeCouner: 0,
+    likedTracks: [],
   },
+  currentPlaylist: [],
   currentTrack: {
     id: 1,
     src: Zivert,
@@ -41,6 +42,11 @@ const reducer = (state = initialState, action) => {
         isLoggedIn: true,
         user: action.payload,
       };
+    case 'SET_CURRENT_PLAYLIST':
+      return {
+        ...state,
+        currentPlaylist: action.payload,
+      };
     case 'SET_CURRENT_TRACK':
       return {
         ...state,
@@ -66,7 +72,10 @@ const reducer = (state = initialState, action) => {
         },
         user: {
           ...state.user,
-          likeCouner: +1,
+          likedTracks: [
+            ...state.user.likedTracks,
+            action.likedTracks,
+          ],
         },
       };
     case 'UNLIKE_TRACK':
@@ -75,6 +84,12 @@ const reducer = (state = initialState, action) => {
         currentTrack: {
           ...state.currentTrack,
           liked: false,
+        },
+        user: {
+          ...state.user,
+          likedTracks: [
+            ...state.user.likedTracks.filter((item) => item.id === action.likedTracks),
+          ],
         },
       };
     default:

@@ -12,6 +12,8 @@ export const LIKE_TRACK = 'LIKE_TRACK';
 
 export const UNLIKE_TRACK = 'UNLIKE_TRACK';
 
+export const SET_CURRENT_PLAYLIST = 'SET_CURRENT_PLAYLIST';
+
 export const SET_CURRENT_TRACK = 'SET_CURRENT_TRACK';
 
 export const onRegister = (user) => ({
@@ -48,19 +50,23 @@ export const pauseMusic = () => ({
   isPlaying: false,
 });
 
-export const likeTrack = () => ({
+export const setCurrentPlaylist = (playlist) => ({
+  type: SET_CURRENT_PLAYLIST,
+  payload: playlist,
+});
+
+export const likeTrack = (currentTrack) => ({
   type: LIKE_TRACK,
   currentTrack: {
     liked: true,
   },
-  user: {
-    likeCounter: +1,
-  },
+  likedTracks: currentTrack,
 });
 
-export const unlikeTrack = () => ({
+export const unlikeTrack = (id) => ({
   type: UNLIKE_TRACK,
   currentTrack: {
     liked: false,
   },
+  likedTracks: id,
 });

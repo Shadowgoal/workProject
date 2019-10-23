@@ -1,6 +1,8 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import instance from 'http/index';
+
 import * as S from './styled';
 
 const TrackInfo = () => {
@@ -8,18 +10,20 @@ const TrackInfo = () => {
   const liked = useSelector((state) => state.currentTrack.liked);
   const dispatch = useDispatch();
   const likeTrack = useCallback(
-    () => dispatch({ type: 'LIKE_TRACK' }),
+    (track) => dispatch({ type: 'LIKE_TRACK', likedTracks: track }),
     [dispatch],
   );
   const unlikeTrack = useCallback(
     () => dispatch({ type: 'UNLIKE_TRACK' }),
     [dispatch],
   );
-  const onLike = () => {
+  const onLike = async () => {
     if (liked) {
-      unlikeTrack();
+      const data = await instance.put('/disliketrack', currentTrack).then((response) => response.data);
+      unlikeTrack(data.likedTracks.id);
     } else {
-      likeTrack();
+      const data = await instance.put('/liketrack', currentTrack).then((response) => response.data);
+      likeTrack(data.likedTracks);
     }
   };
   return (

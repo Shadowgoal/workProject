@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import TracksLoading from 'components/TracksLoading';
 import instance from 'http/index';
@@ -7,14 +7,18 @@ import instance from 'http/index';
 import * as S from './styled';
 
 const Weekly = () => {
-  const [tracks, setTracks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const currentPlaylist = useSelector((state) => state.currentPlaylist);
   const dispatch = useDispatch();
+  const setCurrentPlaylist = useCallback(
+    (tracks) => dispatch({ type: 'SET_CURRENT_PLAYLIST', payload: tracks }),
+    [dispatch],
+  );
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
       const data = await instance.get('/tracks').then((response) => response.data);
-      setTracks(data.tracks);
+      setCurrentPlaylist(data.tracks);
       setIsLoading(false);
     }
     fetchData();
@@ -30,7 +34,7 @@ const Weekly = () => {
         <S.TrackContainer>
           <TracksLoading isLoading={isLoading} />
           {
-            tracks.map((track) => (
+            currentPlaylist.map((track) => (
               <S.Track key={track.id} onClick={() => dispatch({ type: 'SET_CURRENT_TRACK', payload: track })}>
                 <S.TrackArtist>
                   {track.artist}

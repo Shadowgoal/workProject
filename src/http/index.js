@@ -37,21 +37,32 @@ mock.onGet('/tracks').reply(() => new Promise((resolve) => {
   }, 10);
 }));
 
-mock.onPost('/signup').reply((config) => new Promise((resolve) => {
+mock.onPut('/liketrack').reply((config) => new Promise((resolve) => {
   setTimeout(() => {
     resolve([200, {
-      user: {
+      likedTracks: {
         ...JSON.parse(config.data),
+        liked: true,
       },
-      token: 'asdasdasd',
     }]);
-  }, 3000);
+  }, 10);
+}));
+
+mock.onPut('/disliketrack').reply((config) => new Promise((resolve) => {
+  setTimeout(() => {
+    resolve([200, {
+      likedTracks: {
+        ...JSON.parse(config.data),
+        liked: false,
+      },
+    }]);
+  }, 10);
 }));
 
 mock.onPost('/logout').reply(() => new Promise((resolve) => {
   setTimeout(() => {
     resolve([200]);
-  }, 3000);
+  }, 1000);
 }));
 
 mock.onPost('/signin').reply((config) => new Promise((resolve) => {
@@ -62,7 +73,7 @@ mock.onPost('/signin').reply((config) => new Promise((resolve) => {
       },
       token: 'asdasdasd',
     }]);
-  }, 3000);
+  }, 1000);
 }));
 
 export default instance;
