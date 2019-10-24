@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import MainHeader from 'components/MainHeader';
 import RegisterRedirect from 'components/RegisterRedirect';
@@ -10,6 +11,7 @@ import * as S from './styled';
 const Register = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [isLogInModalOpened, setIsLogInModalOpened] = useState(false);
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const toggleLogInModalVisibility = () => {
     if (isLogInModalOpened) {
       setIsLogInModalOpened(false);
@@ -24,8 +26,10 @@ const Register = () => {
       setIsModalOpened(true);
     }
   };
+
   return (
     <S.Container>
+      <Redirect push to={isLoggedIn ? '/discover' : '/register'} />
       <MainHeader
         isModalOpened={isModalOpened}
         setIsModalOpened={toggleModalVisibility}

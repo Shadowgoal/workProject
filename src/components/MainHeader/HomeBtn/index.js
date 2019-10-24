@@ -7,11 +7,9 @@ import * as S from './styled';
 const HomeBtn = () => {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   useLocation();
+
   return (
-    <S.Btn to={{
-      pathname: '/',
-    }}
-    >
+    <S.Btn to={isLoggedIn ? '/discover' : '/'}>
       <S.Logo />
       <S.TextLogo isVisible={isLoggedIn}>
         SOUNDCLOUD

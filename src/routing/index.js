@@ -10,11 +10,13 @@ import Upload from 'modules/Upload';
 import Discover from 'modules/Discover';
 import PlayControl from 'components/PlayControl';
 
+import PrivateRoute from './PrivateRoute';
+
 const AppRouter = () => (
   <Provider store={store}>
     <Router>
       <Route exact path="/" component={App} />
-      <Route path="/register" component={Register} />
+      <PrivateRoute path="/register" component={Register} />
       <Route path="/upload" component={Upload} />
       <Route path="/discover" component={Discover} />
       <PlayControl />

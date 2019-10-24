@@ -53,22 +53,6 @@ export const DropDownIcon = styled.div`
   margin: 0 15px 0 5px;
 `;
 
-export const DropDownLikesIcon = styled.div`
-  background: url(http://www.myiconfinder.com/uploads/iconsets/256-256-37ca743a29e155658596b7f6310b8d53-heart.png);
-  width: 20px;
-  height: 20px;
-  background-size: 20px, 20px;
-  margin: 0 15px 0 5px;
-`;
-
-export const DropDownPlaylistsIcon = styled.div`
-  background: url(https://cdn0.iconfinder.com/data/icons/material-design-glyph/24/playlist-512.png);
-  width: 20px;
-  height: 20px;
-  background-size: 20px, 20px;
-  margin: 0 15px 0 5px;
-`;
-
 export const DropDownText = styled.span`
   color: #999;
 `;

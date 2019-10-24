@@ -7,8 +7,10 @@ import instance from 'http/index';
 import * as S from './styled';
 
 const Weekly = () => {
+  const [trackList, setTrackList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const currentPlaylist = useSelector((state) => state.currentPlaylist);
+  const currentTrack = useSelector((state) => state.currentTrack);
   const dispatch = useDispatch();
   const setCurrentPlaylist = useCallback(
     (tracks) => dispatch({ type: 'SET_CURRENT_PLAYLIST', payload: tracks }),
@@ -18,11 +20,12 @@ const Weekly = () => {
     async function fetchData() {
       setIsLoading(true);
       const data = await instance.get('/tracks').then((response) => response.data);
-      setCurrentPlaylist(data.tracks);
+      setTrackList(data.tracks);
       setIsLoading(false);
     }
     fetchData();
   }, []);
+  setCurrentPlaylist(trackList);
 
   return (
     <S.Container>
@@ -31,13 +34,13 @@ const Weekly = () => {
         <S.TitleText>All of SoundCloud. Just for you.</S.TitleText>
       </S.TitleContainer>
       <S.SelectionPlaylistContainer>
+        <S.CoverContainer src={currentTrack.cover} />
         <S.TrackContainer>
           <TracksLoading isLoading={isLoading} />
           {
             currentPlaylist.map((track) => (
               <S.Track
                 key={track.id}
-                visible={track.id !== undefined}
                 onClick={() => dispatch({ type: 'SET_CURRENT_TRACK', payload: track })}
               >
                 <S.TrackArtist>

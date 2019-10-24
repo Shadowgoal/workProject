@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const MostPopularContainer = styled.article`
-  width: 330px;
+  width: 300px;
   margin-bottom: 20px;
   height: 250px;
   overflow: hidden;
@@ -46,10 +46,13 @@ export const LikedTracksContainer = styled.div`
 `;
 
 export const LikedTrack = styled.div`
-  display: ${(visible) => (visible.visible ? 'block' : 'none')};
   display: flex;
   align-items: center;
-  padding: 10px 0;
+  cursor: pointer;
+  padding: 10px 10px;
+  :hover {
+    background: lightgrey;
+  };
 `;
 
 export const LikedTrackCover = styled.div`

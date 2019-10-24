@@ -27,6 +27,7 @@ export const onLogOut = () => ({
   isLoggedIn: false,
   user: {
     likedTracks: [],
+    listenedTracks: [],
   },
 });
 

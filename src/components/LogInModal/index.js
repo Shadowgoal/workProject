@@ -10,7 +10,7 @@ const LogInModal = ({ isLogInModalOpened, setIsLogInModalOpened }) => (
       visible={isLogInModalOpened}
       onClick={setIsLogInModalOpened}
     >
-      <S.CloseModalX>x</S.CloseModalX>
+      <S.CloseModalX />
     </S.ModalWindowShadow>
     <S.ModalWindow visible={isLogInModalOpened}>
       <LogInForm setIsLogInModalOpened={setIsLogInModalOpened} />

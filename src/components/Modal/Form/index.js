@@ -20,19 +20,20 @@ const RegisterForm = ({ setIsModalOpened }) => {
     (user) => dispatch({ type: 'SIGN_UP', payload: user }),
     [dispatch],
   );
-  const location = useHistory();
+  const history = useHistory();
 
   const onSubmit = async (values) => {
     setIsLoading(true);
     const data = await instance.post('/signup', values)
       .then((response) => response.data)
       .catch(() => ({ error: true, message: 'Password or email is already exists' }));
+
     if (!data.error) {
       onRegister(data.user);
       sessionStorage.setItem('username', data.user.username);
       sessionStorage.setItem('authToken', data.token);
       setIsModalOpened();
-      location.push('/upload');
+      history.push('/upload');
     } else {
       setErrors(data.message);
     }

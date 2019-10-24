@@ -26,6 +26,7 @@ const TrackInfo = () => {
       likeTrack(data.likedTracks);
     }
   };
+
   return (
     <S.Container>
       <S.ImgContainer cover={currentTrack.cover} />

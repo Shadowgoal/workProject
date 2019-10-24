@@ -22,6 +22,7 @@ mock.onGet('/tracks').reply(() => new Promise((resolve) => {
           duration: 184,
           cover: ZivertCover,
           liked: false,
+          listened: false,
         },
         {
           id: 2,
@@ -31,6 +32,7 @@ mock.onGet('/tracks').reply(() => new Promise((resolve) => {
           duration: 169,
           cover: AtlCover,
           liked: false,
+          listened: false,
         },
       ],
     }]);
@@ -64,6 +66,7 @@ mock.onPost('/logout').reply(() => new Promise((resolve) => {
     resolve([200], {
       user: {
         likedTracks: [],
+        listenedTracks: [],
       },
     });
   }, 1000);
@@ -75,6 +78,7 @@ mock.onPost('/signin').reply((config) => new Promise((resolve) => {
       user: {
         ...JSON.parse(config.data),
         likedTracks: [],
+        listenedTracks: [],
       },
       token: 'asdasdasd',
     }]);
@@ -87,6 +91,7 @@ mock.onPost('/signup').reply((config) => new Promise((resolve) => {
       user: {
         ...JSON.parse(config.data),
         likedTracks: [],
+        listenedTracks: [],
       },
       token: 'asdasdasd',
     }]);

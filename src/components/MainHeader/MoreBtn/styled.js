@@ -16,8 +16,8 @@ export const UploadBtn = styled(Link)`
   text-align: center;
   text-decoration: none;
   line-height: 42px;
-  background: ${(upload) => (upload.background ? '#111' : '#inherit')};
-  color: ${(upload) => (upload.background ? 'white' : '#ccc')};
+  background: ${(upload) => (upload.background === 'true' ? '#111' : '#333')};
+  color: ${(upload) => (upload.background === 'true' ? 'white' : '#ccc')};
 `;
 
 export const Circles = styled.div`

@@ -22,6 +22,7 @@ const Upload = () => {
       setIsModalOpened(true);
     }
   };
+
   return (
     <S.Container>
       <MainHeader

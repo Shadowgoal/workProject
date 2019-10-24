@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Header from 'components/Header';
 import Modal from 'components/Modal';
@@ -10,6 +11,7 @@ import * as S from './styled';
 const App = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [isLogInModalOpened, setIsLogInModalOpened] = useState(false);
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const toggleLogInModalVisibility = () => {
     if (isLogInModalOpened) {
       setIsLogInModalOpened(false);
@@ -24,8 +26,10 @@ const App = () => {
       setIsModalOpened(true);
     }
   };
+
   return (
     <S.MainContainer>
+      <Redirect to={isLoggedIn ? '/discover' : '/'} />
       <Modal
         isModalOpened={isModalOpened}
         setIsModalOpened={toggleModalVisibility}

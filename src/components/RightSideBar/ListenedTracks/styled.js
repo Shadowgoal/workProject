@@ -4,6 +4,7 @@ export const MostPopularContainer = styled.article`
   width: 300px;
   margin-bottom: 20px;
   height: 250px;
+  overflow: hidden;
 `;
 
 export const IconContainer = styled.div`
@@ -38,4 +39,31 @@ export const ListenedTracksLink = styled.div`
   :hover ${ViewAll} {
     color: black;
   };
+`;
+
+export const ListenedTracksContainer = styled.div`
+  padding: 10px 10px;
+`;
+
+export const ListenedTrack = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px 10px;
+  :hover {
+    background: lightgrey;
+  };
+`;
+
+export const ListenedTrackCover = styled.div`
+  background: url(${(cover) => (cover.cover)});
+  width: 50px;
+  height: 50px;
+  background-size: 50px
+`;
+
+export const ListenedTrackName = styled.span`
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 15px;
 `;

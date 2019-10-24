@@ -5,9 +5,10 @@ import * as Zivert from '../music/Zivert-Credo.mp3';
 import * as ZivertCover from '../assets/TrackIcons/Zivert-Credo.jpg';
 
 const initialState = {
-  isLoggedIn: false,
+  isLoggedIn: sessionStorage.getItem('authToken'),
   user: {
     likedTracks: [],
+    listenedTracks: [],
   },
   currentPlaylist: [],
   currentTrack: {
@@ -18,6 +19,7 @@ const initialState = {
     duration: 184,
     cover: ZivertCover,
     liked: false,
+    listened: false,
   },
   isPlaying: false,
 };
@@ -26,6 +28,7 @@ const reducer = (state = initialState, action) => {
   for (let i = 0; i < state.currentPlaylist.length; i += 1) {
     if (state.currentTrack.id === state.currentPlaylist[i].id) {
       state.currentPlaylist[i].liked = state.currentTrack.liked;
+      state.currentPlaylist[i].listened = state.currentTrack.listened;
     }
   }
   switch (action.type) {
@@ -41,6 +44,7 @@ const reducer = (state = initialState, action) => {
         isLoggedIn: false,
         user: {
           likedTracks: [],
+          listenedTracks: [],
         },
       };
     case 'LOG_IN':
@@ -55,9 +59,24 @@ const reducer = (state = initialState, action) => {
         currentPlaylist: action.payload,
       };
     case 'SET_CURRENT_TRACK':
+      for (let i = 0; i < state.user.listenedTracks.length; i += 1) {
+        if (state.currentTrack.id === state.user.listenedTracks[i].id) {
+          state.user.listenedTracks.splice(i, 1);
+        }
+      }
       return {
         ...state,
-        currentTrack: action.payload,
+        currentTrack: {
+          ...action.payload,
+          listened: true,
+        },
+        user: {
+          ...state.user,
+          listenedTracks: [
+            ...state.user.listenedTracks,
+            state.currentTrack,
+          ],
+        },
         isPlaying: true,
       };
     case 'PLAY_MUSIC':

@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import closeIcon from 'assets/CloseIcon/closeicon.svg';
 
 export const Container = styled.div`
   width: 100%;
@@ -41,8 +42,9 @@ export const CloseModalX = styled.span`
   position: absolute;
   width: 30px;
   height: 30px;
-  font-weight: 500;
-  font-size: -webkit-xxx-large;
+  background: url(${closeIcon});
+  background-size: 30px;
   right: 2%;
+  top: 2%;
   cursor: pointer;
 `;

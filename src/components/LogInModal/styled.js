@@ -41,8 +41,9 @@ export const CloseModalX = styled.span`
   position: absolute;
   width: 30px;
   height: 30px;
-  font-weight: 500;
-  font-size: -webkit-xxx-large;
+  background: url('https://image.flaticon.com/icons/svg/61/61155.svg');
+  background-size: 30px;
   right: 2%;
+  top: 2%;
   cursor: pointer;
 `;

@@ -18,8 +18,14 @@ const MainHeader = ({
   setIsLogInModalOpened,
 }) => (
   <S.MainContainer>
-    <LogInModal isLogInModalOpened={isLogInModalOpened} setIsLogInModalOpened={setIsLogInModalOpened} />
-    <Modal isModalOpened={isModalOpened} setIsModalOpened={setIsModalOpened} />
+    <LogInModal
+      isLogInModalOpened={isLogInModalOpened}
+      setIsLogInModalOpened={setIsLogInModalOpened}
+    />
+    <Modal
+      isModalOpened={isModalOpened}
+      setIsModalOpened={setIsModalOpened}
+    />
     <S.Header>
       <S.Container>
         <HomeBtn />

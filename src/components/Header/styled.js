@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import HeaderBackground from 'assets/HeaderBackground/headerbackground.jpg';
 
 export const Header = styled.header`
-  background-image: url(https://a-v2.sndcdn.com/assets/images/home/sc_landing_header_web_a-3bb2d42.jpg);
+  background-image: url(${HeaderBackground});
   position: absolute;
   width: inherit;
   height: 381px;

@@ -20,19 +20,20 @@ const LogInForm = ({ setIsLogInModalOpened }) => {
     (user) => dispatch({ type: 'LOG_IN', payload: user }),
     [dispatch],
   );
-  const location = useHistory();
+  const history = useHistory();
 
   async function onSubmit(values) {
     setIsLoading(true);
     const data = await instance.post('/signin', values)
       .then((response) => response.data)
       .catch(() => ({ error: true, message: 'Incorrect password or email' }));
+
     if (!data.error) {
       onLogIn(data.user);
       sessionStorage.setItem('username', data.user.username);
       sessionStorage.setItem('authToken', data.token);
       setIsLogInModalOpened();
-      location.push('/upload');
+      history.push('/upload');
     } else {
       setErrors(data.message);
     }

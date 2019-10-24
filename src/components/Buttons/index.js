@@ -6,6 +6,7 @@ import * as S from './styled';
 
 const Buttons = ({ setIsModalOpened, setIsLogInModalOpened }) => {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
+
   return (
     <S.SignField vision={isLoggedIn}>
       <S.SignInBtn onClick={setIsLogInModalOpened}>

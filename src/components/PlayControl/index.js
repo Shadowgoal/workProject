@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Scrubber from './Scrubber';
@@ -19,10 +19,6 @@ const PlayControl = () => {
   const setCurrentTrack = (track) => dispatch({ type: 'SET_CURRENT_TRACK', payload: track });
   const audioPlayer = useRef(null);
 
-  const updateTime = (timestamp) => {
-    const time = Math.floor(timestamp);
-    setCurrentTime(time);
-  };
   const convertTime = (timestamp) => {
     if (!timestamp) {
       return '0:00';
@@ -36,18 +32,25 @@ const PlayControl = () => {
     return time;
   };
 
-  const scrubberWidth = setInterval(() => {
-    if (isPlaying) {
-      const current = audioPlayer.current.currentTime;
-      const dur = audioPlayer.current.duration;
-      const percent = Math.round((current / dur) * 100);
-
-      setCurrentProgress(percent);
-      updateTime(current);
-    } else {
+  useEffect(() => {
+    const updateTime = (timestamp) => {
+      const time = Math.floor(timestamp);
+      setCurrentTime(time);
+    };
+    const scrubberWidth = setInterval(() => {
+      if (isPlaying) {
+        const current = audioPlayer.current.currentTime;
+        const dur = audioPlayer.current.duration;
+        const percent = (current / dur) * 100;
+        console.log(percent);
+        setCurrentProgress(percent);
+        updateTime(current);
+      }
+    }, 500);
+    return function cleanup() {
       clearInterval(scrubberWidth);
-    }
-  }, 500);
+    };
+  });
 
   const onPlayBtn = () => {
     if (!isPlaying) {
@@ -56,7 +59,6 @@ const PlayControl = () => {
     } else if (isPlaying) {
       pauseMusic();
       audioPlayer.current.pause();
-      clearInterval(scrubberWidth);
     }
   };
 

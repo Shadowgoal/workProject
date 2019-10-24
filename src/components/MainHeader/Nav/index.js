@@ -7,6 +7,7 @@ import * as S from './styled';
 const Nav = () => {
   useLocation();
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
+
   return (
     <S.Container>
       <S.NavBtn to={isLoggedIn ? '/discover' : '/'}>

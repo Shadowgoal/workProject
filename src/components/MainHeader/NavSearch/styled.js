@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import search from 'assets/HelpIcons/search.png';
 
 export const Container = styled.div`
   height: inherit;
@@ -24,7 +25,7 @@ export const SearchInput = styled.input`
 export const SearchBtn = styled.button`
   border: 0;
   padding: 0;
-  background: url(https://static.thenounproject.com/png/101791-200.png) 0 0 no-repeat;
+  background: url(${search}) 0 0 no-repeat;
   outline: none;
   background-size: 15px;
   width: 15px;

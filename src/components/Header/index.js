@@ -11,7 +11,10 @@ const Header = ({ setIsModalOpened, setIsLogInModalOpened }) => (
   <S.Header>
     <S.LogoBtnContainer>
       <Logo />
-      <Buttons setIsModalOpened={setIsModalOpened} setIsLogInModalOpened={setIsLogInModalOpened} />
+      <Buttons
+        setIsModalOpened={setIsModalOpened}
+        setIsLogInModalOpened={setIsLogInModalOpened}
+      />
     </S.LogoBtnContainer>
     <MainTitle />
   </S.Header>

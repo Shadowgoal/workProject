@@ -26,20 +26,21 @@ export const SelectionPlaylistContainer = styled.div`
   box-sizing: border-box;
   background: linear-gradient(135deg, rgb(184, 148, 129) 0%, rgb(116, 83, 83) 100%);
   position: relative;
+  padding: 20px;
   margin-bottom: 15px;
   display: flex;
   justify-content: space-between;
 `;
 
-export const CoverContainer = styled.div`
-  padding: 20px;
-  padding-right: 0px;
-  background: url(${(cover) => (cover.cover)});
+export const CoverContainer = styled.img`
+  width: 180px;
+  height: 180px;
+  background-size: 180px;
 `;
 
 export const TrackContainer = styled.div`
   float: right;
-  padding: 20px;
+  margin-left: 20px;
   width: 546px;;
   height: 180px;
   display: flex;
@@ -62,5 +63,3 @@ export const TrackName = styled.span`
 export const TrackArtist = styled.span`
   color: hsla(0,0%,100%,.7);;
 `;
-
-export const blank = () => {};

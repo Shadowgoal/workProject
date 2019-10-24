@@ -8,6 +8,7 @@ import * as S from './styled';
 
 const UserNav = () => {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
+
   return (
     <S.UserNavContainer vision={isLoggedIn}>
       <S.UserContainer>

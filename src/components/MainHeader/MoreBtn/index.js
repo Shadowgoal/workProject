@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import instance from 'http/index';
 import Loading from 'components/Loading';
@@ -13,11 +13,12 @@ const MoreBtn = () => {
   const [isLoading, setIsLoading] = useState(false);
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const dispatch = useDispatch();
+  const location = useLocation();
   const onLogOut = useCallback(
     () => dispatch({ type: 'LOG_OUT' }),
     [dispatch],
   );
-  const location = useHistory();
+  const history = useHistory();
 
   async function onLogOutBtn() {
     setIsLoading(true);
@@ -26,7 +27,7 @@ const MoreBtn = () => {
     onLogOut();
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('authToken');
-    location.push('/upload');
+    history.push('/upload');
     setIsLoading(false);
   }
 

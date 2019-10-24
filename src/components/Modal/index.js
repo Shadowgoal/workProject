@@ -11,7 +11,7 @@ const Modal = ({ isModalOpened, setIsModalOpened }) => (
       visible={isModalOpened}
       onClick={setIsModalOpened}
     >
-      <S.CloseModalX>x</S.CloseModalX>
+      <S.CloseModalX />
     </S.ModalWindowShadow>
     <S.ModalWindow visible={isModalOpened}>
       <RegisterForm setIsModalOpened={setIsModalOpened} />
