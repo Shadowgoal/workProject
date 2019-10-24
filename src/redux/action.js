@@ -25,7 +25,9 @@ export const onRegister = (user) => ({
 export const onLogOut = () => ({
   type: LOG_OUT,
   isLoggedIn: false,
-  user: {},
+  user: {
+    likedTracks: [],
+  },
 });
 
 export const onLogIn = (user) => ({

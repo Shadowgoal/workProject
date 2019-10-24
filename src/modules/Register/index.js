@@ -10,15 +10,29 @@ import * as S from './styled';
 const Register = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [isLogInModalOpened, setIsLogInModalOpened] = useState(false);
+  const toggleLogInModalVisibility = () => {
+    if (isLogInModalOpened) {
+      setIsLogInModalOpened(false);
+    } else if (!isLogInModalOpened) {
+      setIsLogInModalOpened(true);
+    }
+  };
+  const toggleModalVisibility = () => {
+    if (isModalOpened) {
+      setIsModalOpened(false);
+    } else if (!isModalOpened) {
+      setIsModalOpened(true);
+    }
+  };
   return (
     <S.Container>
       <MainHeader
         isModalOpened={isModalOpened}
-        setIsModalOpened={setIsModalOpened}
+        setIsModalOpened={toggleModalVisibility}
         isLogInModalOpened={isLogInModalOpened}
-        setIsLogInModalOpened={setIsLogInModalOpened}
+        setIsLogInModalOpened={toggleLogInModalVisibility}
       />
-      <RegisterRedirect setIsModalOpened={setIsModalOpened} />
+      <RegisterRedirect setIsModalOpened={toggleModalVisibility} />
       <Footer />
     </S.Container>
   );

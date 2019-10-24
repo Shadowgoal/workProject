@@ -1,10 +1,11 @@
 import React, { useCallback, useState } from 'react';
-import { useLocation } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import instance from 'http/index';
 import Loading from 'components/Loading';
 import UserNav from '../UserNav';
+import elements from './config';
 
 import * as S from './styled';
 
@@ -16,17 +17,19 @@ const MoreBtn = () => {
     () => dispatch({ type: 'LOG_OUT' }),
     [dispatch],
   );
+  const location = useHistory();
 
   async function onLogOutBtn() {
     setIsLoading(true);
     await instance.post('/logout')
-      .then((response) => console.log(response));
+      .then((response) => response.data);
     onLogOut();
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('authToken');
+    location.push('/upload');
     setIsLoading(false);
   }
-  const location = useLocation();
+
   return (
     <S.MainContainer>
       <Loading isLoading={isLoading} />
@@ -43,15 +46,11 @@ const MoreBtn = () => {
           </S.Circles>
           <S.DropDown>
             <S.DropDownBox>
-              <S.DropDownElem>
-                About Us
-              </S.DropDownElem>
-              <S.DropDownElem>
-                Legal
-              </S.DropDownElem>
-              <S.DropDownElem>
-                Copyright
-              </S.DropDownElem>
+              {
+                elements.map((elem, index) => (
+                  <S.DropDownElem key={index}>{elem.name}</S.DropDownElem>
+                ))
+              }
             </S.DropDownBox>
             <S.DropDownBox>
               <S.DropDownLogOut visible={isLoggedIn} onClick={onLogOutBtn}>

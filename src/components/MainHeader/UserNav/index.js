@@ -2,6 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import UserImage from 'components/UserImage/styled';
+import userNavEl from './config';
+
 import * as S from './styled';
 
 const UserNav = () => {
@@ -15,24 +17,16 @@ const UserNav = () => {
         </S.UserNameContainer>
         <S.UserDropDownArrow />
         <S.DropDownContainer>
-          <S.DropDownItem>
-            <S.DropDownProfileIcon />
-            <S.DropDownText>
-              Profile
-            </S.DropDownText>
-          </S.DropDownItem>
-          <S.DropDownItem>
-            <S.DropDownLikesIcon />
-            <S.DropDownText>
-              Likes
-            </S.DropDownText>
-          </S.DropDownItem>
-          <S.DropDownItem>
-            <S.DropDownPlaylistsIcon />
-            <S.DropDownText>
-              Playlist
-            </S.DropDownText>
-          </S.DropDownItem>
+          {
+            userNavEl.map((el, index) => (
+              <S.DropDownItem key={index}>
+                <S.DropDownIcon img={el.src} />
+                <S.DropDownText>
+                  {el.name}
+                </S.DropDownText>
+              </S.DropDownItem>
+            ))
+          }
         </S.DropDownContainer>
       </S.UserContainer>
     </S.UserNavContainer>

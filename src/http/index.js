@@ -61,7 +61,11 @@ mock.onPut('/disliketrack').reply((config) => new Promise((resolve) => {
 
 mock.onPost('/logout').reply(() => new Promise((resolve) => {
   setTimeout(() => {
-    resolve([200]);
+    resolve([200], {
+      user: {
+        likedTracks: [],
+      },
+    });
   }, 1000);
 }));
 
@@ -70,6 +74,19 @@ mock.onPost('/signin').reply((config) => new Promise((resolve) => {
     resolve([200, {
       user: {
         ...JSON.parse(config.data),
+        likedTracks: [],
+      },
+      token: 'asdasdasd',
+    }]);
+  }, 1000);
+}));
+
+mock.onPost('/signup').reply((config) => new Promise((resolve) => {
+  setTimeout(() => {
+    resolve([200, {
+      user: {
+        ...JSON.parse(config.data),
+        likedTracks: [],
       },
       token: 'asdasdasd',
     }]);

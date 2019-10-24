@@ -10,18 +10,32 @@ import * as S from './styled';
 const App = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [isLogInModalOpened, setIsLogInModalOpened] = useState(false);
+  const toggleLogInModalVisibility = () => {
+    if (isLogInModalOpened) {
+      setIsLogInModalOpened(false);
+    } else if (!isLogInModalOpened) {
+      setIsLogInModalOpened(true);
+    }
+  };
+  const toggleModalVisibility = () => {
+    if (isModalOpened) {
+      setIsModalOpened(false);
+    } else if (!isModalOpened) {
+      setIsModalOpened(true);
+    }
+  };
   return (
     <S.MainContainer>
       <Modal
         isModalOpened={isModalOpened}
-        setIsModalOpened={setIsModalOpened}
+        setIsModalOpened={toggleModalVisibility}
       />
       <LogInModal
         isLogInModalOpened={isLogInModalOpened}
-        setIsLogInModalOpened={setIsLogInModalOpened}
+        setIsLogInModalOpened={toggleLogInModalVisibility}
       />
       <S.Container>
-        <Header setIsModalOpened={setIsModalOpened} setIsLogInModalOpened={setIsLogInModalOpened} />
+        <Header setIsModalOpened={toggleModalVisibility} setIsLogInModalOpened={toggleLogInModalVisibility} />
       </S.Container>
     </S.MainContainer>
   );

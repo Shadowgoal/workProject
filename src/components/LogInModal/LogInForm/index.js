@@ -20,7 +20,6 @@ const LogInForm = ({ setIsLogInModalOpened }) => {
     (user) => dispatch({ type: 'LOG_IN', payload: user }),
     [dispatch],
   );
-  const closeModal = () => setIsLogInModalOpened(false);
   const location = useHistory();
 
   async function onSubmit(values) {
@@ -32,7 +31,7 @@ const LogInForm = ({ setIsLogInModalOpened }) => {
       onLogIn(data.user);
       sessionStorage.setItem('username', data.user.username);
       sessionStorage.setItem('authToken', data.token);
-      closeModal();
+      setIsLogInModalOpened();
       location.push('/upload');
     } else {
       setErrors(data.message);
@@ -61,7 +60,7 @@ const LogInForm = ({ setIsLogInModalOpened }) => {
               </S.LogInButton>
               <S.CloseButton
                 type="button"
-                onClick={closeModal}
+                onClick={setIsLogInModalOpened}
               >
                 Close
               </S.CloseButton>

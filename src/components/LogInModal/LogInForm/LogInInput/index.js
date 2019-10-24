@@ -4,16 +4,16 @@ import PropTypes from 'prop-types';
 
 import * as S from './styled';
 
-const LogInInput = (props) => (
-  <Field name={props.name}>
+const LogInInput = ({ type, name, placeholder }) => (
+  <Field name={name}>
     {({ input, meta }) => (
       <S.InputField>
-        <S.Label>{props.placeholder}</S.Label>
+        <S.Label>{placeholder}</S.Label>
         <S.Input
           {...input}
-          type={props.type}
-          name={props.name}
-          placeholder={props.placeholder}
+          type={type}
+          name={name}
+          placeholder={placeholder}
         />
         {meta.error && meta.touched && (
           <S.InputError>{meta.error}</S.InputError>

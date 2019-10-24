@@ -9,7 +9,7 @@ const Modal = ({ isModalOpened, setIsModalOpened }) => (
   <S.Container>
     <S.ModalWindowShadow
       visible={isModalOpened}
-      onClick={() => setIsModalOpened(false)}
+      onClick={setIsModalOpened}
     >
       <S.CloseModalX>x</S.CloseModalX>
     </S.ModalWindowShadow>

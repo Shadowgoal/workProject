@@ -8,10 +8,10 @@ const Buttons = ({ setIsModalOpened, setIsLogInModalOpened }) => {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   return (
     <S.SignField vision={isLoggedIn}>
-      <S.SignInBtn onClick={() => setIsLogInModalOpened(true)}>
+      <S.SignInBtn onClick={setIsLogInModalOpened}>
         Sign in
       </S.SignInBtn>
-      <S.CreateAccBtn onClick={() => setIsModalOpened(true)}>
+      <S.CreateAccBtn onClick={setIsModalOpened}>
         Create account
       </S.CreateAccBtn>
     </S.SignField>

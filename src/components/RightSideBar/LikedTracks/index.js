@@ -6,12 +6,17 @@ import * as S from './styled';
 const LikedTracks = () => {
   const likedTracks = useSelector((state) => state.user.likedTracks);
   const dispatch = useDispatch();
+  const likes = () => {
+    if (typeof likedTracks === 'undefined') {
+      return 0;
+    } return likedTracks.length;
+  };
   return (
     <S.MostPopularContainer>
       <S.LikedTracksLink>
         <S.IconContainer>
           <S.LikeIcon />
-          <S.LikeCounter>{likedTracks.length} likes</S.LikeCounter>
+          <S.LikeCounter>{likes()} likes</S.LikeCounter>
         </S.IconContainer>
         <S.ViewAll>View All</S.ViewAll>
       </S.LikedTracksLink>

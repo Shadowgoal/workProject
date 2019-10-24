@@ -45,8 +45,8 @@ export const UserContainer = styled.div`
   };
 `;
 
-export const DropDownProfileIcon = styled.div`
-  background: url(https://i1.wp.com/tavistockconsulting.co.uk/wp-content/uploads/2017/09/profile-icon-9.png?ssl=1);
+export const DropDownIcon = styled.div`
+  background: url(${(icon) => (icon.img)});
   width: 20px;
   height: 20px;
   background-size: 20px, 20px;

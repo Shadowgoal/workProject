@@ -8,7 +8,7 @@ const LogInModal = ({ isLogInModalOpened, setIsLogInModalOpened }) => (
   <S.Container>
     <S.ModalWindowShadow
       visible={isLogInModalOpened}
-      onClick={() => setIsLogInModalOpened(false)}
+      onClick={setIsLogInModalOpened}
     >
       <S.CloseModalX>x</S.CloseModalX>
     </S.ModalWindowShadow>

@@ -5,7 +5,7 @@ import * as Zivert from '../music/Zivert-Credo.mp3';
 import * as ZivertCover from '../assets/TrackIcons/Zivert-Credo.jpg';
 
 const initialState = {
-  isLoggedIn: true,
+  isLoggedIn: false,
   user: {
     likedTracks: [],
   },
@@ -39,7 +39,9 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: false,
-        user: {},
+        user: {
+          likedTracks: [],
+        },
       };
     case 'LOG_IN':
       return {

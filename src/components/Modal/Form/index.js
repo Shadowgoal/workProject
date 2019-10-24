@@ -20,7 +20,6 @@ const RegisterForm = ({ setIsModalOpened }) => {
     (user) => dispatch({ type: 'SIGN_UP', payload: user }),
     [dispatch],
   );
-  const closeModal = () => setIsModalOpened(false);
   const location = useHistory();
 
   const onSubmit = async (values) => {
@@ -32,7 +31,7 @@ const RegisterForm = ({ setIsModalOpened }) => {
       onRegister(data.user);
       sessionStorage.setItem('username', data.user.username);
       sessionStorage.setItem('authToken', data.token);
-      closeModal();
+      setIsModalOpened();
       location.push('/upload');
     } else {
       setErrors(data.message);
@@ -63,7 +62,7 @@ const RegisterForm = ({ setIsModalOpened }) => {
               </S.RegisterButton>
               <S.CloseButton
                 type="button"
-                onClick={closeModal}
+                onClick={setIsModalOpened}
               >
                 Close
               </S.CloseButton>
