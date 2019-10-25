@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 30%;
+  width: 25%;
   text-align: center;
-  margin-left: 15%;
+  position: relative;
+  right: -9%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 `;
 
@@ -19,6 +20,7 @@ export const ImgContainer = styled.div`
 export const TrackName = styled.span`
   font-size: 14px;
   font-weight: 500;
+  padding: 0 60px;
 `;
 
 export const Like = styled.span`

@@ -1,14 +1,42 @@
-import React, { useState } from 'react';
-import Slider from 'react-input-slider';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const VolumeSlider = () => {
-  const [state, setState] = useState({ x: 30 });
+import * as S from './styled';
+
+const VolumeSlider = ({ updateRange, rangeValue }) => {
+  const update = (e) => {
+    updateRange(e.target.value);
+  };
+
+  const onVolume = () => {
+    if (+rangeValue) {
+      updateRange('0');
+    } else if (+rangeValue === 0) {
+      updateRange('0.3');
+    }
+  };
 
   return (
-    <div>
-      <Slider axis="x" x={state.x} onChange={({ x }) => setState(() => ({ ...state, x }))} />
-    </div>
+    <S.Container>
+      <S.Volume onClick={onVolume} />
+      <S.SliderContainer>
+        <S.Slider
+          value={rangeValue}
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          onChange={update}
+        />
+        <S.SliderValue />
+      </S.SliderContainer>
+    </S.Container>
   );
+};
+
+VolumeSlider.propTypes = {
+  updateRange: PropTypes.func.isRequired,
+  rangeValue: PropTypes.string.isRequired,
 };
 
 export default VolumeSlider;

@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+import playIcon from 'assets/PlayControlIcons/play.png';
+import pauseIcon from 'assets/PlayControlIcons/pause.png';
+import skipIcon from 'assets/PlayControlIcons/skip.png';
+
 export const PlayControlContainer = styled.div`
   width: 100%;
   height: 50px;
@@ -27,8 +31,8 @@ export const PlayBtn = styled.button`
   border: none;
   outline: none;
   background: url(${(track) => (track.isPlaying
-    ? 'http://simpleicon.com/wp-content/uploads/pause.png'
-    : 'http://simpleicon.com/wp-content/uploads/play1.png')});
+    ? pauseIcon
+    : playIcon)});
   background-size: 32px;
   width: 32px;
   height: 32px;
@@ -37,7 +41,7 @@ export const PlayBtn = styled.button`
 `;
 
 export const NextBtn = styled.button`
-  background: url('https://cdn0.iconfinder.com/data/icons/forgen-audio-video/48/skip-512.png');
+  background: url(${skipIcon});
   padding: 0;
   border: none;
   outline: none;
@@ -48,7 +52,7 @@ export const NextBtn = styled.button`
 `;
 
 export const PrevBtn = styled.button`
-  background: url('https://cdn0.iconfinder.com/data/icons/forgen-audio-video/48/skip-512.png');
+  background: url(${skipIcon});
   padding: 0;
   border: none;
   outline: none;
@@ -61,10 +65,10 @@ export const PrevBtn = styled.button`
 
 export const CurrentTime = styled.span`
   color: #f50;
-  margin-left: 20px;
+  margin-left: 40px;
 
-  width: 50px;
-  min-width: 50px;
+  width: 35px;
+  min-width: 35px;
 `;
 
 export const Duration = styled.span`
