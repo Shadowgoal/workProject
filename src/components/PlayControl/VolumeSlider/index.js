@@ -9,7 +9,7 @@ const VolumeSlider = ({ updateRange, rangeValue }) => {
   };
 
   const onVolume = () => {
-    if (+rangeValue) {
+    if (+rangeValue > 0) {
       updateRange('0');
     } else if (+rangeValue === 0) {
       updateRange('0.3');

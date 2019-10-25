@@ -62,16 +62,3 @@ export const PrevBtn = styled.button`
   cursor: pointer;
   transform: rotate(180deg);
 `;
-
-export const CurrentTime = styled.span`
-  color: #f50;
-  margin-left: 40px;
-
-  width: 35px;
-  min-width: 35px;
-`;
-
-export const Duration = styled.span`
-`;
-
-export const blank = () => {};

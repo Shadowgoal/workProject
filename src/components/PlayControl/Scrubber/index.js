@@ -4,11 +4,15 @@ import PropTypes from 'prop-types';
 
 import * as S from './styled';
 
-const Scrubber = ({ audioPlayer, onPlayBtn }) => {
+const Scrubber = ({
+  audioPlayer,
+  onPlayBtn,
+  isPlaying,
+  setIsPlaying,
+}) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [progress, setCurrentProgress] = useState(0);
   const [scrubberInterval, setScrubberInterval] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(null);
   const currentTrack = useSelector((state) => state.currentTrack);
 
   const updateTime = (timestamp) => {
@@ -67,6 +71,8 @@ const Scrubber = ({ audioPlayer, onPlayBtn }) => {
 Scrubber.propTypes = {
   audioPlayer: PropTypes.object.isRequired,
   onPlayBtn: PropTypes.func.isRequired,
+  isPlaying: PropTypes.object.isRequired,
+  setIsPlaying: PropTypes.func.isRequired,
 };
 
 export default Scrubber;
