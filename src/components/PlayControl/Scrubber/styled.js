@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
 export const Scrubber = styled.div`
-  width: 35%;
+  width: 350px;
+  min-width: 350px;
   height: 2px;
   background: #ccc;
   margin: 0 25px;
+  display: flex;
 `;
 
 export const ProgressScrubber = styled.div`
@@ -13,4 +15,5 @@ export const ProgressScrubber = styled.div`
   min-width: 0%;
   width: ${(progress) => (progress.updateScrubber)}%;
   height: 2px;
+  display: flex;
 `;

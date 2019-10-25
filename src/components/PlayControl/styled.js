@@ -62,6 +62,9 @@ export const PrevBtn = styled.button`
 export const CurrentTime = styled.span`
   color: #f50;
   margin-left: 20px;
+
+  width: 50px;
+  min-width: 50px;
 `;
 
 export const Duration = styled.span`

@@ -8,20 +8,21 @@ import App from 'modules/App';
 import Register from 'modules/Register';
 import Upload from 'modules/Upload';
 import Discover from 'modules/Discover';
-import PlayControl from 'components/PlayControl';
+import PlayerProvider from 'components/PlayerProvider';
 
 import PrivateRoute from './PrivateRoute';
 
 const AppRouter = () => (
   <Provider store={store}>
-    <Router>
-      <Route exact path="/" component={App} />
-      <PrivateRoute path="/register" component={Register} />
-      <Route path="/upload" component={Upload} />
-      <Route path="/discover" component={Discover} />
-      <PlayControl />
-    </Router>
+    <PlayerProvider>
+      <Router>
+        <Route exact path="/" component={App} />
+        <PrivateRoute path="/register" component={Register} />
+        <Route path="/upload" component={Upload} />
+        <Route path="/discover" component={Discover} />
+      </Router>
+    </PlayerProvider>
   </Provider>
 );
 
-export default AppRouter;
+export default React.memo(AppRouter);

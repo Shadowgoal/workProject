@@ -24,11 +24,11 @@ const MoreBtn = () => {
     setIsLoading(true);
     await instance.post('/logout')
       .then((response) => response.data);
-    onLogOut();
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('authToken');
-    history.push('/upload');
     setIsLoading(false);
+    onLogOut();
+    history.push('/upload');
   }
 
   return (

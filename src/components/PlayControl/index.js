@@ -9,13 +9,12 @@ import * as S from './styled';
 const PlayControl = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [progress, setCurrentProgress] = useState(0);
+  const [scrubberInterval, setScrubberInterval] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(null);
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const currentTrack = useSelector((state) => state.currentTrack);
-  const isPlaying = useSelector((state) => state.isPlaying);
   const currentPlaylist = useSelector((state) => state.currentPlaylist);
   const dispatch = useDispatch();
-  const playMusic = () => { dispatch({ type: 'PLAY_MUSIC' }); };
-  const pauseMusic = () => { dispatch({ type: 'PAUSE_MUSIC' }); };
   const setCurrentTrack = (track) => dispatch({ type: 'SET_CURRENT_TRACK', payload: track });
   const audioPlayer = useRef(null);
 
@@ -32,35 +31,44 @@ const PlayControl = () => {
     return time;
   };
 
-  useEffect(() => {
-    const updateTime = (timestamp) => {
-      const time = Math.floor(timestamp);
-      setCurrentTime(time);
-    };
-    const scrubberWidth = setInterval(() => {
-      if (isPlaying) {
-        const current = audioPlayer.current.currentTime;
-        const dur = audioPlayer.current.duration;
-        const percent = (current / dur) * 100;
-        console.log(percent);
-        setCurrentProgress(percent);
-        updateTime(current);
-      }
-    }, 500);
-    return function cleanup() {
-      clearInterval(scrubberWidth);
-    };
-  });
+  const updateTime = (timestamp) => {
+    const time = Math.floor(timestamp);
+    setCurrentTime(time);
+  };
 
   const onPlayBtn = () => {
     if (!isPlaying) {
-      playMusic();
+      setIsPlaying(true);
       audioPlayer.current.play();
     } else if (isPlaying) {
-      pauseMusic();
+      setIsPlaying(false);
       audioPlayer.current.pause();
     }
   };
+
+  useEffect(() => {
+    if (currentTrack && !isPlaying) {
+      onPlayBtn(true);
+    }
+    if (!scrubberInterval) {
+      const intervalId = setInterval(() => {
+        const current = audioPlayer.current.currentTime;
+        const dur = audioPlayer.current.duration;
+        const percent = (current / dur) * 100;
+        setCurrentProgress(percent);
+        updateTime(current);
+      }, 1000);
+      setScrubberInterval(intervalId);
+    }
+
+    return function cleanup() {
+      clearInterval(scrubberInterval);
+      if (scrubberInterval) {
+        audioPlayer.current.pause();
+        setScrubberInterval(null);
+      }
+    };
+  }, [scrubberInterval]);
 
   const onNextUp = () => {
     for (let i = 0; i <= currentPlaylist.length; i += 1) {
