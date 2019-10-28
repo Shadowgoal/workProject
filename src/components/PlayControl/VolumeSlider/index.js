@@ -18,7 +18,7 @@ const VolumeSlider = ({ updateRange, rangeValue }) => {
 
   return (
     <S.Container>
-      <S.Volume onClick={onVolume} />
+      <S.Volume onClick={onVolume} rangeValue={rangeValue} />
       <S.SliderContainer>
         <S.Slider
           value={rangeValue}
@@ -27,6 +27,7 @@ const VolumeSlider = ({ updateRange, rangeValue }) => {
           max="1"
           step="0.01"
           onChange={update}
+          rangeValue={rangeValue}
         />
         <S.SliderValue />
       </S.SliderContainer>

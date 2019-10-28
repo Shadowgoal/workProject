@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import volumeIcon from 'assets/PlayControlIcons/volume.png';
+import volumeOffIcon from 'assets/PlayControlIcons/volumeOff.png';
 
 export const Container = styled.div`
   position: relative;
@@ -12,11 +13,14 @@ export const Container = styled.div`
 
 export const Slider = styled.input`
   -webkit-appearance: none;
-  background: #ffffff;
+  // background: #ffffff;
+  background: linear-gradient(to right, #f50 0%, #f50 ${(color) => (+color.rangeValue * 100)}%,
+  #ccc ${(color) => (+color.rangeValue * 100)}%, #ccc 100%);
+  border-radius: 3px;
+  cursor: pointer;
   ::-webkit-slider-runnable-track {
     width: 300px;
     height: 7px;
-    background: #ddd;
     border: none;
     border-radius: 3px;
   };
@@ -32,12 +36,6 @@ export const Slider = styled.input`
   :focus {
     outline: none;
   };
-  :focus::-webkit-slider-runnable-track {
-    background: #ccc;
-  };
-  ::-ms-fill-upper {
-    background: #f50;
-  }
 `;
 
 export const SliderContainer = styled.div`
@@ -54,7 +52,7 @@ export const SliderValue = styled.span`
 `;
 
 export const Volume = styled.div`
-  background: url(${volumeIcon});
+  background: url(${(icon) => (icon.rangeValue === '0' ? volumeOffIcon : volumeIcon)});
   background-size: 20px;
   width: 20px;
   height: 20px;

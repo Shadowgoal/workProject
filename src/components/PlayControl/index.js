@@ -74,6 +74,7 @@ const PlayControl = () => {
           audioPlayer={audioPlayer}
           isPlaying={isPlaying}
           setIsPlaying={setIsPlaying}
+          onNextUp={onNextUp}
         />
         <VolumeSlider updateRange={updateRange} rangeValue={rangeValue} />
         <TrackInfo />

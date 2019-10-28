@@ -6,22 +6,33 @@ export const Container = styled.div`
   align-items: center
 `;
 
-export const Scrubber = styled.div`
-  width: 350px;
-  min-width: 350px;
-  height: 2px;
-  background: #ccc;
+export const Scrubber = styled.input`
+  -webkit-appearance: none;
+  // background: #ffffff;
+  width: 400px;
   margin: 0 25px;
-  display: flex;
-`;
-
-export const ProgressScrubber = styled.div`
-  background: #f50;
-  max-width: 100%;
-  min-width: 0%;
-  width: ${(progress) => (progress.updateScrubber)}%;
-  height: 2px;
-  display: flex;
+  background: linear-gradient(to right, #f50 0%, #f50 ${(color) => (color.progress)}%,
+  #ccc ${(color) => (color.progress)}%, #ccc 100%);
+  border-radius: 3px;
+  cursor: pointer;
+  ::-webkit-slider-runnable-track {
+    width: 350px;
+    height: 2px;
+    border: none;
+    border-radius: 3px;
+  };
+  ::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 6px;
+    width: 6px;
+    margin-top: -2px;
+    border-radius: 50%;
+    background: #f50;
+  };
+  :focus {
+    outline: none;
+  };
 `;
 
 export const CurrentTime = styled.span`

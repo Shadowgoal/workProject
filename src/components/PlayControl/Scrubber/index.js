@@ -9,6 +9,7 @@ const Scrubber = ({
   onPlayBtn,
   isPlaying,
   setIsPlaying,
+  onNextUp,
 }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [progress, setCurrentProgress] = useState(0);
@@ -32,7 +33,10 @@ const Scrubber = ({
         const percent = (current / dur) * 100;
         setCurrentProgress(percent);
         updateTime(current);
-      }, 1000);
+        if (current === dur) {
+          onNextUp();
+        }
+      }, 500);
       setScrubberInterval(intervalId);
     }
 
@@ -43,6 +47,11 @@ const Scrubber = ({
       }
     };
   }, [scrubberInterval]);
+
+  const updateCurrentTime = (e) => {
+    setCurrentTime(e.target.value);
+    audioPlayer.current.currentTime = currentTime;
+  };
 
   const convertTime = (timestamp) => {
     if (!timestamp) {
@@ -60,9 +69,16 @@ const Scrubber = ({
   return (
     <S.Container>
       <S.CurrentTime>{convertTime(currentTime)}</S.CurrentTime>
-      <S.Scrubber>
-        <S.ProgressScrubber updateScrubber={progress} />
-      </S.Scrubber>
+      <S.Scrubber
+        type="range"
+        onChange={updateCurrentTime}
+        onClick={updateCurrentTime}
+        value={currentTime}
+        max={currentTrack.duration}
+        min="0"
+        step="1"
+        progress={progress}
+      />
       <S.Duration>{convertTime(currentTrack.duration)}</S.Duration>
     </S.Container>
   );
@@ -71,8 +87,13 @@ const Scrubber = ({
 Scrubber.propTypes = {
   audioPlayer: PropTypes.object.isRequired,
   onPlayBtn: PropTypes.func.isRequired,
-  isPlaying: PropTypes.object.isRequired,
+  isPlaying: PropTypes.bool,
   setIsPlaying: PropTypes.func.isRequired,
+  onNextUp: PropTypes.func.isRequired,
+};
+
+Scrubber.defaultProps = {
+  isPlaying: null,
 };
 
 export default Scrubber;
