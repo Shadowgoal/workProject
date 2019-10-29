@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import volumeIcon from 'assets/PlayControlIcons/volume.png';
+import volumeOnIcon from 'assets/PlayControlIcons/volumeOn.png';
 import volumeOffIcon from 'assets/PlayControlIcons/volumeOff.png';
 
 export const Container = styled.div`
@@ -52,7 +52,7 @@ export const SliderValue = styled.span`
 `;
 
 export const Volume = styled.div`
-  background: url(${(icon) => (icon.rangeValue === '0' ? volumeOffIcon : volumeIcon)});
+  background: url(${(icon) => (icon.rangeValue === '0' ? volumeOffIcon : volumeOnIcon)});
   background-size: 20px;
   width: 20px;
   height: 20px;

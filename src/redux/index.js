@@ -21,7 +21,6 @@ const initialState = {
     liked: false,
     listened: false,
   },
-  isPlaying: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -78,16 +77,6 @@ const reducer = (state = initialState, action) => {
           ],
         },
         isPlaying: true,
-      };
-    case 'PLAY_MUSIC':
-      return {
-        ...state,
-        isPlaying: true,
-      };
-    case 'PAUSE_MUSIC':
-      return {
-        ...state,
-        isPlaying: false,
       };
     case 'LIKE_TRACK':
       return {

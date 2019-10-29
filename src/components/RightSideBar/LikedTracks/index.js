@@ -1,15 +1,17 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 
 import * as S from './styled';
 
 const LikedTracks = () => {
   const likedTracks = useSelector((state) => state.user.likedTracks);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   return (
     <S.MostPopularContainer>
-      <S.LikedTracksLink>
+      <S.LikedTracksLink onClick={() => history.push('/you/likes')}>
         <S.IconContainer>
           <S.LikeIcon />
           <S.LikeCounter>{likedTracks.length} likes</S.LikeCounter>

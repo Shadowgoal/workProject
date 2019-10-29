@@ -33,7 +33,7 @@ const PlayControl = () => {
   };
 
   const onNextUp = () => {
-    for (let i = 0; i <= currentPlaylist.length; i += 1) {
+    for (let i = 0; i < currentPlaylist.length; i += 1) {
       if (currentPlaylist.length - 1 === i) {
         setIsPlaying(true);
         setCurrentTrack(currentPlaylist[0]);
@@ -63,7 +63,7 @@ const PlayControl = () => {
   return (
     <S.PlayControlContainer visible={isLoggedIn}>
       <S.PlayControlElements>
-        <audio ref={audioPlayer} autoPlay name="media" src={currentTrack.src} id="audio">
+        <audio ref={audioPlayer} autoPlay={isPlaying} name="media" src={currentTrack.src} id="audio">
           <track kind="captions" />
         </audio>
         <S.PrevBtn onClick={onPreviusUp} />

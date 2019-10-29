@@ -4,10 +4,6 @@ export const LOG_OUT = 'LOG_OUT';
 
 export const LOG_IN = 'LOG_IN';
 
-export const PLAY_MUSIC = 'PLAY_MUSIC';
-
-export const PAUSE_MUSIC = 'PAUSE_MUSIC';
-
 export const LIKE_TRACK = 'LIKE_TRACK';
 
 export const UNLIKE_TRACK = 'UNLIKE_TRACK';
@@ -41,16 +37,6 @@ export const setCurrentTrack = (track) => ({
   type: SET_CURRENT_TRACK,
   payload: track,
   isPlaying: true,
-});
-
-export const playMusic = () => ({
-  type: PLAY_MUSIC,
-  isPlaying: true,
-});
-
-export const pauseMusic = () => ({
-  type: PAUSE_MUSIC,
-  isPlaying: false,
 });
 
 export const setCurrentPlaylist = (playlist) => ({

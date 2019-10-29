@@ -16,7 +16,7 @@ const Nav = () => {
       <S.NavBtn to={isLoggedIn ? '/discover' : '/register'}>
         Stream
       </S.NavBtn>
-      <S.NavBtn to={isLoggedIn ? '/discover' : '/register'}>
+      <S.NavBtn to={isLoggedIn ? '/you/library' : '/register'}>
         Library
       </S.NavBtn>
     </S.Container>

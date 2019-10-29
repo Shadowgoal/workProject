@@ -7,7 +7,6 @@ import instance from 'http/index';
 import * as S from './styled';
 
 const Weekly = () => {
-  const [trackList, setTrackList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const currentPlaylist = useSelector((state) => state.currentPlaylist);
   const currentTrack = useSelector((state) => state.currentTrack);
@@ -20,12 +19,11 @@ const Weekly = () => {
     async function fetchData() {
       setIsLoading(true);
       const data = await instance.get('/tracks').then((response) => response.data);
-      setTrackList(data.tracks);
+      setCurrentPlaylist(data.tracks);
       setIsLoading(false);
     }
     fetchData();
   }, []);
-  setCurrentPlaylist(trackList);
 
   return (
     <S.Container>

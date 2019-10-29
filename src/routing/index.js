@@ -8,6 +8,8 @@ import App from 'modules/App';
 import Register from 'modules/Register';
 import Upload from 'modules/Upload';
 import Discover from 'modules/Discover';
+import Library from 'modules/Library';
+import Likes from 'modules/Likes';
 import PlayerProvider from 'components/PlayerProvider';
 
 import PrivateRoute from './PrivateRoute';
@@ -20,6 +22,9 @@ const AppRouter = () => (
         <PrivateRoute path="/register" component={Register} />
         <Route path="/upload" component={Upload} />
         <Route path="/discover" component={Discover} />
+        <Route path="/you/library" component={Library} />
+        <Route path="/you/likes" component={Likes} />
+        <Route path="/you/playlists" component={Library} />
       </Router>
     </PlayerProvider>
   </Provider>

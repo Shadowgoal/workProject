@@ -1,14 +1,16 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 
 import * as S from './styled';
 
 const ListenedTracks = () => {
   const listenedTracks = useSelector((state) => state.user.listenedTracks);
   const dispatch = useDispatch();
+  const history = useHistory();
   return (
     <S.MostPopularContainer>
-      <S.ListenedTracksLink>
+      <S.ListenedTracksLink onClick={() => history.push('/you/library')}>
         <S.IconContainer>
           <S.CalendarIcon />
           <S.ListenedHistory>Listening History</S.ListenedHistory>

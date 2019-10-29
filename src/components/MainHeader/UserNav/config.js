@@ -6,14 +6,17 @@ const userNavEl = [
   {
     name: 'Profile',
     src: ProfileIcon,
+    path: '/you/library',
   },
   {
     name: 'Likes',
     src: LikesIcon,
+    path: '/you/likes',
   },
   {
     name: 'Playlists',
     src: PlaylistsIcon,
+    path: '/discover',
   },
 ];
 

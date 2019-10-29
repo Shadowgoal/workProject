@@ -17,7 +17,7 @@ export const Scrubber = styled.input`
   cursor: pointer;
   ::-webkit-slider-runnable-track {
     width: 350px;
-    height: 2px;
+    height: 3px;
     border: none;
     border-radius: 3px;
   };
@@ -26,7 +26,7 @@ export const Scrubber = styled.input`
     border: none;
     height: 6px;
     width: 6px;
-    margin-top: -2px;
+    margin-top: -1px;
     border-radius: 50%;
     background: #f50;
   };

@@ -9,7 +9,8 @@ export const Container = styled.div`
 `;
 
 export const BodyContainer = styled.div`
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   width: 1180px;
   height: 100%;
   margin-top: 46px;

@@ -6,7 +6,6 @@ import * as S from './styled';
 
 const Scrubber = ({
   audioPlayer,
-  onPlayBtn,
   isPlaying,
   setIsPlaying,
   onNextUp,
@@ -23,14 +22,15 @@ const Scrubber = ({
 
   useEffect(() => {
     if (currentTrack && !isPlaying) {
-      onPlayBtn(true);
       setIsPlaying(true);
     }
     if (!scrubberInterval) {
       const intervalId = setInterval(() => {
+        console.log(isPlaying);
         const current = audioPlayer.current.currentTime;
         const dur = audioPlayer.current.duration;
         const percent = (current / dur) * 100;
+        console.log(percent);
         setCurrentProgress(percent);
         updateTime(current);
         if (current === dur) {
@@ -49,8 +49,8 @@ const Scrubber = ({
   }, [scrubberInterval]);
 
   const updateCurrentTime = (e) => {
-    setCurrentTime(e.target.value);
     audioPlayer.current.currentTime = currentTime;
+    setCurrentTime(e.target.value);
   };
 
   const convertTime = (timestamp) => {
@@ -86,7 +86,6 @@ const Scrubber = ({
 
 Scrubber.propTypes = {
   audioPlayer: PropTypes.object.isRequired,
-  onPlayBtn: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool,
   setIsPlaying: PropTypes.func.isRequired,
   onNextUp: PropTypes.func.isRequired,
