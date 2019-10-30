@@ -12,6 +12,10 @@ export const SET_CURRENT_PLAYLIST = 'SET_CURRENT_PLAYLIST';
 
 export const SET_CURRENT_TRACK = 'SET_CURRENT_TRACK';
 
+export const PLAY_MUISIC = 'PLAY_MUISIC';
+
+export const STOP_MUISIC = 'STOP_MUISIC';
+
 export const onRegister = (user) => ({
   type: SIGN_UP,
   isLoggedIn: true,
@@ -42,6 +46,7 @@ export const setCurrentTrack = (track) => ({
 export const setCurrentPlaylist = (playlist) => ({
   type: SET_CURRENT_PLAYLIST,
   payload: playlist,
+  isPlaying: true,
 });
 
 export const likeTrack = (currentTrack) => ({
@@ -58,4 +63,14 @@ export const unlikeTrack = (id) => ({
     liked: false,
   },
   likedTracks: id,
+});
+
+export const playMusic = () => ({
+  type: PLAY_MUISIC,
+  isPlaying: true,
+});
+
+export const stopMusic = () => ({
+  type: STOP_MUISIC,
+  isPlaying: false,
 });

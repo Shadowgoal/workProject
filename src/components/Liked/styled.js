@@ -61,16 +61,16 @@ export const PlayImg = styled.div`
   width: 40px;
   height: 40px;
   background-size: 40px;
-  margin-left: 3px;
+  margin-left: ${(el) => (el.icon ? '0' : '3px')};
 `;
 
 export const Like = styled.div`
   color: red;
   text-align: end;
-  padding: 0 5px 5px 0;
+  padding: 0 10px 5px 0;
   height: 20px;
-  width: 195px;
-  font-size: 18px;
+  width: 190px;
+  font-size: 16px;
 `;
 
 export const CoverContainer = styled.div`

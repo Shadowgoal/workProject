@@ -6,14 +6,13 @@ import * as S from './styled';
 
 const Scrubber = ({
   audioPlayer,
-  isPlaying,
-  setIsPlaying,
   onNextUp,
 }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [progress, setCurrentProgress] = useState(0);
   const [scrubberInterval, setScrubberInterval] = useState(null);
   const currentTrack = useSelector((state) => state.currentTrack);
+  const isPlaying = useSelector((state) => state.isPlaying);
 
   const updateTime = (timestamp) => {
     const time = Math.floor(timestamp);
@@ -21,22 +20,23 @@ const Scrubber = ({
   };
 
   useEffect(() => {
-    if (currentTrack && !isPlaying) {
-      setIsPlaying(true);
+    if (currentTrack && isPlaying) {
+      audioPlayer.current.play();
     }
-    if (!scrubberInterval) {
+    if (currentTrack && !isPlaying) {
+      audioPlayer.current.pause();
+    }
+    if (!scrubberInterval && isPlaying) {
       const intervalId = setInterval(() => {
-        console.log(isPlaying);
         const current = audioPlayer.current.currentTime;
         const dur = audioPlayer.current.duration;
         const percent = (current / dur) * 100;
-        console.log(percent);
         setCurrentProgress(percent);
         updateTime(current);
         if (current === dur) {
           onNextUp();
         }
-      }, 500);
+      }, 1000);
       setScrubberInterval(intervalId);
     }
 
@@ -46,11 +46,14 @@ const Scrubber = ({
         setScrubberInterval(null);
       }
     };
-  }, [scrubberInterval]);
+  }, [scrubberInterval, audioPlayer, currentTrack, isPlaying, onNextUp]);
 
   const updateCurrentTime = (e) => {
-    audioPlayer.current.currentTime = currentTime;
     setCurrentTime(e.target.value);
+    audioPlayer.current.currentTime = currentTime;
+    const dur = audioPlayer.current.duration;
+    const percent = (currentTime / dur) * 100;
+    setCurrentProgress(percent);
   };
 
   const convertTime = (timestamp) => {
@@ -86,13 +89,7 @@ const Scrubber = ({
 
 Scrubber.propTypes = {
   audioPlayer: PropTypes.object.isRequired,
-  isPlaying: PropTypes.bool,
-  setIsPlaying: PropTypes.func.isRequired,
   onNextUp: PropTypes.func.isRequired,
-};
-
-Scrubber.defaultProps = {
-  isPlaying: null,
 };
 
 export default Scrubber;

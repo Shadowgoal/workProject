@@ -3,6 +3,7 @@ import { Form } from 'react-final-form';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useToasts } from 'react-toast-notifications';
 
 import instance from 'http/index';
 import Loading from 'components/Loading';
@@ -20,6 +21,7 @@ const RegisterForm = ({ setIsModalOpened }) => {
     (user) => dispatch({ type: 'SIGN_UP', payload: user }),
     [dispatch],
   );
+  const { addToast } = useToasts();
   const history = useHistory();
 
   const onSubmit = async (values) => {
@@ -29,6 +31,7 @@ const RegisterForm = ({ setIsModalOpened }) => {
       .catch(() => ({ error: true, message: 'Password or email is already exists' }));
 
     if (!data.error) {
+      addToast('Registered successfully', { appearance: 'success' });
       onRegister(data.user);
       sessionStorage.setItem('username', data.user.username);
       sessionStorage.setItem('authToken', data.token);
@@ -36,6 +39,7 @@ const RegisterForm = ({ setIsModalOpened }) => {
       history.push('/upload');
     } else {
       setErrors(data.message);
+      addToast(data.message, { appearance: 'error' });
     }
     setIsLoading(false);
   };

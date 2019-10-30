@@ -3,6 +3,7 @@ import { Form } from 'react-final-form';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useToasts } from 'react-toast-notifications';
 
 import instance from 'http/index';
 import Loading from 'components/Loading';
@@ -20,6 +21,7 @@ const LogInForm = ({ setIsLogInModalOpened }) => {
     (user) => dispatch({ type: 'LOG_IN', payload: user }),
     [dispatch],
   );
+  const { addToast } = useToasts();
   const history = useHistory();
 
   async function onSubmit(values) {
@@ -30,12 +32,14 @@ const LogInForm = ({ setIsLogInModalOpened }) => {
 
     if (!data.error) {
       onLogIn(data.user);
+      addToast('Log In successful', { appearance: 'success', autoDismiss: true });
       sessionStorage.setItem('username', data.user.username);
       sessionStorage.setItem('authToken', data.token);
       setIsLogInModalOpened();
       history.push('/upload');
     } else {
       setErrors(data.message);
+      addToast(data.message, { appearance: 'error' });
     }
     setIsLoading(false);
   }

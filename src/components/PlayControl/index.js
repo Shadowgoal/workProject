@@ -9,12 +9,14 @@ import * as S from './styled';
 
 const PlayControl = () => {
   const [rangeValue, setRangeValue] = useState('0.3');
-  const [isPlaying, setIsPlaying] = useState(null);
+  const isPlaying = useSelector((state) => state.isPlaying);
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const currentTrack = useSelector((state) => state.currentTrack);
   const currentPlaylist = useSelector((state) => state.currentPlaylist);
   const dispatch = useDispatch();
   const setCurrentTrack = (track) => dispatch({ type: 'SET_CURRENT_TRACK', payload: track });
+  const playMusic = () => dispatch({ type: 'PLAY_MUSIC' });
+  const stopMusic = () => dispatch({ type: 'STOP_MUSIC' });
   const audioPlayer = useRef(null);
 
   const updateRange = (value) => {
@@ -24,10 +26,10 @@ const PlayControl = () => {
 
   const onPlayBtn = () => {
     if (!isPlaying) {
-      setIsPlaying(true);
+      playMusic();
       audioPlayer.current.play();
     } else if (isPlaying) {
-      setIsPlaying(false);
+      stopMusic();
       audioPlayer.current.pause();
     }
   };
@@ -35,11 +37,11 @@ const PlayControl = () => {
   const onNextUp = () => {
     for (let i = 0; i < currentPlaylist.length; i += 1) {
       if (currentPlaylist.length - 1 === i) {
-        setIsPlaying(true);
+        playMusic();
         setCurrentTrack(currentPlaylist[0]);
         break;
       } else if (currentPlaylist[i].id === currentTrack.id) {
-        setIsPlaying(true);
+        playMusic();
         setCurrentTrack(currentPlaylist[i + 1]);
         break;
       }
@@ -50,10 +52,10 @@ const PlayControl = () => {
     for (let i = currentPlaylist.length - 1; i >= 0; i -= 1) {
       if (i === 0) {
         setCurrentTrack(currentPlaylist[currentPlaylist.length - 1]);
-        setIsPlaying(true);
+        playMusic();
         break;
       } else if (currentPlaylist[i].id === currentTrack.id) {
-        setIsPlaying(true);
+        playMusic();
         setCurrentTrack(currentPlaylist[i - 1]);
         break;
       }
@@ -72,8 +74,6 @@ const PlayControl = () => {
         <Scrubber
           onPlayBtn={onPlayBtn}
           audioPlayer={audioPlayer}
-          isPlaying={isPlaying}
-          setIsPlaying={setIsPlaying}
           onNextUp={onNextUp}
         />
         <VolumeSlider updateRange={updateRange} rangeValue={rangeValue} />

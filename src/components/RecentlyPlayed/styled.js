@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import PlayIcon from 'assets/PlayControlIcons/play.png';
+import PauseIcon from 'assets/PlayControlIcons/pause.png';
 
 export const Container = styled.div`
   display: flex;
@@ -50,11 +51,11 @@ export const Play = styled.div`
 `;
 
 export const PlayImg = styled.div`
-  background: url(${PlayIcon});
+  background: url(${(el) => (el.icon ? PauseIcon : PlayIcon)});
   width: 40px;
   height: 40px;
   background-size: 40px;
-  margin-left: 3px;
+  margin-left: ${(el) => (el.icon ? '0' : '3px')};
 `;
 
 export const CoverContainer = styled.div`

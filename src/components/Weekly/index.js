@@ -23,7 +23,7 @@ const Weekly = () => {
       setIsLoading(false);
     }
     fetchData();
-  }, []);
+  }, [setCurrentPlaylist]);
 
   return (
     <S.Container>

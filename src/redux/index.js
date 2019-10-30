@@ -6,6 +6,7 @@ import * as ZivertCover from '../assets/TrackIcons/Zivert-Credo.jpg';
 
 const initialState = {
   isLoggedIn: sessionStorage.getItem('authToken'),
+  isPlaying: false,
   user: {
     likedTracks: [],
     listenedTracks: [],
@@ -106,6 +107,16 @@ const reducer = (state = initialState, action) => {
             ...state.user.likedTracks.filter((index) => index.id !== action.likedTracks),
           ],
         },
+      };
+    case 'PLAY_MUSIC':
+      return {
+        ...state,
+        isPlaying: true,
+      };
+    case 'STOP_MUSIC':
+      return {
+        ...state,
+        isPlaying: false,
       };
     default:
       return state;

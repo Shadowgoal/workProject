@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useToasts } from 'react-toast-notifications';
 
 import instance from 'http/index';
 
@@ -8,10 +9,25 @@ import * as S from './styled';
 const Liked = () => {
   const likedTracks = useSelector((state) => state.user.likedTracks);
   const currentTrack = useSelector((state) => state.currentTrack);
+  const isPlaying = useSelector((state) => state.isPlaying);
   const dispatch = useDispatch();
-  const setCurrentPlaylist = (track) => {
+  const { addToast } = useToasts();
+  const setCurrentPlaylist = () => {
     dispatch({ type: 'SET_CURRENT_PLAYLIST', payload: likedTracks });
+  };
+  const setCurrentTrack = (track) => {
     dispatch({ type: 'SET_CURRENT_TRACK', payload: track });
+  };
+  const stopMusic = () => {
+    dispatch({ type: 'STOP_MUSIC' });
+  };
+  const onPlay = (track) => {
+    if (isPlaying) {
+      stopMusic();
+    } else if (!isPlaying) {
+      setCurrentPlaylist();
+      setCurrentTrack(track);
+    }
   };
   const unlikeTrack = useCallback(
     (track) => dispatch({ type: 'UNLIKE_TRACK', likedTracks: track }),
@@ -21,6 +37,8 @@ const Liked = () => {
   const onLike = async (track) => {
     const data = await instance.put('/disliketrack', track).then((response) => response.data);
     unlikeTrack(data.likedTracks.id);
+    addToast(`${data.likedTracks.artist} - ${data.likedTracks.name} was removed from your liked list`,
+      { appearance: 'info', autoDismiss: true });
   };
   return (
     <S.Container>
@@ -32,8 +50,8 @@ const Liked = () => {
               <S.CoverContainer cover={track.cover}>
                 <S.Shadow>
                   <S.Blank />
-                  <S.Play onClick={() => setCurrentPlaylist(track)}>
-                    <S.PlayImg icon={currentTrack.id === track.id} />
+                  <S.Play onClick={() => onPlay(track)}>
+                    <S.PlayImg icon={currentTrack.id === track.id && isPlaying} />
                   </S.Play>
                   <S.Like onClick={() => onLike(track)}>❤</S.Like>
                 </S.Shadow>
@@ -41,7 +59,7 @@ const Liked = () => {
               <S.TrackArtist>{track.artist}</S.TrackArtist>
               <S.TrackName>{track.name}</S.TrackName>
             </S.TrackContainer>
-          ))
+          )).reverse()
         }
       </S.LikedTracksContainer>
 
