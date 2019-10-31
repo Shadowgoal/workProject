@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const UserNavContainer = styled.div`
   display: ${(userNavigation) => (userNavigation.vision ? 'block' : 'none')};
+  margin: 0 55px;
 `;
 
 export const UserNameContainer = styled.span`

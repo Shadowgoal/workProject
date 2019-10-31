@@ -26,9 +26,10 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   for (let i = 0; i < state.currentPlaylist.length; i += 1) {
-    if (state.currentTrack.id === state.currentPlaylist[i].id) {
-      state.currentPlaylist[i].liked = state.currentTrack.liked;
-      state.currentPlaylist[i].listened = state.currentTrack.listened;
+    for (let j = 0; j < state.user.likedTracks.length; j += 1) {
+      if (state.currentPlaylist[i].id === state.user.likedTracks[j].id) {
+        state.user.likedTracks[j].liked = state.currentPlaylist[i].liked;
+      }
     }
   }
   switch (action.type) {
@@ -79,13 +80,29 @@ const reducer = (state = initialState, action) => {
         },
         isPlaying: true,
       };
-    case 'LIKE_TRACK':
+    case 'CLEAR_CURRENT_PLAYLIST':
       return {
         ...state,
-        currentTrack: {
-          ...state.currentTrack,
-          liked: true,
-        },
+        currentPlaylist: [
+          state.currentTrack,
+        ],
+      };
+    case 'LIKE_TRACK':
+      for (let i = 0; i < state.user.likedTracks.length; i += 1) {
+        if (state.user.likedTracks[i].id === action.likedTracks.id) {
+          state.user.likedTracks[i].liked = action.likedTracks.liked;
+        }
+      }
+      for (let i = 0; i < state.currentPlaylist.length; i += 1) {
+        if (state.currentPlaylist[i].id === action.likedTracks.id) {
+          state.currentPlaylist[i].liked = action.likedTracks.liked;
+        }
+      }
+      if (action.likedTracks.id === state.currentTrack.id) {
+        state.currentTrack.liked = action.likedTracks.liked;
+      }
+      return {
+        ...state,
         user: {
           ...state.user,
           likedTracks: [
@@ -95,16 +112,25 @@ const reducer = (state = initialState, action) => {
         },
       };
     case 'UNLIKE_TRACK':
+      for (let i = 0; i < state.user.likedTracks.length; i += 1) {
+        if (state.user.likedTracks[i].id === action.likedTracks.id) {
+          state.user.likedTracks[i].liked = action.likedTracks.liked;
+        }
+      }
+      for (let i = 0; i < state.currentPlaylist.length; i += 1) {
+        if (state.currentPlaylist[i].id === action.likedTracks.id) {
+          state.currentPlaylist[i].liked = action.likedTracks.liked;
+        }
+      }
+      if (action.likedTracks.id === state.currentTrack.id) {
+        state.currentTrack.liked = action.likedTracks.liked;
+      }
       return {
         ...state,
-        currentTrack: {
-          ...state.currentTrack,
-          liked: false,
-        },
         user: {
           ...state.user,
           likedTracks: [
-            ...state.user.likedTracks.filter((index) => index.id !== action.likedTracks),
+            ...state.user.likedTracks.filter((index) => index.id !== action.likedTracks.id),
           ],
         },
       };

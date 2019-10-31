@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import TracksLoading from 'components/TracksLoading';
@@ -8,22 +8,25 @@ import * as S from './styled';
 
 const Weekly = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const currentPlaylist = useSelector((state) => state.currentPlaylist);
+  const [playlist, setPlaylist] = useState([]);
   const currentTrack = useSelector((state) => state.currentTrack);
   const dispatch = useDispatch();
-  const setCurrentPlaylist = useCallback(
-    (tracks) => dispatch({ type: 'SET_CURRENT_PLAYLIST', payload: tracks }),
-    [dispatch],
-  );
+
+  const onTrack = (track) => {
+    dispatch({ type: 'SET_CURRENT_PLAYLIST', payload: playlist });
+    dispatch({ type: 'SET_CURRENT_TRACK', payload: track });
+  };
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
       const data = await instance.get('/tracks').then((response) => response.data);
-      setCurrentPlaylist(data.tracks);
+      if (!playlist.length) {
+        setPlaylist(data.tracks);
+      }
       setIsLoading(false);
     }
     fetchData();
-  }, [setCurrentPlaylist]);
+  }, [setPlaylist, playlist]);
 
   return (
     <S.Container>
@@ -36,10 +39,10 @@ const Weekly = () => {
         <S.TrackContainer>
           <TracksLoading isLoading={isLoading} />
           {
-            currentPlaylist.map((track) => (
+            playlist.map((track) => (
               <S.Track
                 key={track.id}
-                onClick={() => dispatch({ type: 'SET_CURRENT_TRACK', payload: track })}
+                onClick={() => onTrack(track)}
               >
                 <S.TrackArtist>
                   {track.artist}

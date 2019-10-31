@@ -21,12 +21,20 @@ const Liked = () => {
   const stopMusic = () => {
     dispatch({ type: 'STOP_MUSIC' });
   };
+  const playMusic = () => {
+    dispatch({ type: 'PLAY_MUSIC' });
+  };
   const onPlay = (track) => {
-    if (isPlaying) {
+    if (isPlaying && track.id === currentTrack.id) {
       stopMusic();
+    } else if (isPlaying && track.id !== currentTrack.id) {
+      setCurrentPlaylist();
+      setCurrentTrack(track);
+      playMusic();
     } else if (!isPlaying) {
       setCurrentPlaylist();
       setCurrentTrack(track);
+      playMusic();
     }
   };
   const unlikeTrack = useCallback(
@@ -36,7 +44,7 @@ const Liked = () => {
 
   const onLike = async (track) => {
     const data = await instance.put('/disliketrack', track).then((response) => response.data);
-    unlikeTrack(data.likedTracks.id);
+    unlikeTrack(data.likedTracks);
     addToast(`${data.likedTracks.artist} - ${data.likedTracks.name} was removed from your liked list`,
       { appearance: 'info', autoDismiss: true });
   };
