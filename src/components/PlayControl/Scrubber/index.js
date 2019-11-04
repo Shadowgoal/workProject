@@ -15,6 +15,7 @@ const Scrubber = ({
   const [scrubberInterval, setScrubberInterval] = useState(null);
 
   const currentTrack = useSelector((state) => state.currentTrack);
+  const currentPlaylist = useSelector((state) => state.currentPlaylist);
   const isPlaying = useSelector((state) => state.isPlaying);
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const Scrubber = ({
         setCurrentProgress(percent);
         updateTime(current, setCurrentTime);
         if (current === dur) {
-          onNextUp();
+          onNextUp(currentPlaylist.length - 1, +1, 0);
         }
       }, 1000);
       setScrubberInterval(intervalId);

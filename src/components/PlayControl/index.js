@@ -34,31 +34,16 @@ const PlayControl = () => {
     }
   };
 
-  const onNextUp = () => {
-    for (let i = 0; i < currentPlaylist.length; i += 1) {
-      if (currentPlaylist.length - 1 === i) {
-        dispatch(playMusic());
-        dispatch(setCurrentTrack(currentPlaylist[0]));
-        break;
-      } else if (currentPlaylist[i].id === currentTrack.id) {
-        dispatch(playMusic());
-        dispatch(setCurrentTrack(currentPlaylist[i + 1]));
-        break;
-      }
-    }
-  };
+  const findTrack = (el) => el.id === currentTrack.id;
 
-  const onPreviusUp = () => {
-    for (let i = currentPlaylist.length - 1; i >= 0; i -= 1) {
-      if (i === 0) {
-        dispatch(setCurrentTrack(currentPlaylist[currentPlaylist.length - 1]));
-        playMusic();
-        break;
-      } else if (currentPlaylist[i].id === currentTrack.id) {
-        dispatch(playMusic());
-        setCurrentTrack(currentPlaylist[i - 1]);
-        break;
-      }
+  const onNextUp = (length, value, trackIndex) => {
+    const index = currentPlaylist.findIndex(findTrack);
+    if (index === length) {
+      dispatch(playMusic());
+      dispatch(setCurrentTrack(currentPlaylist[trackIndex]));
+    } else {
+      dispatch(playMusic());
+      dispatch(setCurrentTrack(currentPlaylist[index + value]));
     }
   };
 
@@ -68,9 +53,9 @@ const PlayControl = () => {
         <audio ref={audioPlayer} autoPlay={isPlaying} name="media" src={currentTrack.src} id="audio">
           <track kind="captions" />
         </audio>
-        <S.PrevBtn onClick={onPreviusUp} />
+        <S.PrevBtn onClick={() => onNextUp(0, -1, currentPlaylist.length - 1)} />
         <S.PlayBtn isPlaying={isPlaying} onClick={onPlayBtn} />
-        <S.NextBtn onClick={onNextUp} />
+        <S.NextBtn onClick={() => onNextUp(currentPlaylist.length - 1, +1, 0)} />
         <Scrubber
           onPlayBtn={onPlayBtn}
           audioPlayer={audioPlayer}
