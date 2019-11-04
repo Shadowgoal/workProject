@@ -1,4 +1,4 @@
-const NavBarEl = [
+const NavBarEls = [
   {
     name: 'Overview',
     src: '/you/library',
@@ -13,4 +13,4 @@ const NavBarEl = [
   },
 ];
 
-export default NavBarEl;
+export default NavBarEls;

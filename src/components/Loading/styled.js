@@ -6,7 +6,7 @@ export const Container = styled.div`
   bottom: 0;
   width: 100%;
   height: 100%;
-  background: grey;
+  background: ${({ theme }) => (theme.grey)};
   opacity: 0.5;
 `;
 
@@ -16,7 +16,7 @@ export const MainContainer = styled.div`
   bottom: 0;
   width: 100%;
   height: 100%;
-  display: ${(cont) => (cont.visible ? 'flex' : 'none')};
+  display: ${({ visible }) => (visible ? 'flex' : 'none')};
   align-items: center;
   justify-content: center;
   z-index: 1000;

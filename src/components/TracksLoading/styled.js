@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
 export const LoaderContainer = styled.div`
-  display: ${(loader) => (loader.visible ? 'flex' : 'none')};
+  display: ${({ visible }) => (visible ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
   position: fixed;

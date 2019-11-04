@@ -8,7 +8,7 @@ export const Container = styled.div`
   flex-direction: column;
   width: 100%;
   padding: 30px 0px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid ${({ theme }) => (theme.grey)};
   margin: 0px 45px;
   font-size: 20px;
 `;
@@ -44,22 +44,22 @@ export const Play = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: #f50;
+  background: ${({ theme }) => (theme.orange)};
   :hover {
     background: #eb4f34;
   };
 `;
 
 export const PlayImg = styled.div`
-  background: url(${(el) => (el.icon ? PauseIcon : PlayIcon)});
+  background: url(${({ icon }) => (icon ? PauseIcon : PlayIcon)});
   width: 40px;
   height: 40px;
   background-size: 40px;
-  margin-left: ${(el) => (el.icon ? '0' : '3px')};
+  margin-left: ${({ icon }) => (icon ? '0' : '3px')};
 `;
 
 export const CoverContainer = styled.div`
-  background-image: url(${(cover) => (cover.cover)});
+  background-image: url(${({ cover }) => (cover)});
   background-size: 200px;
   width: 200px;
   height: 200px;
@@ -75,6 +75,6 @@ export const TrackArtist = styled.span`
 
 export const TrackName = styled.span`
   font-size: 14px;
-  color: #ccc;
+  color: ${({ theme }) => (theme.grey)};
   padding: 3px 0 0 2px;
 `;

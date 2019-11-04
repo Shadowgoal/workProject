@@ -8,11 +8,10 @@ export const Container = styled.div`
 
 export const Scrubber = styled.input`
   -webkit-appearance: none;
-  // background: #ffffff;
   width: 400px;
   margin: 0 25px;
-  background: linear-gradient(to right, #f50 0%, #f50 ${(color) => (color.progress)}%,
-  #ccc ${(color) => (color.progress)}%, #ccc 100%);
+  background: ${({ theme, progress }) => (`linear-gradient(to right, ${theme.orange} 0%, ${theme.orange} ${progress}%,
+    ${theme.grey} ${progress}%, ${theme.grey} 100%)`)};
   border-radius: 3px;
   cursor: pointer;
   ::-webkit-slider-runnable-track {
@@ -28,7 +27,7 @@ export const Scrubber = styled.input`
     width: 6px;
     margin-top: -1px;
     border-radius: 50%;
-    background: #f50;
+    background: ${({ theme }) => (theme.orange)};
   };
   :focus {
     outline: none;
@@ -36,7 +35,7 @@ export const Scrubber = styled.input`
 `;
 
 export const CurrentTime = styled.span`
-  color: #f50;
+  color: ${({ theme }) => (theme.orange)};
   margin-left: 40px;
 
   width: 35px;

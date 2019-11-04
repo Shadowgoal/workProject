@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const MostPopularContainer = styled.article`
   width: 300px;
@@ -22,22 +23,24 @@ export const LikeIcon = styled.div`
 
 export const LikeCounter = styled.span`
   font-size: 14px;
-  color: slategray;
+  color: ${({ theme }) => (theme.lightgrey)};
 `;
 
 export const ViewAll = styled.span`
-  color: slategray;
+  color: ${({ theme }) => (theme.lightgrey)};
   float: right;
   font-size: 14px;
 `;
 
-export const LikedTracksLink = styled.div`
+export const LikedTracksLink = styled(Link)`
+  display: block;
+  text-decoration: none;
   width: 300px;
   height: 25px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid ${({ theme }) => (theme.grey)};
   cursor: pointer;
   :hover ${ViewAll} {
-    color: black;
+    color: ${({ theme }) => (theme.black)};
   };
 `;
 
@@ -51,12 +54,12 @@ export const LikedTrack = styled.div`
   cursor: pointer;
   padding: 10px 10px;
   :hover {
-    background: lightgrey;
+    background: ${({ theme }) => (theme.lightgrey)};
   };
 `;
 
 export const LikedTrackCover = styled.div`
-  background: url(${(cover) => (cover.cover)});
+  background: url(${({ cover }) => (cover)});
   width: 50px;
   height: 50px;
   background-size: 50px

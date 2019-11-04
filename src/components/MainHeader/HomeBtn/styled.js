@@ -6,8 +6,8 @@ import MainLogo from 'assets/MainLogo/mainlogo.png';
 export const Btn = styled(Link)`
   display: inline-flex;
   height: inherit;
-  background: linear-gradient(#f70,#f30);
-  color: white;
+  background: ${({ theme }) => (theme.orangeGradient)};
+  color: ${({ theme }) => (theme.white)};
   cursor: pointer;
   text-decoration: none;
 `;
@@ -27,5 +27,5 @@ export const TextLogo = styled.span`
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
-  display: ${(logo) => (logo.isVisible ? 'none' : 'block')};
+  display: ${({ isVisible }) => (isVisible ? 'none' : 'block')};
 `;

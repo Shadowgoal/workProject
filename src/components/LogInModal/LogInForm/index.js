@@ -1,11 +1,12 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { Form } from 'react-final-form';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useToasts } from 'react-toast-notifications';
 
-import instance from 'http/index';
+import { onLogIn } from 'redux/action';
+import { signInRequest } from 'http/requests';
 import Loading from 'components/Loading';
 import LogInInput from './LogInInput';
 import { validation } from './validation';
@@ -16,31 +17,31 @@ import { InputError } from './LogInInput/styled';
 const LogInForm = ({ setIsLogInModalOpened }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState('');
+
   const dispatch = useDispatch();
-  const onLogIn = useCallback(
-    (user) => dispatch({ type: 'LOG_IN', payload: user }),
-    [dispatch],
-  );
-  const { addToast } = useToasts();
+
   const history = useHistory();
+
+  const { addToast } = useToasts();
 
   async function onSubmit(values) {
     setIsLoading(true);
-    const data = await instance.post('/signin', values)
-      .then((response) => response.data)
-      .catch(() => ({ error: true, message: 'Incorrect password or email' }));
+    const data = await signInRequest(values);
 
     if (!data.error) {
-      onLogIn(data.user);
-      addToast('Log In successful', { appearance: 'success', autoDismiss: true });
+      dispatch(onLogIn(data.user));
       sessionStorage.setItem('username', data.user.username);
       sessionStorage.setItem('authToken', data.token);
       setIsLogInModalOpened();
       history.push('/upload');
     } else {
       setErrors(data.message);
-      addToast(data.message, { appearance: 'error' });
     }
+    addToast(data.error ? data.message : 'Log In successful',
+      {
+        appearance: data.error ? 'error' : 'success',
+        autoDismiss: true,
+      });
     setIsLoading(false);
   }
 

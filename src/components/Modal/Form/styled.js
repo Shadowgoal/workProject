@@ -40,12 +40,12 @@ export const RegisterButton = styled.button`
 `;
 
 export const CloseButton = styled.button`
-  background: #ccc;
+  background: ${({ theme }) => (theme.grey)};
   border: none;
   border-radius: 4px;
   height: 25px;
   width: 75px;
-  color: black;
+  color: ${({ theme }) => (theme.black)};
   cursor: pointer;
 `;
 

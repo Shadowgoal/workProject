@@ -2,24 +2,30 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import TracksLoading from 'components/TracksLoading';
-import instance from 'http/index';
+import { tracksRequest } from 'http/requests';
+import { setCurrentPlaylist, setCurrentTrack } from 'redux/action';
 
 import * as S from './styled';
 
 const Weekly = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [playlist, setPlaylist] = useState([]);
+
   const currentTrack = useSelector((state) => state.currentTrack);
+  const currentPlaylist = useSelector((state) => state.currentPlaylist);
   const dispatch = useDispatch();
 
   const onTrack = (track) => {
-    dispatch({ type: 'SET_CURRENT_PLAYLIST', payload: playlist });
-    dispatch({ type: 'SET_CURRENT_TRACK', payload: track });
+    if (!currentPlaylist.length) {
+      dispatch(setCurrentPlaylist(playlist));
+    }
+    dispatch(setCurrentTrack(track));
   };
+
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
-      const data = await instance.get('/tracks').then((response) => response.data);
+      const data = await tracksRequest();
       if (!playlist.length) {
         setPlaylist(data.tracks);
       }

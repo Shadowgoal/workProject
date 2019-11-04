@@ -13,13 +13,13 @@ export const Label = styled.label`
 `;
 
 export const InputError = styled.span`
-  color: red;
+  color: ${({ theme }) => (theme.red)};
   font-size: x-small;
 `;
 
 export const Input = styled.input`
   border: none;
-  border-bottom: 1px solid lightslategrey;
+  border-bottom: 1px solid ${({ theme }) => (theme.lightgrey)};
   outline: none;
   height: 25px;
 `;

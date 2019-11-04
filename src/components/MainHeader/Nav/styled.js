@@ -9,14 +9,14 @@ export const Container = styled.div`
 export const NavBtn = styled(Link)`
   width: 100px;
   background: inherit;
-  border-right: 1px solid black;
+  border-right: 1px solid ${({ theme }) => (theme.black)};
   text-align: center;
   display: inline-block;
   text-decoration: none;
-  color: #ccc;
+  color: ${({ theme }) => (theme.grey)};
   padding: 12px 0;
   :hover {
-    color: white;
+    color: ${({ theme }) => (theme.white)};
   };
   font-size: 14px;
 `;

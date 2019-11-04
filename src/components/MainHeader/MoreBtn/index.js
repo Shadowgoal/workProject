@@ -1,8 +1,9 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 
-import instance from 'http/index';
+import { onLogOut } from 'redux/action';
+import { logOutRequest } from 'http/requests';
 import Loading from 'components/Loading';
 import UserNav from '../UserNav';
 import elements from './config';
@@ -11,23 +12,20 @@ import * as S from './styled';
 
 const MoreBtn = () => {
   const [isLoading, setIsLoading] = useState(false);
+
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const dispatch = useDispatch();
+
   const location = useLocation();
-  const onLogOut = useCallback(
-    () => dispatch({ type: 'LOG_OUT' }),
-    [dispatch],
-  );
   const history = useHistory();
 
   async function onLogOutBtn() {
     setIsLoading(true);
-    await instance.post('/logout')
-      .then((response) => response.data);
+    await logOutRequest();
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('authToken');
+    dispatch(onLogOut());
     setIsLoading(false);
-    onLogOut();
     history.push('/upload');
   }
 
@@ -35,7 +33,7 @@ const MoreBtn = () => {
     <S.MainContainer>
       <Loading isLoading={isLoading} />
       <S.Container>
-        <S.UploadBtn background={location.pathname === '/upload' ? 'true' : 'false'} to="/upload">
+        <S.UploadBtn pathname={location.pathname === '/upload' ? 1 : 0} to="/upload">
           Upload
         </S.UploadBtn>
         <UserNav />

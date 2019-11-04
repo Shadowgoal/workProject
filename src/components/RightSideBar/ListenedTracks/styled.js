@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const MostPopularContainer = styled.article`
   width: 300px;
@@ -13,7 +14,7 @@ export const IconContainer = styled.div`
 
 export const ListenedHistory = styled.span`
   font-size: 14px;
-  color: slategray;
+  color: ${({ theme }) => (theme.lightgrey)};
 `;
 
 export const CalendarIcon = styled.div`
@@ -26,18 +27,20 @@ export const CalendarIcon = styled.div`
 `;
 
 export const ViewAll = styled.span`
-  color: slategray;
+  color: ${({ theme }) => (theme.lightgrey)};
   float: right;
   font-size: 14px;
 `;
 
-export const ListenedTracksLink = styled.div`
+export const ListenedTracksLink = styled(Link)`
+  display: block;
+  text-decoration: none;
   width: 300px;
   height: 25px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid ${({ theme }) => (theme.grey)};
   cursor: pointer;
   :hover ${ViewAll} {
-    color: black;
+    color: ${({ theme }) => (theme.black)};
   };
 `;
 
@@ -51,7 +54,7 @@ export const ListenedTrack = styled.div`
   cursor: pointer;
   padding: 10px 10px;
   :hover {
-    background: lightgrey;
+    background: ${({ theme }) => (theme.lightgrey)};
   };
 `;
 

@@ -16,8 +16,10 @@ export const UploadBtn = styled(Link)`
   text-align: center;
   text-decoration: none;
   line-height: 42px;
-  background: ${(upload) => (upload.background === 'true' ? '#111' : '#333')};
-  color: ${(upload) => (upload.background === 'true' ? 'white' : '#ccc')};
+  background: ${({ pathname, theme }) => (pathname ? theme.activeHeaderBtn.background
+    : theme.inactiveHeaderBtn.background)};
+  color: ${({ pathname, theme }) => (pathname ? theme.activeHeaderBtn.color
+    : theme.inactiveHeaderBtn.color)};
 `;
 
 export const Circles = styled.div`
@@ -28,7 +30,7 @@ export const Circles = styled.div`
 export const Circle = styled.div`
   width: 9px;
   height: 9px;
-  background: #ccc;
+  background: ${({ theme }) => (theme.grey)};
   border-radius: 50%;
   margin-left: 1px;
 `;
@@ -41,32 +43,32 @@ export const DropDown = styled.div`
   top: 46px;
   width: 160px;
   right: 22px;
-  border-top: 1px solid #333;
+  border-top: 1px solid ${({ theme }) => (theme.lightgrey)};
   transition: all .5s ease;
 `;
 
 export const DropDownBox = styled.div`
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid ${({ theme }) => (theme.lightgrey)};
 `;
 
 export const DropDownElem = styled.div`
-  color: #ccc;
+  color: ${({ theme }) => (theme.grey)};
   font-size: 14px;
   padding: 8px;
   :hover {
-    background: #333;
-    color: white;
+    background: ${({ theme }) => (theme.lightgrey)};
+    color: ${({ theme }) => (theme.white)};
   };
 `;
 
 export const DropDownLogOut = styled.div`
-  display: ${(logout) => (logout.visible ? 'block' : 'none')};
-  color: #ccc;
+  display: ${({ visible }) => (visible ? 'block' : 'none')};
+  color: ${({ theme }) => (theme.grey)};
   font-size: 14px;
   padding: 8px;
   :hover {
-    background: #333;
-    color: white;
+    background: ${({ theme }) => (theme.lightgrey)};
+    color: ${({ theme }) => (theme.white)};
   };
 `;
 
@@ -76,7 +78,7 @@ export const MoreBtn = styled.div`
   display: inline-flex;
   cursor: pointer;
   :hover {
-    background: #111;
+    background: ${({ theme }) => (theme.activeHeaderBtn.background)};
   };
   :hover ${DropDown} {
     transform: translateY(0);

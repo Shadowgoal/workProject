@@ -6,7 +6,7 @@ export const Header = styled.header`
   position: absolute;
   width: inherit;
   height: 381px;
-  border-top: 4px solid #f50;
+  border-top: 4px solid ${({ theme }) => (theme.orange)};
   display: flex;
   justify-content: center;
 `;

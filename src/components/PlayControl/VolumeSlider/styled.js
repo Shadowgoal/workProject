@@ -13,9 +13,10 @@ export const Container = styled.div`
 
 export const Slider = styled.input`
   -webkit-appearance: none;
-  // background: #ffffff;
-  background: linear-gradient(to right, #f50 0%, #f50 ${(color) => (+color.rangeValue * 100)}%,
-  #ccc ${(color) => (+color.rangeValue * 100)}%, #ccc 100%);
+  background: ${({ theme, rangeValue }) => (`linear-gradient(to right, ${theme.orange} 0%,
+    ${theme.orange} ${+rangeValue * 100}%,
+    ${theme.grey} ${+rangeValue * 100}%,
+    ${theme.grey} 100%)`)};
   border-radius: 3px;
   cursor: pointer;
   ::-webkit-slider-runnable-track {
@@ -30,7 +31,7 @@ export const Slider = styled.input`
     height: 16px;
     width: 16px;
     border-radius: 50%;
-    background: #f50;
+    background: ${({ theme }) => (theme.orange)};
     margin-top: -4px;
   };
   :focus {
@@ -52,11 +53,9 @@ export const SliderValue = styled.span`
 `;
 
 export const Volume = styled.div`
-  background: url(${(icon) => (icon.rangeValue === '0' ? volumeOffIcon : volumeOnIcon)});
+  background: url(${({ rangeValue }) => (+rangeValue ? volumeOnIcon : volumeOffIcon)});
   background-size: 20px;
   width: 20px;
   height: 20px;
   cursor: pointer;
 `;
-
-export const blank = () => {};

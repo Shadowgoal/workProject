@@ -10,12 +10,12 @@ export const Container = styled.div`
 `;
 
 export const FormContainer = styled.div`
-  background-color: white;
+  background-color: ${({ theme }) => (theme.white)};
   width: 440px;
   height: 450px;
   z-index: 2;
   visibility: visible;
-  border: 1px solid #ccc;
+  border: 1px solid ${({ theme }) => (theme.grey)};
 `;
 
 export const MainTitle = styled.span`

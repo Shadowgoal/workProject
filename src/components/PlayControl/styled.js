@@ -10,9 +10,9 @@ export const PlayControlContainer = styled.div`
   position: fixed;
   bottom: 0;
   z-index: 999;
-  background-color: #f2f2f2;
-  border-top: 1px solid #cecece;
-  display: ${(vision) => (vision.visible ? 'block' : 'none')};
+  background-color: ${({ theme }) => (theme.lightwhite)};
+  border-top: 1px solid ${({ theme }) => (theme.grey)};
+  display: ${({ visible }) => (visible ? 'block' : 'none')};
 `;
 
 export const PlayControlElements = styled.div`
@@ -30,7 +30,7 @@ export const PlayBtn = styled.button`
   padding: 0;
   border: none;
   outline: none;
-  background: url(${(track) => (track.isPlaying
+  background: url(${({ isPlaying }) => (isPlaying
     ? pauseIcon
     : playIcon)});
   background-size: 32px;

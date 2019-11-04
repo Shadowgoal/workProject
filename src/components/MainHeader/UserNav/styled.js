@@ -1,12 +1,13 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const UserNavContainer = styled.div`
-  display: ${(userNavigation) => (userNavigation.vision ? 'block' : 'none')};
+  display: ${({ vision }) => (vision ? 'block' : 'none')};
   margin: 0 55px;
 `;
 
 export const UserNameContainer = styled.span`
-  color: #ccc;
+  color: ${({ theme }) => (theme.grey)};
   font-size: 16px;
   margin-bottom: 4px;
 `;
@@ -20,7 +21,7 @@ export const UserDropDownArrow = styled.div`
 `;
 
 export const DropDownContainer = styled.div`
-  color: #999;
+  color: ${({ theme }) => (theme.dark)};
   z-index: 999;
   position: fixed;
   width: 140px;
@@ -42,12 +43,12 @@ export const UserContainer = styled.div`
     display: block;
   };
   :hover {
-    background: #111;
+    background: ${({ theme }) => (theme.activeHeaderBtn.background)};
   };
 `;
 
 export const DropDownIcon = styled.div`
-  background: url(${(icon) => (icon.img)});
+  background: url(${({ img }) => (img)});
   width: 20px;
   height: 20px;
   background-size: 20px, 20px;
@@ -55,11 +56,12 @@ export const DropDownIcon = styled.div`
 `;
 
 export const DropDownText = styled.span`
-  color: #999;
+  color: ${({ theme }) => (theme.dark)};
 `;
 
-export const DropDownItem = styled.div`
-  background-color: #111;
+export const DropDownItem = styled(Link)`
+  text-decoration: none;
+  background-color: ${({ theme }) => (theme.activeHeaderBtn.background)};
   height: 20px;
   padding: 10px 0;
   text-align: center;
@@ -68,9 +70,9 @@ export const DropDownItem = styled.div`
   justify-content: start;
   cursor: pointer;
   :hover {
-    background: #333;
+    background: ${({ theme }) => (theme.inactiveHeaderBtn.background)};
   };
   :hover ${DropDownText} {
-    color: white;
+    color: ${({ theme }) => (theme.white)};
   }
 `;

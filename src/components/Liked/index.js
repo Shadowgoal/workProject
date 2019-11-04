@@ -1,8 +1,11 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useToasts } from 'react-toast-notifications';
 
-import instance from 'http/index';
+import {
+  setCurrentPlaylist, setCurrentTrack, stopMusic, playMusic, unlikeTrack,
+} from 'redux/action';
+import { dislikeRequest } from 'http/requests';
 
 import * as S from './styled';
 
@@ -11,43 +14,26 @@ const Liked = () => {
   const currentTrack = useSelector((state) => state.currentTrack);
   const isPlaying = useSelector((state) => state.isPlaying);
   const dispatch = useDispatch();
+
   const { addToast } = useToasts();
-  const setCurrentPlaylist = () => {
-    dispatch({ type: 'SET_CURRENT_PLAYLIST', payload: likedTracks });
-  };
-  const setCurrentTrack = (track) => {
-    dispatch({ type: 'SET_CURRENT_TRACK', payload: track });
-  };
-  const stopMusic = () => {
-    dispatch({ type: 'STOP_MUSIC' });
-  };
-  const playMusic = () => {
-    dispatch({ type: 'PLAY_MUSIC' });
-  };
+
   const onPlay = (track) => {
     if (isPlaying && track.id === currentTrack.id) {
-      stopMusic();
-    } else if (isPlaying && track.id !== currentTrack.id) {
-      setCurrentPlaylist();
-      setCurrentTrack(track);
-      playMusic();
-    } else if (!isPlaying) {
-      setCurrentPlaylist();
-      setCurrentTrack(track);
-      playMusic();
+      dispatch(stopMusic());
+    } else {
+      dispatch(setCurrentPlaylist(likedTracks));
+      dispatch(setCurrentTrack(track));
+      dispatch(playMusic());
     }
   };
-  const unlikeTrack = useCallback(
-    (track) => dispatch({ type: 'UNLIKE_TRACK', likedTracks: track }),
-    [dispatch],
-  );
 
   const onLike = async (track) => {
-    const data = await instance.put('/disliketrack', track).then((response) => response.data);
-    unlikeTrack(data.likedTracks);
+    const data = await dislikeRequest(track);
+    dispatch(unlikeTrack(data.likedTracks));
     addToast(`${data.likedTracks.artist} - ${data.likedTracks.name} was removed from your liked list`,
       { appearance: 'info', autoDismiss: true });
   };
+
   return (
     <S.Container>
       Likes

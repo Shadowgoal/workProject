@@ -8,7 +8,7 @@ export const MainContainer = styled.div`
 export const Header = styled.header`
   width: 100%;
   height: 46px;
-  background: #333;
+  background: ${({ theme }) => (theme.inactiveHeaderBtn.background)};
   position: fixed;
   display: flex;
   align-items: center;

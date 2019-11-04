@@ -16,7 +16,7 @@ const fromTop = keyframes`
 `;
 
 export const ModalWindow = styled.div`
-  background-color: white;
+  background-color: ${({ theme }) => (theme.white)};
   position: absolute;
   width: 440px;
   height: 450px;
@@ -24,18 +24,18 @@ export const ModalWindow = styled.div`
   left: calc(50% - 220px);
   box-shadow: 1px 3px 7px 4px grey;
   z-index: 1000;
-  visibility: ${(vision) => (vision.visible ? 'visible' : 'hidden')};
-  animation: ${(vision) => (vision.visible ? fromTop : '')} .5s;
+  visibility: ${({ visible }) => (visible ? 'visible' : 'hidden')};
+  animation: ${({ visible }) => (visible ? fromTop : '')} .5s;
 `;
 
 export const ModalWindowShadow = styled.div`
-  background-color: aliceblue;
+  background-color: ${({ theme }) => (theme.grey)};
   opacity: 0.8;
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: 2;
-  visibility: ${(vision) => (vision.visible ? 'visible' : 'hidden')};
+  visibility: ${({ visible }) => (visible ? 'visible' : 'hidden')};
 `;
 
 export const CloseModalX = styled.span`

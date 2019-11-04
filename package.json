@@ -67,7 +67,8 @@
     "lint-staged": "^9.4.2",
     "precommit": "^1.2.2",
     "prettier": "^1.18.2",
-    "pretty-quick": "^1.11.1"
+    "pretty-quick": "^1.11.1",
+    "webpack": "4.41.0"
   },
   "lint-staged": {
     "**/*.{js,jsx}": "eslint"

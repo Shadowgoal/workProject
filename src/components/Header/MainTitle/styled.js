@@ -14,13 +14,13 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.span`
-  color: white;
+  color: ${({ theme }) => (theme.white)};
   font-size: 30px;
   font-weight: 500;
 `;
 
 export const Description = styled.span`
-  color: white;
+  color: ${({ theme }) => (theme.white)};
   font-size: 18px;
   font-weight: 400;
 `;
@@ -35,8 +35,8 @@ export const SignUpBtn = styled(Link)`
   padding: 10px 0;
   text-decoration: none;
   border-radius: 8px;
-  background: #f50;
-  color: white;
+  background: ${({ theme }) => (theme.orange)};
+  color: ${({ theme }) => (theme.white)};
   cursor: pointer;
   outline: none;
   display: inline-block;

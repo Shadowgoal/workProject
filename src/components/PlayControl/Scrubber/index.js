@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { convertTime, updateTime } from './helpers';
+
 import * as S from './styled';
 
 const Scrubber = ({
@@ -11,13 +13,9 @@ const Scrubber = ({
   const [currentTime, setCurrentTime] = useState(0);
   const [progress, setCurrentProgress] = useState(0);
   const [scrubberInterval, setScrubberInterval] = useState(null);
+
   const currentTrack = useSelector((state) => state.currentTrack);
   const isPlaying = useSelector((state) => state.isPlaying);
-
-  const updateTime = (timestamp) => {
-    const time = Math.floor(timestamp);
-    setCurrentTime(time);
-  };
 
   useEffect(() => {
     if (currentTrack && isPlaying) {
@@ -32,7 +30,7 @@ const Scrubber = ({
         const dur = audioPlayer.current.duration;
         const percent = (current / dur) * 100;
         setCurrentProgress(percent);
-        updateTime(current);
+        updateTime(current, setCurrentTime);
         if (current === dur) {
           onNextUp();
         }
@@ -54,19 +52,6 @@ const Scrubber = ({
     const dur = audioPlayer.current.duration;
     const percent = (currentTime / dur) * 100;
     setCurrentProgress(percent);
-  };
-
-  const convertTime = (timestamp) => {
-    if (!timestamp) {
-      return '0:00';
-    }
-    const minutes = Math.floor(timestamp / 60);
-    let seconds = timestamp - (minutes * 60);
-    if (seconds < 10) {
-      seconds = `0${seconds}`;
-    }
-    const time = `${minutes}:${seconds}`;
-    return time;
   };
 
   return (

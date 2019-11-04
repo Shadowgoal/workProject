@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { setCurrentTrack, playMusic, stopMusic } from 'redux/action';
+
 import Scrubber from './Scrubber';
 import VolumeSlider from './VolumeSlider';
 import TrackInfo from './TrackInfo';
@@ -14,9 +16,7 @@ const PlayControl = () => {
   const currentTrack = useSelector((state) => state.currentTrack);
   const currentPlaylist = useSelector((state) => state.currentPlaylist);
   const dispatch = useDispatch();
-  const setCurrentTrack = (track) => dispatch({ type: 'SET_CURRENT_TRACK', payload: track });
-  const playMusic = () => dispatch({ type: 'PLAY_MUSIC' });
-  const stopMusic = () => dispatch({ type: 'STOP_MUSIC' });
+
   const audioPlayer = useRef(null);
 
   const updateRange = (value) => {
@@ -26,10 +26,10 @@ const PlayControl = () => {
 
   const onPlayBtn = () => {
     if (!isPlaying) {
-      playMusic();
+      dispatch(playMusic());
       audioPlayer.current.play();
     } else if (isPlaying) {
-      stopMusic();
+      dispatch(stopMusic());
       audioPlayer.current.pause();
     }
   };
@@ -37,12 +37,12 @@ const PlayControl = () => {
   const onNextUp = () => {
     for (let i = 0; i < currentPlaylist.length; i += 1) {
       if (currentPlaylist.length - 1 === i) {
-        playMusic();
-        setCurrentTrack(currentPlaylist[0]);
+        dispatch(playMusic());
+        dispatch(setCurrentTrack(currentPlaylist[0]));
         break;
       } else if (currentPlaylist[i].id === currentTrack.id) {
-        playMusic();
-        setCurrentTrack(currentPlaylist[i + 1]);
+        dispatch(playMusic());
+        dispatch(setCurrentTrack(currentPlaylist[i + 1]));
         break;
       }
     }
@@ -51,11 +51,11 @@ const PlayControl = () => {
   const onPreviusUp = () => {
     for (let i = currentPlaylist.length - 1; i >= 0; i -= 1) {
       if (i === 0) {
-        setCurrentTrack(currentPlaylist[currentPlaylist.length - 1]);
+        dispatch(setCurrentTrack(currentPlaylist[currentPlaylist.length - 1]));
         playMusic();
         break;
       } else if (currentPlaylist[i].id === currentTrack.id) {
-        playMusic();
+        dispatch(playMusic());
         setCurrentTrack(currentPlaylist[i - 1]);
         break;
       }
@@ -69,7 +69,7 @@ const PlayControl = () => {
           <track kind="captions" />
         </audio>
         <S.PrevBtn onClick={onPreviusUp} />
-        <S.PlayBtn isPlaying={isPlaying} onClick={onPlayBtn} disabled={currentTrack === {}} />
+        <S.PlayBtn isPlaying={isPlaying} onClick={onPlayBtn} />
         <S.NextBtn onClick={onNextUp} />
         <Scrubber
           onPlayBtn={onPlayBtn}

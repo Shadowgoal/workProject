@@ -35,12 +35,12 @@ export const LogInButton = styled.button`
   height: 25px;
   width: 75px;
   margin-right: 15px;
-  color: white;
+  color: ${({ theme }) => (theme.white)};
   cursor: pointer;
 `;
 
 export const CloseButton = styled.button`
-  background: #ccc;
+  background: ${({ theme }) => (theme.grey)};
   border: none;
   border-radius: 4px;
   height: 25px;

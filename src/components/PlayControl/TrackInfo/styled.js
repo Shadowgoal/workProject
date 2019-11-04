@@ -10,7 +10,7 @@ export const Container = styled.div`
 `;
 
 export const ImgContainer = styled.div`
-  background: url(${(cover) => (cover.cover)});
+  background: url(${({ cover }) => (cover)});
   width: 30px;
   height: 30px;
   background-size: 30px;
@@ -20,29 +20,29 @@ export const TrackName = styled.span`
   font-size: 14px;
   font-weight: 500;
   padding: 0 55px 0 20px;
-  color: #595959;
+  color: ${({ theme }) => (theme.lightgrey)};
 `;
 
 export const Like = styled.span`
   cursor: pointer;
-  color: ${(liked) => (liked.liked ? 'red' : 'black')};
+  color: ${({ theme, liked }) => (liked ? theme.red : theme.black)};
   margin-right: 10px;
 `;
 
 export const Playlist = styled.span`
   cursor: pointer;
-  color: ${(el) => (el.isPlaylistsOpened ? '#f50' : 'black')};
+  color: ${({ isPlaylistsOpened, theme }) => (isPlaylistsOpened ? theme.orange : theme.black)};
 `;
 
 export const PlaylistModal = styled.div`
-  visibility: ${(el) => (el.isPlaylistsOpened ? 'visible' : 'hidden')};
+  visibility: ${({ isPlaylistsOpened }) => (isPlaylistsOpened ? 'visible' : 'hidden')};
   height: 55%;
   width: 375px;
   position: fixed;
   bottom: 6%;
   right: 11%;
-  box-shadow: 1px 0px 3px 1px grey;
-  background-color: #f2f2f2;
+  box-shadow: 1px 0px 3px 1px ${({ theme }) => (theme.grey)};
+  background-color: ${({ theme }) => (theme.lightwhite)};
 `;
 
 export const NextUpContainer = styled.div`
@@ -52,7 +52,7 @@ export const NextUpContainer = styled.div`
   height: 64px;
   padding: 9px 24px;
   box-sizing: border-box;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid ${({ theme }) => (theme.black)};
 `;
 
 export const NextUpTitle = styled.div`
@@ -67,7 +67,7 @@ export const BtnContainer = styled.div`
 
 export const ClearBtn = styled.button`
   margin-right: 30px;
-  border: 1px solid #ccc;
+  border: 1px solid ${({ theme }) => (theme.grey)};
   background: inherit;
   width: 60px;
   height: 22px;
@@ -92,6 +92,6 @@ export const TrackContainer = styled.div`
   padding: 9px 24px;
   cursor: pointer;
   :hover {
-    background: lightgray;
+    background: ${({ theme }) => (theme.grey)};
   }
 `;

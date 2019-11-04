@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ToastProvider } from 'react-toast-notifications';
+import { ThemeProvider } from 'styled-components';
 
 import store from 'redux/index';
 
@@ -12,24 +13,27 @@ import Discover from 'modules/Discover';
 import Library from 'modules/Library';
 import Likes from 'modules/Likes';
 import PlayerProvider from 'components/PlayerProvider';
+import { theme } from './theme';
 
 import PrivateRoute from './PrivateRoute';
 
 const AppRouter = () => (
   <Provider store={store}>
-    <ToastProvider PlacementType="bottom-center">
-      <PlayerProvider>
-        <Router>
-          <Route exact path="/" component={App} />
-          <PrivateRoute path="/register" component={Register} />
-          <Route path="/upload" component={Upload} />
-          <Route path="/discover" component={Discover} />
-          <Route path="/you/library" component={Library} />
-          <Route path="/you/likes" component={Likes} />
-          <Route path="/you/playlists" component={Library} />
-        </Router>
-      </PlayerProvider>
-    </ToastProvider>
+    <ThemeProvider theme={theme}>
+      <ToastProvider PlacementType="bottom-center">
+        <PlayerProvider>
+          <Router>
+            <Route exact path="/" component={App} />
+            <PrivateRoute path="/register" component={Register} />
+            <Route path="/upload" component={Upload} />
+            <Route path="/discover" component={Discover} />
+            <Route path="/you/library" component={Library} />
+            <Route path="/you/likes" component={Likes} />
+            <Route path="/you/playlists" component={Library} />
+          </Router>
+        </PlayerProvider>
+      </ToastProvider>
+    </ThemeProvider>
   </Provider>
 );
 

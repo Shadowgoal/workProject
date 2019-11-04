@@ -1,6 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import {
+  setCurrentPlaylist, setCurrentTrack, stopMusic, playMusic,
+} from 'redux/action';
+
 import * as S from './styled';
 
 const RecentlyPlayed = () => {
@@ -8,23 +12,17 @@ const RecentlyPlayed = () => {
   const currentTrack = useSelector((state) => state.currentTrack);
   const isPlaying = useSelector((state) => state.isPlaying);
   const dispatch = useDispatch();
-  const setCurrentPlaylist = () => {
-    dispatch({ type: 'SET_CURRENT_PLAYLIST', payload: listenedTracks });
-  };
-  const setCurrentTrack = (track) => {
-    dispatch({ type: 'SET_CURRENT_TRACK', payload: track });
-  };
-  const stopMusic = () => {
-    dispatch({ type: 'STOP_MUSIC' });
-  };
+
   const onPlay = (track) => {
-    if (isPlaying) {
-      stopMusic();
-    } else if (!isPlaying) {
-      setCurrentPlaylist();
-      setCurrentTrack(track);
+    if (isPlaying && track.id === currentTrack.id) {
+      dispatch(stopMusic());
+    } else {
+      dispatch(setCurrentPlaylist(listenedTracks));
+      dispatch(setCurrentTrack(track));
+      dispatch(playMusic());
     }
   };
+
   return (
     <S.Container>
       RecentlyPlayed

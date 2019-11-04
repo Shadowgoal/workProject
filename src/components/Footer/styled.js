@@ -9,8 +9,8 @@ export const TextContainer = styled.div`
   width: 100%;
   position: relative;
   text-align: center;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid  ${({ theme }) => (theme.grey)};
   padding-top: 20px;
   padding-bottom: 60px;
-  color: darkgrey;
+  color:  ${({ theme }) => (theme.darkgrey)};
 `;

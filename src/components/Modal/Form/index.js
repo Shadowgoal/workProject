@@ -1,11 +1,12 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { Form } from 'react-final-form';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useToasts } from 'react-toast-notifications';
 
-import instance from 'http/index';
+import { onRegister } from 'redux/action';
+import { signUpRequest } from 'http/requests';
 import Loading from 'components/Loading';
 import FormInput from './Input';
 import { validation } from '../validation';
@@ -16,31 +17,31 @@ import { InputError } from './Input/styled';
 const RegisterForm = ({ setIsModalOpened }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState('');
+
   const dispatch = useDispatch();
-  const onRegister = useCallback(
-    (user) => dispatch({ type: 'SIGN_UP', payload: user }),
-    [dispatch],
-  );
-  const { addToast } = useToasts();
+
   const history = useHistory();
+
+  const { addToast } = useToasts();
 
   const onSubmit = async (values) => {
     setIsLoading(true);
-    const data = await instance.post('/signup', values)
-      .then((response) => response.data)
-      .catch(() => ({ error: true, message: 'Password or email is already exists' }));
+    const data = await signUpRequest(values);
 
     if (!data.error) {
-      addToast('Registered successfully', { appearance: 'success' });
-      onRegister(data.user);
+      dispatch(onRegister(data.user));
       sessionStorage.setItem('username', data.user.username);
       sessionStorage.setItem('authToken', data.token);
       setIsModalOpened();
       history.push('/upload');
     } else {
       setErrors(data.message);
-      addToast(data.message, { appearance: 'error' });
     }
+    addToast(data.error ? data.message : 'Registered successfully',
+      {
+        appearance: data.error ? 'error' : 'success',
+        autoDismiss: true,
+      });
     setIsLoading(false);
   };
 

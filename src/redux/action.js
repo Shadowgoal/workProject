@@ -12,9 +12,9 @@ export const SET_CURRENT_PLAYLIST = 'SET_CURRENT_PLAYLIST';
 
 export const SET_CURRENT_TRACK = 'SET_CURRENT_TRACK';
 
-export const PLAY_MUISIC = 'PLAY_MUISIC';
+export const PLAY_MUSIC = 'PLAY_MUSIC';
 
-export const STOP_MUISIC = 'STOP_MUISIC';
+export const STOP_MUSIC = 'STOP_MUSIC';
 
 export const CLEAR_CURRENT_PLAYLIST = 'CLEAR_CURRENT_PLAYLIST';
 
@@ -62,12 +62,12 @@ export const unlikeTrack = (currentTrack) => ({
 });
 
 export const playMusic = () => ({
-  type: PLAY_MUISIC,
+  type: PLAY_MUSIC,
   isPlaying: true,
 });
 
 export const stopMusic = () => ({
-  type: STOP_MUISIC,
+  type: STOP_MUSIC,
   isPlaying: false,
 });
 

@@ -17,7 +17,7 @@ export const Title = styled.span`
 `;
 
 export const TitleText = styled.span`
-  color: #ccc;
+  color: ${({ theme }) => (theme.grey)};
   margin-top: 5px;
 `;
 
