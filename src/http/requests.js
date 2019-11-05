@@ -25,8 +25,10 @@ export const signUpRequest = (values) => {
 };
 
 export const logOutRequest = () => {
-  instance.post('/logout')
-    .then((response) => response.data);
+  const data = instance.post('/logout')
+    .then((response) => response.data)
+    .catch(() => ({ error: true, message: 'Something went wrong' }));
+  return data;
 };
 
 export const tracksRequest = () => {

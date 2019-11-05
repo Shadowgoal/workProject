@@ -33,8 +33,8 @@ const RegisterForm = ({ setIsModalOpened }) => {
 
     if (!data.error) {
       dispatch(onRegister(data.user));
-      sessionStorage.setItem('username', data.user.username);
-      sessionStorage.setItem('authToken', data.token);
+      localStorage.setItem('username', data.user.username);
+      localStorage.setItem('authToken', data.token);
       setIsModalOpened();
       history.push('/upload');
     } else {

@@ -5,7 +5,7 @@ import * as Zivert from '../music/Zivert-Credo.mp3';
 import * as ZivertCover from '../assets/TrackIcons/Zivert-Credo.jpg';
 
 const initialState = {
-  isLoggedIn: sessionStorage.getItem('authToken'),
+  isLoggedIn: localStorage.getItem('authToken'),
   isPlaying: false,
   user: {
     likedTracks: [],

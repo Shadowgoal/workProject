@@ -24,7 +24,7 @@ export const DropDownContainer = styled.div`
   color: ${({ theme }) => (theme.dark)};
   z-index: 999;
   position: fixed;
-  width: 140px;
+  width: 200px;
   font-size: 14px;
   display: none;
   top: 46px;

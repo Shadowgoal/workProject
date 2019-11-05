@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 import NavBarEls from './config';
 
@@ -7,6 +8,8 @@ import * as S from './styled';
 
 const LibraryNavBar = () => {
   const location = useLocation();
+
+  const { t } = useTranslation();
 
   return (
     <S.Container>
@@ -18,7 +21,7 @@ const LibraryNavBar = () => {
               elcolor={el.src === location.pathname ? 1 : 0}
               key={index}
             >
-              {el.name}
+              {t(`LibraryNavBar.${el.name}`)}
             </S.NavBarElement>
           ))
         }

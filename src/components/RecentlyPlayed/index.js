@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import {
   setCurrentPlaylist, setCurrentTrack, stopMusic, playMusic,
@@ -13,6 +14,8 @@ const RecentlyPlayed = () => {
   const isPlaying = useSelector((state) => state.isPlaying);
   const dispatch = useDispatch();
 
+  const { t } = useTranslation();
+
   const onPlay = (track) => {
     if (isPlaying && track.id === currentTrack.id) {
       dispatch(stopMusic());
@@ -25,7 +28,7 @@ const RecentlyPlayed = () => {
 
   return (
     <S.Container>
-      RecentlyPlayed
+      {t('LibraryNavBar.RecentlyPlayed')}
       <S.RecentlyPlayedContainer>
         {
           listenedTracks.map((track) => (

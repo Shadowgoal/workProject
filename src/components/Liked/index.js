@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useToasts } from 'react-toast-notifications';
+import { useTranslation } from 'react-i18next';
 
 import {
   setCurrentPlaylist, setCurrentTrack, stopMusic, playMusic, unlikeTrack,
@@ -14,6 +15,8 @@ const Liked = () => {
   const currentTrack = useSelector((state) => state.currentTrack);
   const isPlaying = useSelector((state) => state.isPlaying);
   const dispatch = useDispatch();
+
+  const { t } = useTranslation();
 
   const { addToast } = useToasts();
 
@@ -36,7 +39,7 @@ const Liked = () => {
 
   return (
     <S.Container>
-      Likes
+      {t('LibraryNavBar.Likes')}
       <S.LikedTracksContainer>
         {
           likedTracks.map((track) => (

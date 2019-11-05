@@ -33,8 +33,8 @@ const LogInForm = ({ setIsLogInModalOpened }) => {
 
     if (!data.error) {
       dispatch(onLogIn(data.user));
-      sessionStorage.setItem('username', data.user.username);
-      sessionStorage.setItem('authToken', data.token);
+      localStorage.setItem('username', data.user.username);
+      localStorage.setItem('authToken', data.token);
       setIsLogInModalOpened();
       history.push('/upload');
     } else {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ToastProvider } from 'react-toast-notifications';
 import { ThemeProvider } from 'styled-components';
@@ -22,7 +22,7 @@ const AppRouter = () => (
     <ThemeProvider theme={theme}>
       <ToastProvider PlacementType="bottom-center">
         <PlayerProvider>
-          <Switch>
+          <Router>
             <Route exact path="/" component={App} />
             <PrivateRoute path="/register" component={Register} />
             <Route path="/upload" component={Upload} />
@@ -30,7 +30,7 @@ const AppRouter = () => (
             <Route path="/you/library" component={Library} />
             <Route path="/you/likes" component={Likes} />
             <Route path="/you/playlists" component={Library} />
-          </Switch>
+          </Router>
         </PlayerProvider>
       </ToastProvider>
     </ThemeProvider>

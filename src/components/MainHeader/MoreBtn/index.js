@@ -24,12 +24,12 @@ const MoreBtn = () => {
 
   async function onLogOutBtn() {
     setIsLoading(true);
-    await logOutRequest();
-    sessionStorage.removeItem('username');
-    sessionStorage.removeItem('authToken');
-    dispatch(onLogOut());
-    setIsLoading(false);
+    const data = await logOutRequest();
+    dispatch(onLogOut(data));
+    localStorage.removeItem('username');
+    localStorage.removeItem('authToken');
     history.push('/upload');
+    setIsLoading(false);
   }
 
   return (

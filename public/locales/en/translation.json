@@ -56,5 +56,11 @@
     "Description": "All of SoundCloud. Just for you."
   },
   "Language": "Language",
-  "SelectLanguage": "Select your language"
+  "SelectLanguage": "Select your language",
+  "LibraryNavBar": {
+    "Overview": "Overview",
+    "Likes": "Likes",
+    "Playlists": "Playlists",
+    "RecentlyPlayed": "Recently played"
+  }
 }

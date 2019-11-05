@@ -31,7 +31,7 @@
   },
   "UserNav": {
     "Profile": "Профиль",
-    "Likes": "Лайки",
+    "Likes": "Понравившиеся",
     "Playlists": "Плейлисты"
   },
   "NavSearch": {
@@ -49,7 +49,7 @@
     "View all": "Посмотреть все"
   },
   "Listened": {
-    "History": "Listening history",
+    "History": "История",
     "View all": "Посмотреть все"
   },
   "Weekly": {
@@ -57,5 +57,11 @@
     "Description": "Все от SoundCloud. Для вас."
   },
   "Language": "Язык",
-  "SelectLanguage": "Выберите язык"
+  "SelectLanguage": "Выберите язык",
+  "LibraryNavBar": {
+    "Overview": "Обзор",
+    "Likes": "Понравившиеся",
+    "Playlists": "Плейлисты",
+    "RecentlyPlayed": "История"
+  }
 }
