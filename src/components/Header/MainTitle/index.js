@@ -6,11 +6,11 @@ import 'i18n';
 import * as S from './styled';
 
 const MainTitle = () => {
-  const { t } = useTranslation('MainTitle', { useSuspense: false });
+  const { t } = useTranslation();
 
   return (
     <S.Container>
-      <S.Title>{t('Title')}</S.Title>
+      <S.Title>{t('MainTitle.Title')}</S.Title>
       <S.Description>
         {t('Description')}
       </S.Description>
