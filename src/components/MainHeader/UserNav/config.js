@@ -2,7 +2,7 @@ import ProfileIcon from 'assets/HelpIcons/profile.png';
 import LikesIcon from 'assets/HelpIcons/likes.png';
 import PlaylistsIcon from 'assets/HelpIcons/playlists.png';
 
-const userNavEl = [
+const userNavEls = [
   {
     name: 'Profile',
     src: ProfileIcon,
@@ -20,4 +20,4 @@ const userNavEl = [
   },
 ];
 
-export default userNavEl;
+export default userNavEls;

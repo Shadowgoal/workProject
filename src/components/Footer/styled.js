@@ -5,6 +5,14 @@ export const Container = styled.div`
   width: 100%;
 `;
 
+export const ChangeLanguage = styled.div`
+  color: ${({ theme }) => (theme.blue)};
+  cursor: pointer;
+  :hover {
+    color: ${({ theme }) => (theme.black)};
+  };
+`;
+
 export const TextContainer = styled.div`
   width: 100%;
   position: relative;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import { setCurrentTrack } from 'redux/action';
 
@@ -9,14 +10,18 @@ const LikedTracks = () => {
   const likedTracks = useSelector((state) => state.user.likedTracks);
   const dispatch = useDispatch();
 
+  const count = likedTracks.length;
+
+  const { t } = useTranslation();
+
   return (
     <S.MostPopularContainer>
       <S.LikedTracksLink to="/you/likes">
         <S.IconContainer>
           <S.LikeIcon />
-          <S.LikeCounter>{likedTracks.length} likes</S.LikeCounter>
+          <S.LikeCounter>{t('Liked.Likes', { count })}</S.LikeCounter>
         </S.IconContainer>
-        <S.ViewAll>View All</S.ViewAll>
+        <S.ViewAll>{t('Liked.View all')}</S.ViewAll>
       </S.LikedTracksLink>
       <S.LikedTracksContainer>
         {

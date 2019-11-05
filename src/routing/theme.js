@@ -7,6 +7,7 @@ export const theme = {
   black: 'black',
   initial: 'initial',
   red: 'red',
+  blue: '#38d',
   lightgrey: '#333',
   dark: '#e5e5e5',
   orangeGradient: 'linear-gradient(#f70,#f30)',

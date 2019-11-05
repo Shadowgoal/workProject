@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import TracksLoading from 'components/TracksLoading';
 import { tracksRequest } from 'http/requests';
@@ -14,6 +15,8 @@ const Weekly = () => {
   const currentTrack = useSelector((state) => state.currentTrack);
   const currentPlaylist = useSelector((state) => state.currentPlaylist);
   const dispatch = useDispatch();
+
+  const { t } = useTranslation();
 
   const onTrack = (track) => {
     if (!currentPlaylist.length) {
@@ -37,8 +40,8 @@ const Weekly = () => {
   return (
     <S.Container>
       <S.TitleContainer>
-        <S.Title>SoundCloud Weekly</S.Title>
-        <S.TitleText>All of SoundCloud. Just for you.</S.TitleText>
+        <S.Title>{t('Weekly.Title')}</S.Title>
+        <S.TitleText>{t('Weekly.Description')}</S.TitleText>
       </S.TitleContainer>
       <S.SelectionPlaylistContainer>
         <S.CoverContainer src={currentTrack.cover} />

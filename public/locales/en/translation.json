@@ -1,11 +1,60 @@
 {
   "Buttons": {
-      "Sing In": "Sign In",
-      "Create Account": "Create Account"
+    "Sign In": "Sign In",
+    "Create Account": "Create Account"
     },
   "MainTitle": {
     "Title": "Connect on SoundCloud",
     "Description": "Discover, stream, and share a constantly expanding mix of music from emerging and major artists around the world.",
     "Upload": "Upload your first track"
-  }
+  },
+  "Log In": {
+    "Title": "Log In",
+    "Username": "Username",
+    "Password": "Password",
+    "Sign In": "Sign In",
+    "Close": "Close"
+  },
+  "Sign Up": {
+    "Title": "Create Account",
+    "Username": "Username",
+    "Email": "Email",
+    "Password": "Password",
+    "Confirm": "Confirm"
+  },
+  "MoreBtn": {
+    "Upload": "Upload",
+    "About us": "About us",
+    "Legal": "Legal",
+    "Copyright": "Copyright",
+    "Log out": "Log out"
+  },
+  "UserNav": {
+    "Profile": "Profile",
+    "Likes": "Likes",
+    "Playlists": "Playlists"
+  },
+  "NavSearch": {
+    "Search": "Search for artists, bands, tracks, podcasts"
+  },
+  "Nav": {
+    "Home": "Home",
+    "Stream": "Stream",
+    "Library": "Library"
+  },
+  "Liked": {
+    "Likes": "{{count}} like",
+    "Likes_plural": "{{count}} likes",
+    "View all": "View all"
+  },
+  "Listened": {
+    "History": "Listening history",
+    "View all": "View all"
+  },
+  "Weekly": {
+    "Title": "SoundCloud Weekly",
+    "Description": "All of SoundCloud. Just for you."
+  },
+  "Language": "Language",
+  "SelectLanguage": "Select your language"
 }

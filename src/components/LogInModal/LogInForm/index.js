@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useToasts } from 'react-toast-notifications';
+import { useTranslation } from 'react-i18next';
 
 import { onLogIn } from 'redux/action';
 import { signInRequest } from 'http/requests';
@@ -23,6 +24,8 @@ const LogInForm = ({ setIsLogInModalOpened }) => {
   const history = useHistory();
 
   const { addToast } = useToasts();
+
+  const { t } = useTranslation();
 
   async function onSubmit(values) {
     setIsLoading(true);
@@ -53,22 +56,30 @@ const LogInForm = ({ setIsLogInModalOpened }) => {
         validate={validation}
         render={({ handleSubmit, valid }) => (
           <S.LogInForm onSubmit={handleSubmit}>
-            <S.LogIn>Log in</S.LogIn>
-            <LogInInput type="text" name="username" placeholder="Username" />
-            <LogInInput type="password" name="password" placeholder="Password" />
+            <S.LogIn>{t('Log In.Title')}</S.LogIn>
+            <LogInInput
+              type="text"
+              name="username"
+              placeholder={t('Log In.Username')}
+            />
+            <LogInInput
+              type="password"
+              name="password"
+              placeholder={t('Log In.Password')}
+            />
             {errors && (<InputError>{errors}</InputError>)}
             <S.ButtonField>
               <S.LogInButton
                 type="submit"
                 disabled={!valid}
               >
-                Sign in
+                {t('Log In.Sign In')}
               </S.LogInButton>
               <S.CloseButton
                 type="button"
                 onClick={setIsLogInModalOpened}
               >
-                Close
+                {t('Log In.Close')}
               </S.CloseButton>
             </S.ButtonField>
           </S.LogInForm>

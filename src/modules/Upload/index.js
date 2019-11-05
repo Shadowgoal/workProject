@@ -8,20 +8,8 @@ import * as S from './styled';
 const Upload = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [isLogInModalOpened, setIsLogInModalOpened] = useState(false);
-  const toggleLogInModalVisibility = () => {
-    if (isLogInModalOpened) {
-      setIsLogInModalOpened(false);
-    } else if (!isLogInModalOpened) {
-      setIsLogInModalOpened(true);
-    }
-  };
-  const toggleModalVisibility = () => {
-    if (isModalOpened) {
-      setIsModalOpened(false);
-    } else if (!isModalOpened) {
-      setIsModalOpened(true);
-    }
-  };
+  const toggleLogInModalVisibility = () => setIsLogInModalOpened(!isLogInModalOpened);
+  const toggleModalVisibility = () => setIsModalOpened(!isModalOpened);
 
   return (
     <S.Container>

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { useTranslation } from 'react-i18next';
-import 'i18n';
 
 import * as S from './styled';
 
@@ -12,10 +11,10 @@ const MainTitle = () => {
     <S.Container>
       <S.Title>{t('MainTitle.Title')}</S.Title>
       <S.Description>
-        {t('Description')}
+        {t('MainTitle.Description')}
       </S.Description>
       <S.ButtonContainer>
-        <S.SignUpBtn to="/upload">{t('Upload')}</S.SignUpBtn>
+        <S.SignUpBtn to="/upload">{t('MainTitle.Upload')}</S.SignUpBtn>
       </S.ButtonContainer>
     </S.Container>
   );

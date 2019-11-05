@@ -16,7 +16,11 @@ const Loading = ({ isLoading }) => (
 );
 
 Loading.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool,
+};
+
+Loading.defaultProps = {
+  isLoading: false,
 };
 
 export default Loading;

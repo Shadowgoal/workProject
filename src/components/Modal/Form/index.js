@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useToasts } from 'react-toast-notifications';
+import { useTranslation } from 'react-i18next';
 
 import { onRegister } from 'redux/action';
 import { signUpRequest } from 'http/requests';
@@ -23,6 +24,8 @@ const RegisterForm = ({ setIsModalOpened }) => {
   const history = useHistory();
 
   const { addToast } = useToasts();
+
+  const { t } = useTranslation();
 
   const onSubmit = async (values) => {
     setIsLoading(true);
@@ -54,23 +57,39 @@ const RegisterForm = ({ setIsModalOpened }) => {
         render={({ handleSubmit, valid }) => (
           <S.RegisterForm onSubmit={handleSubmit}>
             <S.CreateAcc>Create Account</S.CreateAcc>
-            <FormInput type="text" name="username" placeholder="Username" />
-            <FormInput type="text" name="email" placeholder="Email" />
-            <FormInput type="password" name="password" placeholder="Password" />
-            <FormInput type="password" name="confirm" placeholder="Confirm" />
+            <FormInput
+              type="text"
+              name="username"
+              placeholder={t('Sign Up.Username')}
+            />
+            <FormInput
+              type="text"
+              name="email"
+              placeholder={t('Sign Up.Email')}
+            />
+            <FormInput
+              type="password"
+              name="password"
+              placeholder={t('Sign Up.Password')}
+            />
+            <FormInput
+              type="password"
+              name="confirm"
+              placeholder={t('Sign Up.Confirm')}
+            />
             {errors && (<InputError>{errors}</InputError>)}
             <S.ButtonField>
               <S.RegisterButton
                 type="submit"
                 disabled={!valid}
               >
-                Sign in
+                {t('Log In.Sign In')}
               </S.RegisterButton>
               <S.CloseButton
                 type="button"
                 onClick={setIsModalOpened}
               >
-                Close
+                {t('Log In.Close')}
               </S.CloseButton>
             </S.ButtonField>
           </S.RegisterForm>

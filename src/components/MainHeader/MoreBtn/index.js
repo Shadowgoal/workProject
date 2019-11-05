@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { onLogOut } from 'redux/action';
 import { logOutRequest } from 'http/requests';
@@ -19,6 +20,8 @@ const MoreBtn = () => {
   const location = useLocation();
   const history = useHistory();
 
+  const { t } = useTranslation();
+
   async function onLogOutBtn() {
     setIsLoading(true);
     await logOutRequest();
@@ -34,7 +37,7 @@ const MoreBtn = () => {
       <Loading isLoading={isLoading} />
       <S.Container>
         <S.UploadBtn pathname={location.pathname === '/upload' ? 1 : 0} to="/upload">
-          Upload
+          {t('MoreBtn.Upload')}
         </S.UploadBtn>
         <UserNav />
         <S.MoreBtn>
@@ -47,13 +50,15 @@ const MoreBtn = () => {
             <S.DropDownBox>
               {
                 elements.map((elem, index) => (
-                  <S.DropDownElem key={index}>{elem.name}</S.DropDownElem>
+                  <S.DropDownElem key={index}>
+                    {t(`MoreBtn.${elem.name}`)}
+                  </S.DropDownElem>
                 ))
               }
             </S.DropDownBox>
             <S.DropDownBox>
               <S.DropDownLogOut visible={isLoggedIn} onClick={onLogOutBtn}>
-                Log out
+                {t('MoreBtn.Log out')}
               </S.DropDownLogOut>
             </S.DropDownBox>
           </S.DropDown>

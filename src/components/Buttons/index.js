@@ -8,15 +8,15 @@ import * as S from './styled';
 const Buttons = ({ setIsModalOpened, setIsLogInModalOpened }) => {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
-  const { t } = useTranslation('Buttons', { useSuspense: false });
+  const { t } = useTranslation();
 
   return (
     <S.SignField vision={isLoggedIn}>
       <S.SignInBtn onClick={setIsLogInModalOpened}>
-        {t('Sign In')}
+        {t('Buttons.Sign In')}
       </S.SignInBtn>
       <S.CreateAccBtn onClick={setIsModalOpened}>
-        {t('Create Account')}
+        {t('Buttons.Create Account')}
       </S.CreateAccBtn>
     </S.SignField>
   );

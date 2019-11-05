@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import { setCurrentTrack } from 'redux/action';
 
@@ -9,14 +10,16 @@ const ListenedTracks = () => {
   const listenedTracks = useSelector((state) => state.user.listenedTracks);
   const dispatch = useDispatch();
 
+  const { t } = useTranslation();
+
   return (
     <S.MostPopularContainer>
       <S.ListenedTracksLink to="/you/library">
         <S.IconContainer>
           <S.CalendarIcon />
-          <S.ListenedHistory>Listening History</S.ListenedHistory>
+          <S.ListenedHistory>{t('Listened.History')}</S.ListenedHistory>
         </S.IconContainer>
-        <S.ViewAll>View All</S.ViewAll>
+        <S.ViewAll>{t('Listened.View all')}</S.ViewAll>
       </S.ListenedTracksLink>
       <S.ListenedTracksContainer>
         {
