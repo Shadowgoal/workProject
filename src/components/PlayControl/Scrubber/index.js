@@ -45,7 +45,7 @@ const Scrubber = ({
         setScrubberInterval(null);
       }
     };
-  }, [scrubberInterval, audioPlayer, currentTrack, isPlaying, onNextUp]);
+  }, [scrubberInterval, audioPlayer, currentTrack, isPlaying, onNextUp, currentPlaylist]);
 
   const updateCurrentTime = (e) => {
     setCurrentTime(e.target.value);

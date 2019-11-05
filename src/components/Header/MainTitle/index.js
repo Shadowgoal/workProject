@@ -1,17 +1,24 @@
 import React from 'react';
 
+import { useTranslation } from 'react-i18next';
+import 'i18n';
+
 import * as S from './styled';
 
-const MainTitle = () => (
-  <S.Container>
-    <S.Title>Connect on SoundCloud</S.Title>
-    <S.Description>Discover, stream, and share a constantly expanding mix of music from emerging
-      and major artists around the world.
-    </S.Description>
-    <S.ButtonContainer>
-      <S.SignUpBtn to="/upload">Upload your first track</S.SignUpBtn>
-    </S.ButtonContainer>
-  </S.Container>
-);
+const MainTitle = () => {
+  const { t } = useTranslation('MainTitle', { useSuspense: false });
+
+  return (
+    <S.Container>
+      <S.Title>{t('Title')}</S.Title>
+      <S.Description>
+        {t('Description')}
+      </S.Description>
+      <S.ButtonContainer>
+        <S.SignUpBtn to="/upload">{t('Upload')}</S.SignUpBtn>
+      </S.ButtonContainer>
+    </S.Container>
+  );
+};
 
 export default MainTitle;

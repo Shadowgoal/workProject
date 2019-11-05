@@ -1,0 +1,11 @@
+{
+  "Buttons": {
+      "Sing In": "Sign In",
+      "Create Account": "Create Account"
+    },
+  "MainTitle": {
+    "Title": "Connect on SoundCloud",
+    "Description": "Discover, stream, and share a constantly expanding mix of music from emerging and major artists around the world.",
+    "Upload": "Upload your first track"
+  }
+}
