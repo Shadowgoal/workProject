@@ -4,8 +4,7 @@ import volumeOnIcon from 'assets/PlayControlIcons/volumeOn.png';
 import volumeOffIcon from 'assets/PlayControlIcons/volumeOff.png';
 
 export const Container = styled.div`
-  position: relative;
-  left: 50px;
+  margin: 0 50px;
   display: flex;
   justify-content: center;
   align-items: center;

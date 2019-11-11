@@ -43,7 +43,7 @@ const RecentlyPlayed = () => {
               <S.TrackArtist>{track.artist}</S.TrackArtist>
               <S.TrackName>{track.name}</S.TrackName>
             </S.TrackContainer>
-          )).reverse()
+          ))
         }
       </S.RecentlyPlayedContainer>
 

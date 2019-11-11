@@ -25,13 +25,6 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  for (let i = 0; i < state.currentPlaylist.length; i += 1) {
-    for (let j = 0; j < state.user.likedTracks.length; j += 1) {
-      if (state.currentPlaylist[i].id === state.user.likedTracks[j].id) {
-        state.user.likedTracks[j].liked = state.currentPlaylist[i].liked;
-      }
-    }
-  }
   switch (action.type) {
     case 'SIGN_UP':
       return {
@@ -59,27 +52,25 @@ const reducer = (state = initialState, action) => {
         ...state,
         currentPlaylist: action.payload,
       };
-    case 'SET_CURRENT_TRACK':
-      for (let i = 0; i < state.user.listenedTracks.length; i += 1) {
-        if (state.currentTrack.id === state.user.listenedTracks[i].id) {
-          state.user.listenedTracks.splice(i, 1);
-        }
-      }
+    case 'SET_CURRENT_TRACK': {
+      const index = state.user.listenedTracks.findIndex((el) => el.id === action.payload.id);
       return {
         ...state,
         currentTrack: {
           ...action.payload,
           listened: true,
+          liked: action.payload.liked,
         },
         user: {
           ...state.user,
           listenedTracks: [
-            ...state.user.listenedTracks,
+            ...state.user.listenedTracks.splice(index, index > -1 ? 1 : 0),
             state.currentTrack,
           ],
         },
         isPlaying: true,
       };
+    }
     case 'CLEAR_CURRENT_PLAYLIST':
       return {
         ...state,
@@ -87,53 +78,56 @@ const reducer = (state = initialState, action) => {
           state.currentTrack,
         ],
       };
-    case 'LIKE_TRACK':
-      for (let i = 0; i < state.user.likedTracks.length; i += 1) {
-        if (state.user.likedTracks[i].id === action.likedTracks.id) {
-          state.user.likedTracks[i].liked = action.likedTracks.liked;
-        }
-      }
-      for (let i = 0; i < state.currentPlaylist.length; i += 1) {
-        if (state.currentPlaylist[i].id === action.likedTracks.id) {
-          state.currentPlaylist[i].liked = action.likedTracks.liked;
-        }
-      }
-      if (action.likedTracks.id === state.currentTrack.id) {
-        state.currentTrack.liked = action.likedTracks.liked;
-      }
+    case 'LIKE_TRACK': {
+      const index = state.currentPlaylist.findIndex((el) => el.id === action.payload.id);
       return {
         ...state,
+        currentTrack: {
+          ...state.currentTrack,
+          liked: state.currentTrack.id === action.payload.id ? action.payload.liked : state.currentTrack.liked,
+        },
+        currentPlaylist: [
+          ...state.currentPlaylist.slice(0, index),
+          {
+            ...state.currentPlaylist[index],
+            liked: true,
+          },
+          ...state.currentPlaylist.slice(index + 1),
+        ],
         user: {
           ...state.user,
           likedTracks: [
             ...state.user.likedTracks,
-            action.likedTracks,
+            action.payload,
           ],
         },
       };
-    case 'UNLIKE_TRACK':
-      for (let i = 0; i < state.user.likedTracks.length; i += 1) {
-        if (state.user.likedTracks[i].id === action.likedTracks.id) {
-          state.user.likedTracks[i].liked = action.likedTracks.liked;
-        }
-      }
-      for (let i = 0; i < state.currentPlaylist.length; i += 1) {
-        if (state.currentPlaylist[i].id === action.likedTracks.id) {
-          state.currentPlaylist[i].liked = action.likedTracks.liked;
-        }
-      }
-      if (action.likedTracks.id === state.currentTrack.id) {
-        state.currentTrack.liked = action.likedTracks.liked;
-      }
+    }
+    case 'UNLIKE_TRACK': {
+      action.payload.liked = false;
+      const index = state.currentPlaylist.findIndex((el) => el.id === action.payload.id);
       return {
         ...state,
+        currentTrack: {
+          ...state.currentTrack,
+          liked: state.currentTrack.id === action.payload.id ? action.payload.liked : state.currentTrack.liked,
+        },
+        currentPlaylist: [
+          ...state.currentPlaylist.slice(0, index),
+          {
+            ...state.currentPlaylist[index],
+            liked: false,
+          },
+          ...state.currentPlaylist.slice(index + 1),
+        ],
         user: {
           ...state.user,
           likedTracks: [
-            ...state.user.likedTracks.filter((index) => index.id !== action.likedTracks.id),
+            ...state.user.likedTracks.filter((el) => el.id !== action.payload.id),
           ],
         },
       };
+    }
     case 'PLAY_MUSIC':
       return {
         ...state,

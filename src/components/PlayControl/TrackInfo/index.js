@@ -40,7 +40,7 @@ const TrackInfo = () => {
     <S.Container>
       <S.ImgContainer cover={currentTrack.cover} />
       <S.TrackName>
-        {currentTrack.artist} - {currentTrack.name}
+        {currentTrack.artist || 'Set'} - {currentTrack.name || 'Track'}
       </S.TrackName>
       <S.Like onClick={() => onLike(currentTrack)} liked={currentTrack.liked}>❤</S.Like>
       <S.Playlist onClick={onPlaylist} isPlaylistsOpened={isPlaylistsOpened}>♩☰</S.Playlist>

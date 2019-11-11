@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import { useToasts } from 'react-toast-notifications';
 import { useTranslation } from 'react-i18next';
 
+import { usersDB } from 'database';
+
 import { onRegister } from 'redux/action';
 import { signUpRequest } from 'http/requests';
 import Loading from 'components/Loading';
@@ -30,6 +32,10 @@ const RegisterForm = ({ setIsModalOpened }) => {
   const onSubmit = async (values) => {
     setIsLoading(true);
     const data = await signUpRequest(values);
+    usersDB.users.put({
+      username: data.user.username,
+      email: data.user.email,
+    });
 
     if (!data.error) {
       dispatch(onRegister(data.user));

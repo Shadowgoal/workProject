@@ -3,10 +3,9 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 25%;
   text-align: center;
-  position: relative;
-  right: -9%;
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
 `;
 
 export const ImgContainer = styled.div`
@@ -17,6 +16,7 @@ export const ImgContainer = styled.div`
 `;
 
 export const TrackName = styled.span`
+  width: 120px;
   font-size: 14px;
   font-weight: 500;
   padding: 0 55px 0 20px;
@@ -91,6 +91,7 @@ export const TrackContainer = styled.div`
   justify-content: space-between;
   padding: 9px 24px;
   cursor: pointer;
+  border-bottom: 1px solid ${({ theme }) => (theme.grey)};
   :hover {
     background: ${({ theme }) => (theme.grey)};
   }

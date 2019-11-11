@@ -10,7 +10,6 @@ import * as S from './styled';
 
 const Weekly = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [playlist, setPlaylist] = useState([]);
 
   const currentTrack = useSelector((state) => state.currentTrack);
   const currentPlaylist = useSelector((state) => state.currentPlaylist);
@@ -18,24 +17,19 @@ const Weekly = () => {
 
   const { t } = useTranslation();
 
-  const onTrack = (track) => {
-    if (!currentPlaylist.length) {
-      dispatch(setCurrentPlaylist(playlist));
-    }
-    dispatch(setCurrentTrack(track));
-  };
+  const onTrack = (track) => dispatch(setCurrentTrack(track));
 
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
       const data = await tracksRequest();
-      if (!playlist.length) {
-        setPlaylist(data.tracks);
+      if (!currentPlaylist.length) {
+        dispatch(setCurrentPlaylist(data.tracks));
       }
       setIsLoading(false);
     }
     fetchData();
-  }, [setPlaylist, playlist]);
+  }, [setCurrentPlaylist, currentPlaylist]);
 
   return (
     <S.Container>
@@ -48,7 +42,7 @@ const Weekly = () => {
         <S.TrackContainer>
           <TracksLoading isLoading={isLoading} />
           {
-            playlist.map((track) => (
+            currentPlaylist.map((track) => (
               <S.Track
                 key={track.id}
                 onClick={() => onTrack(track)}

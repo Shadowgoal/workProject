@@ -53,12 +53,12 @@ export const setCurrentPlaylist = (playlist) => ({
 
 export const likeTrack = (currentTrack) => ({
   type: LIKE_TRACK,
-  likedTracks: currentTrack,
+  payload: currentTrack,
 });
 
 export const unlikeTrack = (currentTrack) => ({
   type: UNLIKE_TRACK,
-  likedTracks: currentTrack,
+  payload: currentTrack,
 });
 
 export const playMusic = () => ({
