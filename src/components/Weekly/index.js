@@ -11,8 +11,8 @@ import * as S from './styled';
 const Weekly = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const currentTrack = useSelector((state) => state.currentTrack);
-  const currentPlaylist = useSelector((state) => state.currentPlaylist);
+  const currentTrack = useSelector((state) => state.tracks.currentTrack);
+  const currentPlaylist = useSelector((state) => state.tracks.currentPlaylist);
   const dispatch = useDispatch();
 
   const { t } = useTranslation();

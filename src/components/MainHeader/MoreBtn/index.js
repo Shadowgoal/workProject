@@ -14,7 +14,7 @@ import * as S from './styled';
 const MoreBtn = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const dispatch = useDispatch();
 
   const location = useLocation();

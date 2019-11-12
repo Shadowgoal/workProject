@@ -8,7 +8,7 @@ import userNavEls from './config';
 import * as S from './styled';
 
 const UserNav = () => {
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const { t } = useTranslation();
 

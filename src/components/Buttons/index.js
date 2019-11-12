@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import * as S from './styled';
 
 const Buttons = ({ setIsModalOpened, setIsLogInModalOpened }) => {
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const { t } = useTranslation();
 

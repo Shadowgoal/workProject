@@ -69,7 +69,7 @@ export const ClearBtn = styled.button`
   margin-right: 30px;
   border: 1px solid ${({ theme }) => (theme.grey)};
   background: inherit;
-  width: 60px;
+  width: 70px;
   height: 22px;
   border-radius: 5px;
   cursor: pointer;

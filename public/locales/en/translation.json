@@ -62,5 +62,18 @@
     "Likes": "Likes",
     "Playlists": "Playlists",
     "RecentlyPlayed": "Recently played"
+  },
+  "UploadForm": {
+    "UploadTitle": "Upload your own tracks to SoundCloud",
+    "UploadBtn" : "Choose files to upload",
+    "UploadFooter": "Provide FLAC, WAV, ALAC or AIFF for best audio quality."
+  },
+  "LikeToast": {
+    "Added": "was added to your liked list",
+    "Removed": "was removed to your liked list"
+  },
+  "Playlist": {
+    "Next": "Next up",
+    "Clear": "clear"
   }
 }

@@ -7,7 +7,10 @@ import { actions as tracksActions } from 'redux/tracks';
 import * as S from './styled';
 
 const LikedTracks = () => {
-  const likedTracks = useSelector((state) => state.user.likedTracks);
+  const likedTracksIds = useSelector((state) => state.auth.user.likedTracksIds);
+  const likedTracks = useSelector((state) => (
+    state.tracks.currentPlaylist.filter((el) => likedTracksIds.includes(el.id))
+  ));
   const dispatch = useDispatch();
 
   const count = likedTracks.length;

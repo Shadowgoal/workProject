@@ -1,14 +1,12 @@
 import { createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import authReducer from './auth';
-import tracksReducer from './tracks';
-import likesReducer from './likes';
+import auth from './auth';
+import tracks from './tracks';
 
 const reducer = combineReducers({
-  authReducer,
-  tracksReducer,
-  likesReducer,
+  auth,
+  tracks,
 });
 
 const store = createStore(reducer, composeWithDevTools());

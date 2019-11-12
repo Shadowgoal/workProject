@@ -25,6 +25,9 @@ export const NavBarElement = styled(Link)`
   cursor: pointer;
   color: ${({ elcolor, theme }) => (elcolor ? theme.orange : theme.black)};
   border-bottom: ${({ elcolor, theme }) => (elcolor ? `2px solid ${theme.orange}` : 'none')};
+  :hover {
+    border-bottom: 2px solid ${({ elcolor, theme }) => (elcolor ? theme.orange : theme.black)};
+  };
 `;
 
 export const blank = () => {};

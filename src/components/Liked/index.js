@@ -4,15 +4,18 @@ import { useToasts } from 'react-toast-notifications';
 import { useTranslation } from 'react-i18next';
 
 import { actions as trackActions } from 'redux/tracks';
-import { actions as likeActions } from 'redux/likes';
+import { actions as likeActions } from 'redux/auth';
 import { dislikeRequest } from 'http/requests';
 
 import * as S from './styled';
 
 const Liked = () => {
-  const likedTracks = useSelector((state) => state.user.likedTracks);
-  const currentTrack = useSelector((state) => state.currentTrack);
-  const isPlaying = useSelector((state) => state.isPlaying);
+  const likedTracksIds = useSelector((state) => state.auth.user.likedTracksIds);
+  const likedTracks = useSelector((state) => (
+    state.tracks.currentPlaylist.filter((el) => likedTracksIds.includes(el.id))
+  ));
+  const currentTrack = useSelector((state) => state.tracks.currentTrack);
+  const isPlaying = useSelector((state) => state.tracks.isPlaying);
   const dispatch = useDispatch();
 
   const { t } = useTranslation();
@@ -32,7 +35,7 @@ const Liked = () => {
   const onLike = async (track) => {
     const data = await dislikeRequest(track);
     dispatch(likeActions.dislikeTrack(data.likedTracks));
-    addToast(`${data.likedTracks.artist} - ${data.likedTracks.name} was removed from your liked list`,
+    addToast(`${data.likedTracks.artist} - ${data.likedTracks.name} ${t('LikeToast.Removed')}`,
       { appearance: 'info', autoDismiss: true });
   };
 

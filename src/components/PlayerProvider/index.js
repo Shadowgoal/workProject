@@ -5,7 +5,7 @@ import { PropTypes } from 'prop-types';
 import PlayControl from 'components/PlayControl';
 
 const PlayerProvider = ({ children }) => {
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   return (
     <>

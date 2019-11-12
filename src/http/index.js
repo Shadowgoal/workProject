@@ -21,7 +21,6 @@ mock.onGet('/tracks').reply(() => new Promise((resolve) => {
           name: 'Credo',
           duration: 184,
           cover: ZivertCover,
-          liked: false,
           listened: false,
         },
         {
@@ -31,7 +30,6 @@ mock.onGet('/tracks').reply(() => new Promise((resolve) => {
           name: 'Serpantin',
           duration: 169,
           cover: AtlCover,
-          liked: false,
           listened: false,
         },
       ],
@@ -44,7 +42,6 @@ mock.onPut('/liketrack').reply((config) => new Promise((resolve) => {
     resolve([200, {
       likedTracks: {
         ...JSON.parse(config.data),
-        liked: true,
       },
     }]);
   }, 10);
@@ -55,7 +52,6 @@ mock.onPut('/disliketrack').reply((config) => new Promise((resolve) => {
     resolve([200, {
       likedTracks: {
         ...JSON.parse(config.data),
-        liked: false,
       },
     }]);
   }, 10);
@@ -65,8 +61,7 @@ mock.onPost('/logout').reply(() => new Promise((resolve) => {
   setTimeout(() => {
     resolve([200], {
       user: {
-        likedTracks: [],
-        listenedTracks: [],
+        likedTracksIds: [],
       },
     });
   }, 1000);
@@ -77,8 +72,7 @@ mock.onPost('/signin').reply((config) => new Promise((resolve) => {
     resolve([200, {
       user: {
         ...JSON.parse(config.data),
-        likedTracks: [],
-        listenedTracks: [],
+        likedTracksIds: [],
       },
       token: 'asdasdasd',
     }]);
@@ -90,8 +84,7 @@ mock.onPost('/signup').reply((config) => new Promise((resolve) => {
     resolve([200, {
       user: {
         ...JSON.parse(config.data),
-        likedTracks: [],
-        listenedTracks: [],
+        likedTracksIds: [],
       },
       token: 'asdasdasd',
     }]);

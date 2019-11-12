@@ -63,5 +63,18 @@
     "Likes": "Понравившиеся",
     "Playlists": "Плейлисты",
     "RecentlyPlayed": "История"
+  },
+  "UploadForm": {
+    "UploadTitle": "Загрузите свои песни в SoundCloud",
+    "UploadBtn" : "Выберите файл для загрузки",
+    "UploadFooter": "Выберите FLAC, WAV, ALAC или AIFF для лучшего качества."
+  },
+  "LikeToast": {
+    "Added": "был добавлен в понравившиеся",
+    "Removed": "был удален из понравившихся"
+  },
+  "Playlist": {
+    "Next": "Следующий",
+    "Clear": "очистить"
   }
 }

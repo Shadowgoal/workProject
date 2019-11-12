@@ -11,10 +11,10 @@ import * as S from './styled';
 
 const PlayControl = () => {
   const [rangeValue, setRangeValue] = useState('0.3');
-  const isPlaying = useSelector((state) => state.isPlaying);
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
-  const currentTrack = useSelector((state) => state.currentTrack);
-  const currentPlaylist = useSelector((state) => state.currentPlaylist);
+  const isPlaying = useSelector((state) => state.tracks.isPlaying);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const currentTrack = useSelector((state) => state.tracks.currentTrack);
+  const currentPlaylist = useSelector((state) => state.tracks.currentPlaylist);
   const dispatch = useDispatch();
 
   const audioPlayer = useRef(null);

@@ -14,9 +14,9 @@ const Scrubber = ({
   const [progress, setCurrentProgress] = useState(0);
   const [scrubberInterval, setScrubberInterval] = useState(null);
 
-  const currentTrack = useSelector((state) => state.currentTrack);
-  const currentPlaylist = useSelector((state) => state.currentPlaylist);
-  const isPlaying = useSelector((state) => state.isPlaying);
+  const currentTrack = useSelector((state) => state.tracks.currentTrack);
+  const currentPlaylist = useSelector((state) => state.tracks.currentPlaylist);
+  const isPlaying = useSelector((state) => state.tracks.isPlaying);
 
   useEffect(() => {
     if (currentTrack && isPlaying) {

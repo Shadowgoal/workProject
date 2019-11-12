@@ -12,7 +12,7 @@ import * as S from './styled';
 const Likes = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [isLogInModalOpened, setIsLogInModalOpened] = useState(false);
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const toggleLogInModalVisibility = () => setIsLogInModalOpened(!isLogInModalOpened);
   const toggleModalVisibility = () => setIsModalOpened(!isModalOpened);
 

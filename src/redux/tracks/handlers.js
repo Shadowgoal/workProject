@@ -1,32 +1,33 @@
+import * as Zivert from 'music/Zivert-Credo.mp3';
+import * as ZivertCover from 'assets/TrackIcons/Zivert-Credo.jpg';
+
 const initialState = {
   isPlaying: false,
-  user: {
-    likedTracks: [],
-    listenedTracks: [],
-  },
+  listenedTracks: [],
   currentPlaylist: [],
-  currentTrack: {},
+  currentTrack: {
+    id: 1,
+    src: Zivert,
+    artist: 'Zivert',
+    name: 'Credo',
+    duration: 184,
+    cover: ZivertCover,
+    listened: false,
+  },
 };
 
-export const setCurrentTrack = (state, { payload }) => {
-  const index = state.user.listenedTracks.findIndex((el) => el.id === payload.id);
-  return {
-    ...state,
-    currentTrack: {
-      ...payload,
-      listened: true,
-      liked: payload.liked,
-    },
-    user: {
-      ...state.user,
-      listenedTracks: [
-        ...state.user.listenedTracks.splice(index, index > -1 ? 1 : 0),
-        state.currentTrack,
-      ],
-    },
-    isPlaying: true,
-  };
-};
+export const setCurrentTrack = (state, { payload }) => ({
+  ...state,
+  currentTrack: {
+    ...payload,
+    listened: true,
+  },
+  listenedTracks: [
+    ...state.listenedTracks.filter((el) => el.id !== payload.id),
+    payload,
+  ],
+  isPlaying: true,
+});
 
 export const setCurrentPlaylist = (state, { payload }) => ({
   ...state,
@@ -35,7 +36,9 @@ export const setCurrentPlaylist = (state, { payload }) => ({
 
 export const clearCurrentPlaylist = (state) => ({
   ...state,
-  currentPlaylist: state.currentTrack,
+  currentPlaylist: [
+    state.currentTrack,
+  ],
 });
 
 export const playMusic = (state) => ({

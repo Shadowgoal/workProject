@@ -20,18 +20,18 @@ export const Slider = styled.input`
   cursor: pointer;
   ::-webkit-slider-runnable-track {
     width: 300px;
-    height: 7px;
+    height: 3px;
     border: none;
     border-radius: 3px;
   };
   ::-webkit-slider-thumb {
     -webkit-appearance: none;
     border: none;
-    height: 16px;
-    width: 16px;
+    height: 10px;
+    width: 10px;
     border-radius: 50%;
     background: ${({ theme }) => (theme.orange)};
-    margin-top: -4px;
+    margin-top: -3px;
   };
   :focus {
     outline: none;

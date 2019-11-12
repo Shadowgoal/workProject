@@ -11,6 +11,7 @@ export const Container = styled.div`
   border-bottom: 1px solid ${({ theme }) => (theme.grey)};
   margin: 0px 45px;
   font-size: 20px;
+  overflow: hidden;
 `;
 
 export const LikedTracksContainer = styled.div`

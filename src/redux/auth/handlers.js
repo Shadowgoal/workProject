@@ -1,8 +1,7 @@
 const initialState = {
   isLoggedIn: localStorage.getItem('authToken'),
   user: {
-    likedTracks: [],
-    listenedTracks: [],
+    likedTracksIds: [],
   },
 };
 
@@ -21,8 +20,29 @@ export const signUp = (state, { payload }) => ({
 export const logOut = (state) => ({
   ...state,
   user: {
-    likedTracks: [],
-    listenedTracks: [],
+    likedTracksIds: [],
+  },
+  isLoggedIn: false,
+});
+
+export const likeTrack = (state, { payload }) => ({
+  ...state,
+  user: {
+    ...state.user,
+    likedTracksIds: [
+      ...state.user.likedTracksIds,
+      payload.id,
+    ],
+  },
+});
+
+export const dislikeTrack = (state, { payload }) => ({
+  ...state,
+  user: {
+    ...state.user,
+    likedTracksIds: [
+      ...state.user.likedTracksIds.filter((el) => el !== payload.id),
+    ],
   },
 });
 
