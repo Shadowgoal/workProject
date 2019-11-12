@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setCurrentTrack, playMusic, stopMusic } from 'redux/action';
+import { actions as tracksActions } from 'redux/tracks';
 
 import Scrubber from './Scrubber';
 import VolumeSlider from './VolumeSlider';
@@ -26,10 +26,10 @@ const PlayControl = () => {
 
   const onPlayBtn = () => {
     if (!isPlaying) {
-      dispatch(playMusic());
+      dispatch(tracksActions.playMusic());
       audioPlayer.current.play();
     } else if (isPlaying) {
-      dispatch(stopMusic());
+      dispatch(tracksActions.pauseMusic());
       audioPlayer.current.pause();
     }
   };
@@ -39,11 +39,11 @@ const PlayControl = () => {
   const onNextUp = (length, value, trackIndex) => {
     const index = currentPlaylist.findIndex(findTrack);
     if (index === length) {
-      dispatch(playMusic());
-      dispatch(setCurrentTrack(currentPlaylist[trackIndex]));
+      dispatch(tracksActions.playMusic());
+      dispatch(tracksActions.setCurrentTrack(currentPlaylist[trackIndex]));
     } else {
-      dispatch(playMusic());
-      dispatch(setCurrentTrack(currentPlaylist[index + value]));
+      dispatch(tracksActions.playMusic());
+      dispatch(tracksActions.setCurrentTrack(currentPlaylist[index + value]));
     }
   };
 

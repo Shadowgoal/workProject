@@ -2,9 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import {
-  setCurrentPlaylist, setCurrentTrack, stopMusic, playMusic,
-} from 'redux/action';
+import { actions as tracksActions } from 'redux/tracks';
 
 import * as S from './styled';
 
@@ -18,11 +16,11 @@ const RecentlyPlayed = () => {
 
   const onPlay = (track) => {
     if (isPlaying && track.id === currentTrack.id) {
-      dispatch(stopMusic());
+      dispatch(tracksActions.pauseMusic());
     } else {
-      dispatch(setCurrentPlaylist(listenedTracks));
-      dispatch(setCurrentTrack(track));
-      dispatch(playMusic());
+      dispatch(tracksActions.setCurrentPlaylist(listenedTracks));
+      dispatch(tracksActions.setCurrentTrack(track));
+      dispatch(tracksActions.playMusic());
     }
   };
 

@@ -2,12 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useToasts } from 'react-toast-notifications';
 
-import {
-  setCurrentTrack,
-  clearCurrentPlaylist,
-  likeTrack,
-  unlikeTrack,
-} from 'redux/action';
+import { actions as tracksActions } from 'redux/tracks';
+import { actions as likeActions } from 'redux/likes';
 import { likeRequest, dislikeRequest } from 'http/requests';
 import CloseIcon from 'assets/CloseIcon/closeicon.svg';
 
@@ -25,10 +21,10 @@ const TrackInfo = () => {
   const onLike = async (track) => {
     if (track.liked) {
       const data = await dislikeRequest(track);
-      dispatch(unlikeTrack(data.likedTracks));
+      dispatch(likeActions.dislikeTrack(data.likedTracks));
     } else {
       const data = await likeRequest(track);
-      dispatch(likeTrack(data.likedTracks));
+      dispatch(likeActions.likeTrack(data.likedTracks));
     }
     addToast(`${track.artist} - ${track.name} was ${track.liked ? 'added' : 'removed'} to your liked list`,
       { appearance: 'info', autoDismiss: true });
@@ -48,14 +44,14 @@ const TrackInfo = () => {
         <S.NextUpContainer>
           <S.NextUpTitle>Next Up</S.NextUpTitle>
           <S.BtnContainer>
-            <S.ClearBtn onClick={() => dispatch(clearCurrentPlaylist())}>Clear</S.ClearBtn>
+            <S.ClearBtn onClick={() => dispatch(tracksActions.clearCurrentPlaylist())}>Clear</S.ClearBtn>
             <S.ClosePlaylists onClick={onPlaylist} src={CloseIcon}></S.ClosePlaylists>
           </S.BtnContainer>
         </S.NextUpContainer>
         <S.PlaylistContainer>
           {
             currentPlaylist.map((track) => (
-              <S.TrackContainer key={track.id} onClick={() => dispatch(setCurrentTrack(track))}>
+              <S.TrackContainer key={track.id} onClick={() => dispatch(tracksActions.setCurrentTrack(track))}>
                 <S.ImgContainer cover={track.cover} />
                 <S.TrackName>
                   {track.artist} - {track.name}

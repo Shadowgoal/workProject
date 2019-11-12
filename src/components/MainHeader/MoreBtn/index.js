@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { onLogOut } from 'redux/action';
+import { actions as authActions } from 'redux/auth';
 import { logOutRequest } from 'http/requests';
 import Loading from 'components/Loading';
 import UserNav from '../UserNav';
@@ -25,7 +25,7 @@ const MoreBtn = () => {
   async function onLogOutBtn() {
     setIsLoading(true);
     const data = await logOutRequest();
-    dispatch(onLogOut(data));
+    dispatch(authActions.logOut(data));
     localStorage.removeItem('username');
     localStorage.removeItem('authToken');
     history.push('/upload');

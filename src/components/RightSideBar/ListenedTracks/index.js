@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { setCurrentTrack } from 'redux/action';
+import { actions as tracksActions } from 'redux/tracks';
 
 import * as S from './styled';
 
@@ -26,7 +26,7 @@ const ListenedTracks = () => {
           listenedTracks.map((track) => (
             <S.ListenedTrack
               key={track.id}
-              onClick={() => dispatch(setCurrentTrack(track))}
+              onClick={() => dispatch(tracksActions.setCurrentTrack(track))}
             >
               <S.ListenedTrackCover cover={track.cover} />
               <S.ListenedTrackName>

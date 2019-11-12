@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 
 import { usersDB } from 'database';
 
-import { onRegister } from 'redux/action';
+import { actions as authActions } from 'redux/auth';
 import { signUpRequest } from 'http/requests';
 import Loading from 'components/Loading';
 import FormInput from './Input';
@@ -38,7 +38,7 @@ const RegisterForm = ({ setIsModalOpened }) => {
     });
 
     if (!data.error) {
-      dispatch(onRegister(data.user));
+      dispatch(authActions.signUp(data.user));
       localStorage.setItem('username', data.user.username);
       localStorage.setItem('authToken', data.token);
       setIsModalOpened();

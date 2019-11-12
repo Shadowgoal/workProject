@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import TracksLoading from 'components/TracksLoading';
 import { tracksRequest } from 'http/requests';
-import { setCurrentPlaylist, setCurrentTrack } from 'redux/action';
+import { actions as tracksActions } from 'redux/tracks';
 
 import * as S from './styled';
 
@@ -17,19 +17,19 @@ const Weekly = () => {
 
   const { t } = useTranslation();
 
-  const onTrack = (track) => dispatch(setCurrentTrack(track));
+  const onTrack = (track) => dispatch(tracksActions.setCurrentTrack(track));
 
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
       const data = await tracksRequest();
       if (!currentPlaylist.length) {
-        dispatch(setCurrentPlaylist(data.tracks));
+        dispatch(tracksActions.setCurrentPlaylist(data.tracks));
       }
       setIsLoading(false);
     }
     fetchData();
-  }, [setCurrentPlaylist, currentPlaylist]);
+  }, [currentPlaylist, dispatch]);
 
   return (
     <S.Container>

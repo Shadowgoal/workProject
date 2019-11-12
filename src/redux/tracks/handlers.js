@@ -43,7 +43,7 @@ export const playMusic = (state) => ({
   isPlaying: true,
 });
 
-export const stopMusic = (state) => ({
+export const pauseMusic = (state) => ({
   ...state,
   isPlaying: false,
 });

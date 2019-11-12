@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useToasts } from 'react-toast-notifications';
 import { useTranslation } from 'react-i18next';
 
-import {
-  setCurrentPlaylist, setCurrentTrack, stopMusic, playMusic, unlikeTrack,
-} from 'redux/action';
+import { actions as trackActions } from 'redux/tracks';
+import { actions as likeActions } from 'redux/likes';
 import { dislikeRequest } from 'http/requests';
 
 import * as S from './styled';
@@ -22,17 +21,17 @@ const Liked = () => {
 
   const onPlay = (track) => {
     if (isPlaying && track.id === currentTrack.id) {
-      dispatch(stopMusic());
+      dispatch(trackActions.pauseMusic());
     } else {
-      dispatch(setCurrentPlaylist(likedTracks));
-      dispatch(setCurrentTrack(track));
-      dispatch(playMusic());
+      dispatch(trackActions.setCurrentPlaylist(likedTracks));
+      dispatch(trackActions.setCurrentTrack(track));
+      dispatch(trackActions.playMusic());
     }
   };
 
   const onLike = async (track) => {
     const data = await dislikeRequest(track);
-    dispatch(unlikeTrack(data.likedTracks));
+    dispatch(likeActions.dislikeTrack(data.likedTracks));
     addToast(`${data.likedTracks.artist} - ${data.likedTracks.name} was removed from your liked list`,
       { appearance: 'info', autoDismiss: true });
   };

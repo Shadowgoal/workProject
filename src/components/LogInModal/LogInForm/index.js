@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { useToasts } from 'react-toast-notifications';
 import { useTranslation } from 'react-i18next';
 
-import { onLogIn } from 'redux/action';
+import { actions as authActions } from 'redux/auth';
 import { signInRequest } from 'http/requests';
 import Loading from 'components/Loading';
 import LogInInput from './LogInInput';
@@ -32,7 +32,7 @@ const LogInForm = ({ setIsLogInModalOpened }) => {
     const data = await signInRequest(values);
 
     if (!data.error) {
-      dispatch(onLogIn(data.user));
+      dispatch(authActions.signIn(data.user));
       localStorage.setItem('username', data.user.username);
       localStorage.setItem('authToken', data.token);
       setIsLogInModalOpened();
