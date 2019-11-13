@@ -14,3 +14,5 @@ export const removeAuth = () => {
 };
 
 export const getUsername = () => localStorage.getItem('username');
+
+export const getToken = () => localStorage.getItem('authToken');

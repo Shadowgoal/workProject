@@ -71,28 +71,44 @@ mock.onPost('/logout').reply(() => new Promise((resolve) => {
 
 mock.onPost('/signin').reply((config) => new Promise((resolve) => {
   setTimeout(() => {
-    resolve([200, {
-      user: {
-        ...JSON.parse(config.data),
-        likedTracksIds: [],
-      },
-      token: 'asdasdasd',
-    }]);
+    const userData = JSON.parse(config.data);
+    usersDB.users.get({ username: userData.username }, (user) => {
+      if (!user) {
+        resolve([500]);
+      } else if (user.username === userData.username && user.password === userData.password) {
+        resolve([200, {
+          user: {
+            username: userData.username,
+            likedTracksIds: [],
+          },
+          token: 'asdasdasd',
+        }]);
+      }
+    });
   }, 1000);
 }));
 
 mock.onPost('/signup').reply((config) => new Promise((resolve) => {
   setTimeout(() => {
-    resolve([200, {
-      user: {
-        ...JSON.parse(config.data),
-        likedTracksIds: [],
-      },
-      token: 'asdasdasd',
-    }]);
-    usersDB.users.put({
-      username: config.data.user.username,
-      email: config.data.user.email,
+    const userData = JSON.parse(config.data);
+    usersDB.users.get({ username: userData.username }, (user) => {
+      if (!user) {
+        usersDB.users.add({
+          username: userData.username,
+          email: userData.email,
+          password: userData.password,
+          confirm: userData.confirm,
+        });
+        resolve([200, {
+          user: {
+            username: userData.username,
+            likedTracksIds: [],
+          },
+          token: 'asdasdasd',
+        }]);
+      } else {
+        resolve([500]);
+      }
     });
   }, 1000);
 }));

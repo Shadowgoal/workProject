@@ -7,6 +7,7 @@
     "axios-mock-adapter": "^1.17.0",
     "dexie": "^2.0.4",
     "eslint": "^6.5.1",
+    "eslint-loader": "^3.0.2",
     "final-form": "^4.18.5",
     "i18next": "^19.0.0",
     "i18next-browser-languagedetector": "^4.0.1",
@@ -71,7 +72,7 @@
     "precommit": "^1.2.2",
     "prettier": "^1.18.2",
     "pretty-quick": "^2.0.1",
-    "webpack": "4.41.2"
+    "webpack": "4.41.0"
   },
   "lint-staged": {
     "**/*.{js,jsx}": "eslint"

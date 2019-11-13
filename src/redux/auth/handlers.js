@@ -1,5 +1,7 @@
+import { getToken } from 'services/localStorageServices';
+
 const initialState = {
-  isLoggedIn: localStorage.getItem('authToken'),
+  isLoggedIn: getToken(),
   user: {
     likedTracksIds: [],
   },

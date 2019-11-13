@@ -14,6 +14,7 @@ const UploadForm = () => {
         </S.UploadTitle>
         <S.UploadBtn>
           {t('UploadForm.UploadBtn')}
+          (НЕТ БЭКЕНДА - НЕТ АПЛОУДА)
         </S.UploadBtn>
         <S.UploadFooter>
           {t('UploadForm.UploadFooter')}

@@ -75,5 +75,8 @@
   "Playlist": {
     "Next": "Next up",
     "Clear": "clear"
+  },
+  "RegisterRedirect": {
+    "MainTitle": "Join SoundCloud to hear the latest from people you follow"
   }
 }
