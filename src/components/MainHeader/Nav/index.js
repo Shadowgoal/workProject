@@ -7,7 +7,7 @@ import NavBarEls from './config';
 import * as S from './styled';
 
 const Nav = () => {
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const isLoggedIn = useSelector(({ auth }) => auth.isLoggedIn);
 
   const { t } = useTranslation();
 

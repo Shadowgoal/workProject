@@ -6,8 +6,7 @@ import PropTypes from 'prop-types';
 import { useToasts } from 'react-toast-notifications';
 import { useTranslation } from 'react-i18next';
 
-import { usersDB } from 'database';
-
+import { setAuth } from 'services/localStorageServices';
 import { actions as authActions } from 'redux/auth';
 import { signUpRequest } from 'http/requests';
 import Loading from 'components/Loading';
@@ -32,15 +31,10 @@ const RegisterForm = ({ setIsModalOpened }) => {
   const onSubmit = async (values) => {
     setIsLoading(true);
     const data = await signUpRequest(values);
-    usersDB.users.put({
-      username: data.user.username,
-      email: data.user.email,
-    });
 
     if (!data.error) {
       dispatch(authActions.signUp(data.user));
-      localStorage.setItem('username', data.user.username);
-      localStorage.setItem('authToken', data.token);
+      setAuth(data);
       setIsModalOpened();
       history.push('/upload');
     } else {
@@ -64,12 +58,10 @@ const RegisterForm = ({ setIsModalOpened }) => {
           <S.RegisterForm onSubmit={handleSubmit}>
             <S.CreateAcc>Create Account</S.CreateAcc>
             <FormInput
-              type="text"
               name="username"
               placeholder={t('Sign Up.Username')}
             />
             <FormInput
-              type="text"
               name="email"
               placeholder={t('Sign Up.Email')}
             />

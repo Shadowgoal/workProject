@@ -7,7 +7,7 @@ import { actions as tracksActions } from 'redux/tracks';
 import * as S from './styled';
 
 const ListenedTracks = () => {
-  const listenedTracks = useSelector((state) => state.tracks.listenedTracks);
+  const listenedTracks = useSelector(({ tracks }) => tracks.listenedTracks);
   const dispatch = useDispatch();
 
   const { t } = useTranslation();

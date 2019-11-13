@@ -13,13 +13,13 @@ import * as S from './styled';
 const Library = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [isLogInModalOpened, setIsLogInModalOpened] = useState(false);
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const isLoggedIn = useSelector(({ auth }) => auth.isLoggedIn);
   const toggleLogInModalVisibility = () => setIsLogInModalOpened(!isLogInModalOpened);
   const toggleModalVisibility = () => setIsModalOpened(!isModalOpened);
 
   return (
     <S.Container>
-      <Redirect to={isLoggedIn ? '/you/library' : '/register'} />
+      {!isLoggedIn && <Redirect to="/register" />}
       <MainHeader
         isModalOpened={isModalOpened}
         setIsModalOpened={toggleModalVisibility}

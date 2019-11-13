@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import * as S from './styled';
 
 const HomeBtn = () => {
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const isLoggedIn = useSelector(({ auth }) => auth.isLoggedIn);
 
   return (
     <S.Btn to={isLoggedIn ? '/discover' : '/'}>

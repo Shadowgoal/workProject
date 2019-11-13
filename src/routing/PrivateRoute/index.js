@@ -9,7 +9,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
       !sessionStorage.getItem('authToken') ? (
         <Component {...props} />
       ) : (
-        <Redirect to="/upload" />
+        <Redirect to="/discover" />
       )
     )}
   />

@@ -3,13 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import { actions as tracksActions } from 'redux/tracks';
+import { recentlyPlayedSelector } from './helpers';
 
 import * as S from './styled';
 
 const RecentlyPlayed = () => {
-  const listenedTracks = useSelector((state) => state.tracks.listenedTracks);
-  const currentTrack = useSelector((state) => state.tracks.currentTrack);
-  const isPlaying = useSelector((state) => state.tracks.isPlaying);
+  const {
+    currentTrack,
+    listenedTracks,
+    isPlaying,
+  } = useSelector(recentlyPlayedSelector);
   const dispatch = useDispatch();
 
   const { t } = useTranslation();

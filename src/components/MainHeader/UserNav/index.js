@@ -3,12 +3,14 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import UserImage from 'components/UserImage/styled';
+import { getUsername } from 'services/localStorageServices';
+import { userSelector } from './helpers';
 import userNavEls from './config';
 
 import * as S from './styled';
 
 const UserNav = () => {
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const { isLoggedIn, username } = useSelector(userSelector);
 
   const { t } = useTranslation();
 
@@ -17,7 +19,7 @@ const UserNav = () => {
       <S.UserContainer>
         <UserImage />
         <S.UserNameContainer>
-          {localStorage.getItem('username')}
+          {username || getUsername()}
         </S.UserNameContainer>
         <S.UserDropDownArrow />
         <S.DropDownContainer>

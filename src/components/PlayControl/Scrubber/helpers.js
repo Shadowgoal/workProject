@@ -15,3 +15,17 @@ export const updateTime = (timestamp, setCurrentTime) => {
   const time = Math.floor(timestamp);
   setCurrentTime(time);
 };
+
+export const scrubberSelector = ({
+  tracks: {
+    currentTrack,
+    currentPlaylist,
+    isPlaying,
+  },
+}) => (
+  {
+    currentTrack, currentPlaylist, isPlaying,
+  }
+);
+
+export const blank = () => {};

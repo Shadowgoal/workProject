@@ -7,15 +7,17 @@ import * as S from './styled';
 const NavSearch = () => {
   const { t } = useTranslation();
 
+  const onSubmit = (values) => {
+    if (values.searchValue) {
+      console.log(values);
+      values.searchValue = '';
+    }
+  };
+
   return (
     <S.Container>
       <Form
-        onSubmit={(values) => {
-          if (values.searchValue) {
-            console.log(values);
-            values.searchValue = '';
-          }
-        }}
+        onSubmit={onSubmit}
         render={({ handleSubmit }) => (
           <S.SearchForm onSubmit={handleSubmit}>
             <Field name="searchValue">

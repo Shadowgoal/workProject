@@ -6,16 +6,17 @@ import { useTranslation } from 'react-i18next';
 import { actions as trackActions } from 'redux/tracks';
 import { actions as likeActions } from 'redux/auth';
 import { dislikeRequest } from 'http/requests';
+import { tracksSelector } from './helpers';
 
 import * as S from './styled';
 
 const Liked = () => {
-  const likedTracksIds = useSelector((state) => state.auth.user.likedTracksIds);
-  const likedTracks = useSelector((state) => (
-    state.tracks.currentPlaylist.filter((el) => likedTracksIds.includes(el.id))
-  ));
-  const currentTrack = useSelector((state) => state.tracks.currentTrack);
-  const isPlaying = useSelector((state) => state.tracks.isPlaying);
+  const {
+    currentTrack,
+    isPlaying,
+    likedTracks,
+  } = useSelector(tracksSelector);
+
   const dispatch = useDispatch();
 
   const { t } = useTranslation();

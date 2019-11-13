@@ -7,15 +7,15 @@ import { actions as tracksActions } from 'redux/tracks';
 import { actions as likeActions } from 'redux/auth';
 import { likeRequest, dislikeRequest } from 'http/requests';
 import CloseIcon from 'assets/CloseIcon/closeicon.svg';
+import { trackInfoSelector } from './helpers';
 
 import * as S from './styled';
 
 const TrackInfo = () => {
   const [isPlaylistsOpened, setIsPlaylistsOpened] = useState(false);
 
-  const likedTracksIds = useSelector((state) => state.auth.user.likedTracksIds);
-  const currentTrack = useSelector((state) => state.tracks.currentTrack);
-  const currentPlaylist = useSelector((state) => state.tracks.currentPlaylist);
+  const { currentTrack, currentPlaylist, likedTracksIds } = useSelector(trackInfoSelector);
+
   const dispatch = useDispatch();
 
   const { addToast } = useToasts();

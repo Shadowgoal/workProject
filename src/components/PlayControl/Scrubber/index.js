@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { convertTime, updateTime } from './helpers';
+import { convertTime, updateTime, scrubberSelector } from './helpers';
 
 import * as S from './styled';
 
@@ -14,9 +14,11 @@ const Scrubber = ({
   const [progress, setCurrentProgress] = useState(0);
   const [scrubberInterval, setScrubberInterval] = useState(null);
 
-  const currentTrack = useSelector((state) => state.tracks.currentTrack);
-  const currentPlaylist = useSelector((state) => state.tracks.currentPlaylist);
-  const isPlaying = useSelector((state) => state.tracks.isPlaying);
+  const {
+    currentTrack,
+    currentPlaylist,
+    isPlaying,
+  } = useSelector(scrubberSelector);
 
   useEffect(() => {
     if (currentTrack && isPlaying) {

@@ -1,5 +1,7 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
+import { usersDB } from 'database';
+
 import * as Atl from '../music/Atl-Serpantin.mp3';
 import * as Zivert from '../music/Zivert-Credo.mp3';
 import * as AtlCover from '../assets/TrackIcons/Atl-Serpantin.jpg';
@@ -88,6 +90,10 @@ mock.onPost('/signup').reply((config) => new Promise((resolve) => {
       },
       token: 'asdasdasd',
     }]);
+    usersDB.users.put({
+      username: config.data.user.username,
+      email: config.data.user.email,
+    });
   }, 1000);
 }));
 

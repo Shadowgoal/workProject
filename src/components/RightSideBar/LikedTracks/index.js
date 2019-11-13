@@ -3,14 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import { actions as tracksActions } from 'redux/tracks';
+import { likedSelector } from './helpers';
 
 import * as S from './styled';
 
 const LikedTracks = () => {
-  const likedTracksIds = useSelector((state) => state.auth.user.likedTracksIds);
-  const likedTracks = useSelector((state) => (
-    state.tracks.currentPlaylist.filter((el) => likedTracksIds.includes(el.id))
-  ));
+  const { likedTracks } = useSelector(likedSelector);
   const dispatch = useDispatch();
 
   const count = likedTracks.length;

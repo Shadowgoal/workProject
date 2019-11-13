@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+import { removeAuth } from 'services/localStorageServices';
 import { actions as authActions } from 'redux/auth';
 import { logOutRequest } from 'http/requests';
 import Loading from 'components/Loading';
@@ -14,7 +15,7 @@ import * as S from './styled';
 const MoreBtn = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const isLoggedIn = useSelector(({ auth }) => auth.isLoggedIn);
   const dispatch = useDispatch();
 
   const location = useLocation();
@@ -26,8 +27,7 @@ const MoreBtn = () => {
     setIsLoading(true);
     const data = await logOutRequest();
     dispatch(authActions.logOut(data));
-    localStorage.removeItem('username');
-    localStorage.removeItem('authToken');
+    removeAuth();
     history.push('/upload');
     setIsLoading(false);
   }

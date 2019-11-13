@@ -26,7 +26,11 @@ const LogInInput = ({ type, name, placeholder }) => (
 LogInInput.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
+};
+
+LogInInput.defaultProps = {
+  type: 'text',
 };
 
 export default LogInInput;

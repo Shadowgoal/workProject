@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { useToasts } from 'react-toast-notifications';
 import { useTranslation } from 'react-i18next';
 
+import { getAuth } from 'services/localStorageServices';
 import { actions as authActions } from 'redux/auth';
 import { signInRequest } from 'http/requests';
 import Loading from 'components/Loading';
@@ -33,8 +34,7 @@ const LogInForm = ({ setIsLogInModalOpened }) => {
 
     if (!data.error) {
       dispatch(authActions.signIn(data.user));
-      localStorage.setItem('username', data.user.username);
-      localStorage.setItem('authToken', data.token);
+      getAuth(data);
       setIsLogInModalOpened();
       history.push('/upload');
     } else {
@@ -58,7 +58,6 @@ const LogInForm = ({ setIsLogInModalOpened }) => {
           <S.LogInForm onSubmit={handleSubmit}>
             <S.LogIn>{t('Log In.Title')}</S.LogIn>
             <LogInInput
-              type="text"
               name="username"
               placeholder={t('Log In.Username')}
             />

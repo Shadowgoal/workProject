@@ -5,14 +5,14 @@ import { useTranslation } from 'react-i18next';
 import TracksLoading from 'components/TracksLoading';
 import { tracksRequest } from 'http/requests';
 import { actions as tracksActions } from 'redux/tracks';
+import { weeklySelector } from './helpers';
 
 import * as S from './styled';
 
 const Weekly = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const currentTrack = useSelector((state) => state.tracks.currentTrack);
-  const currentPlaylist = useSelector((state) => state.tracks.currentPlaylist);
+  const { currentTrack, currentPlaylist } = useSelector(weeklySelector);
   const dispatch = useDispatch();
 
   const { t } = useTranslation();
