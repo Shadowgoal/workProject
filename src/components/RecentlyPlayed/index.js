@@ -30,6 +30,8 @@ const RecentlyPlayed = () => {
   return (
     <S.Container>
       {t('LibraryNavBar.RecentlyPlayed')}
+      {!listenedTracks.length
+      && <S.ListenedTracksEmpty>{t('NoListened')}</S.ListenedTracksEmpty>}
       <S.RecentlyPlayedContainer>
         {
           listenedTracks.map((track) => (
@@ -44,7 +46,7 @@ const RecentlyPlayed = () => {
               <S.TrackArtist>{track.artist}</S.TrackArtist>
               <S.TrackName>{track.name}</S.TrackName>
             </S.TrackContainer>
-          ))
+          )).reverse()
         }
       </S.RecentlyPlayedContainer>
 

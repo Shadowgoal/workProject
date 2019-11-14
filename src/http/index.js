@@ -41,22 +41,49 @@ mock.onGet('/tracks').reply(() => new Promise((resolve) => {
 
 mock.onPut('/liketrack').reply((config) => new Promise((resolve) => {
   setTimeout(() => {
-    resolve([200, {
-      likedTracks: {
-        ...JSON.parse(config.data),
-      },
-    }]);
+    const userData = JSON.parse(config.data);
+    usersDB.users.get({ username: userData.username }, (user) => {
+      usersDB.users.update(user.id, {
+        likedTracksIds: [
+          ...user.likedTracksIds.filter((el) => el !== userData.track.id),
+          userData.track.id,
+        ],
+      });
+    });
+    resolve([200]);
   }, 10);
 }));
 
 mock.onPut('/disliketrack').reply((config) => new Promise((resolve) => {
   setTimeout(() => {
-    resolve([200, {
-      likedTracks: {
-        ...JSON.parse(config.data),
-      },
-    }]);
+    const userData = JSON.parse(config.data);
+    usersDB.users.get({ username: userData.username }, (user) => {
+      usersDB.users.update(user.id, {
+        likedTracksIds: [
+          ...user.likedTracksIds.filter((el) => el !== userData.track.id),
+        ],
+      });
+    });
+    resolve([200]);
   }, 10);
+}));
+
+mock.onGet('/getuser').reply((config) => new Promise((resolve) => {
+  setTimeout(() => {
+    const userData = JSON.parse(config.data);
+    usersDB.users.get({ username: userData.username }, (user) => {
+      console.log(user);
+      resolve([200, {
+        user: {
+          username: user.username,
+          likedTracksIds: [
+            ...user.likedTracksIds,
+          ],
+        },
+        token: 'asdasdasd',
+      }]);
+    });
+  }, 1000);
 }));
 
 mock.onPost('/logout').reply(() => new Promise((resolve) => {
@@ -73,16 +100,19 @@ mock.onPost('/signin').reply((config) => new Promise((resolve) => {
   setTimeout(() => {
     const userData = JSON.parse(config.data);
     usersDB.users.get({ username: userData.username }, (user) => {
-      if (!user) {
-        resolve([500]);
-      } else if (user.username === userData.username && user.password === userData.password) {
+      console.log(user);
+      if (user && user.username === userData.username && user.password === userData.password) {
         resolve([200, {
           user: {
-            username: userData.username,
-            likedTracksIds: [],
+            username: user.username,
+            likedTracksIds: [
+              ...user.likedTracksIds,
+            ],
           },
           token: 'asdasdasd',
         }]);
+      } else {
+        resolve([500]);
       }
     });
   }, 1000);
@@ -97,15 +127,16 @@ mock.onPost('/signup').reply((config) => new Promise((resolve) => {
           username: userData.username,
           email: userData.email,
           password: userData.password,
-          confirm: userData.confirm,
-        });
-        resolve([200, {
-          user: {
-            username: userData.username,
-            likedTracksIds: [],
-          },
-          token: 'asdasdasd',
-        }]);
+          likedTracksIds: [],
+        }).then(usersDB.users.get({ username: userData.username }, (newUser) => {
+          resolve([200, {
+            user: {
+              username: newUser.username,
+              likedTracksIds: newUser.likedTracksIds,
+            },
+            token: 'asdasdasd',
+          }]);
+        }));
       } else {
         resolve([500]);
       }

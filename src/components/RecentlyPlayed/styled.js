@@ -19,6 +19,13 @@ export const RecentlyPlayedContainer = styled.div`
   margin-top: 20px;
 `;
 
+export const ListenedTracksEmpty = styled.div`
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: 14px;
+  color: ${({ theme }) => (theme.lightgrey)};
+`;
+
 export const TrackContainer = styled.div`
   display: flex;
   flex-direction: column;

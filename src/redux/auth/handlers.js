@@ -1,8 +1,9 @@
-import { getToken } from 'services/localStorageServices';
+import { getToken, getUsername } from 'services/localStorageServices';
 
 const initialState = {
   isLoggedIn: getToken(),
   user: {
+    username: getUsername(),
     likedTracksIds: [],
   },
 };
@@ -29,23 +30,12 @@ export const logOut = (state) => ({
 
 export const likeTrack = (state, { payload }) => ({
   ...state,
-  user: {
-    ...state.user,
-    likedTracksIds: [
-      ...state.user.likedTracksIds,
-      payload.id,
-    ],
-  },
+  user: { payload },
 });
 
 export const dislikeTrack = (state, { payload }) => ({
   ...state,
-  user: {
-    ...state.user,
-    likedTracksIds: [
-      ...state.user.likedTracksIds.filter((el) => el !== payload.id),
-    ],
-  },
+  user: { payload },
 });
 
 export default initialState;

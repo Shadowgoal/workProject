@@ -57,9 +57,15 @@ const PlayControl = () => {
         <audio ref={audioPlayer} autoPlay={isPlaying} name="media" src={currentTrack.src} id="audio">
           <track kind="captions" />
         </audio>
-        <S.PrevBtn onClick={() => onNextUp(0, -1, currentPlaylist.length - 1)} />
+        <S.PrevBtn
+          onClick={() => onNextUp(0, -1, currentPlaylist.length - 1)}
+          disabled={!currentPlaylist.length}
+        />
         <S.PlayBtn isPlaying={isPlaying} onClick={onPlayBtn} />
-        <S.NextBtn onClick={() => onNextUp(currentPlaylist.length - 1, +1, 0)} />
+        <S.NextBtn
+          onClick={() => onNextUp(currentPlaylist.length - 1, +1, 0)}
+          disabled={!currentPlaylist.length}
+        />
         <Scrubber
           onPlayBtn={onPlayBtn}
           audioPlayer={audioPlayer}

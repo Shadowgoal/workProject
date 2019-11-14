@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import { actions as tracksActions } from 'redux/tracks';
 import { actions as likeActions } from 'redux/auth';
-import { likeRequest, dislikeRequest } from 'http/requests';
+import { likeRequest, dislikeRequest, getUserRequest } from 'http/requests';
 import CloseIcon from 'assets/CloseIcon/closeicon.svg';
 import { trackInfoSelector } from './helpers';
 
@@ -14,7 +14,9 @@ import * as S from './styled';
 const TrackInfo = () => {
   const [isPlaylistsOpened, setIsPlaylistsOpened] = useState(false);
 
-  const { currentTrack, currentPlaylist, likedTracksIds } = useSelector(trackInfoSelector);
+  const {
+    currentTrack, currentPlaylist, likedTracksIds, username,
+  } = useSelector(trackInfoSelector);
 
   const dispatch = useDispatch();
 
@@ -25,12 +27,18 @@ const TrackInfo = () => {
   const isLiked = (track) => (likedTracksIds.includes(track.id));
 
   const onLike = async (track) => {
+    const requestData = {
+      track,
+      username,
+    };
     if (isLiked(track)) {
-      const data = await dislikeRequest(track);
-      dispatch(likeActions.dislikeTrack(data.likedTracks));
+      await dislikeRequest(requestData);
+      const data = await getUserRequest(requestData);
+      dispatch(likeActions.dislikeTrack(data.user));
     } else {
-      const data = await likeRequest(track);
-      dispatch(likeActions.likeTrack(data.likedTracks));
+      await likeRequest(requestData);
+      const data = await getUserRequest(requestData);
+      dispatch(likeActions.likeTrack(data.user));
     }
     addToast(`${track.artist} - ${track.name} 
       ${isLiked(track) ? t('LikeToast.Removed') : t('LikeToast.Added')}`,

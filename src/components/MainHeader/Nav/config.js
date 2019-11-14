@@ -6,7 +6,7 @@ const NavBarEls = [
   },
   {
     name: 'Stream',
-    loggedPath: '/discover',
+    loggedPath: '/',
     path: '/register',
   },
   {

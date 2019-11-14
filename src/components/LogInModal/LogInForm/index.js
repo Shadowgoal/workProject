@@ -36,7 +36,7 @@ const LogInForm = ({ setIsLogInModalOpened }) => {
       dispatch(authActions.signIn(data.user));
       getAuth(data);
       setIsLogInModalOpened();
-      history.push('/upload');
+      history.push('/discover');
     } else {
       setErrors(data.message);
     }

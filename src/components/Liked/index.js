@@ -43,6 +43,7 @@ const Liked = () => {
   return (
     <S.Container>
       {t('LibraryNavBar.Likes')}
+      {!likedTracks.length && <S.LikedTracksEmpty>{t('NoLiked')}</S.LikedTracksEmpty> }
       <S.LikedTracksContainer>
         {
           likedTracks.map((track) => (

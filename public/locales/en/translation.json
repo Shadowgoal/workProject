@@ -78,5 +78,7 @@
   },
   "RegisterRedirect": {
     "MainTitle": "Join SoundCloud to hear the latest from people you follow"
-  }
+  },
+  "NoLiked": "Oops, there is no track you are liked...",
+  "NoListened": "Oops, there is no track you are listened for..."
 }

@@ -8,7 +8,7 @@ export const Container = styled.div`
 
 export const NavBtn = styled(Link)`
   width: 100px;
-  background: inherit;
+  background: ${({ theme, ifactive }) => (ifactive ? theme.activeHeaderBtn.background : 'inherit')};
   border-right: 1px solid ${({ theme }) => (theme.black)};
   text-align: center;
   display: inline-block;

@@ -36,7 +36,7 @@ const RegisterForm = ({ setIsModalOpened }) => {
       dispatch(authActions.signUp(data.user));
       setAuth(data);
       setIsModalOpened();
-      history.push('/upload');
+      history.push('/discover');
     } else {
       setErrors(data.message);
     }

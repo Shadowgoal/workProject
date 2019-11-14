@@ -10,6 +10,11 @@ export const dislikeRequest = (track) => {
   return data;
 };
 
+export const getUserRequest = (user) => {
+  const data = instance.get('/getuser', user).then((response) => response.data);
+  return data;
+};
+
 export const signInRequest = (values) => {
   const data = instance.post('/signin', values)
     .then((response) => response.data)
