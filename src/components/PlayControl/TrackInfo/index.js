@@ -33,11 +33,11 @@ const TrackInfo = () => {
     };
     if (isLiked(track)) {
       await dislikeRequest(requestData);
-      const data = await getUserRequest(requestData);
+      const data = await getUserRequest(username);
       dispatch(likeActions.dislikeTrack(data.user));
     } else {
       await likeRequest(requestData);
-      const data = await getUserRequest(requestData);
+      const data = await getUserRequest(username);
       dispatch(likeActions.likeTrack(data.user));
     }
     addToast(`${track.artist} - ${track.name} 

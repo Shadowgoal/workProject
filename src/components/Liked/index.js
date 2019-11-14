@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import { actions as trackActions } from 'redux/tracks';
 import { actions as likeActions } from 'redux/auth';
-import { dislikeRequest } from 'http/requests';
+import { dislikeRequest, getUserRequest } from 'http/requests';
 import { tracksSelector } from './helpers';
 
 import * as S from './styled';
@@ -15,6 +15,7 @@ const Liked = () => {
     currentTrack,
     isPlaying,
     likedTracks,
+    username,
   } = useSelector(tracksSelector);
 
   const dispatch = useDispatch();
@@ -34,10 +35,15 @@ const Liked = () => {
   };
 
   const onLike = async (track) => {
-    const data = await dislikeRequest(track);
-    dispatch(likeActions.dislikeTrack(data.likedTracks));
-    addToast(`${data.likedTracks.artist} - ${data.likedTracks.name} ${t('LikeToast.Removed')}`,
+    const requestData = {
+      track,
+      username,
+    };
+    await dislikeRequest(requestData);
+    const data = await getUserRequest(username);
+    addToast(`${track.artist} - ${track.name} ${t('LikeToast.Removed')}`,
       { appearance: 'info', autoDismiss: true });
+    dispatch(likeActions.dislikeTrack(data.user));
   };
 
   return (

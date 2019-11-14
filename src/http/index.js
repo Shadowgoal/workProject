@@ -68,11 +68,9 @@ mock.onPut('/disliketrack').reply((config) => new Promise((resolve) => {
   }, 10);
 }));
 
-mock.onGet('/getuser').reply((config) => new Promise((resolve) => {
+mock.onGet('/getuser').reply(({ params }) => new Promise((resolve) => {
   setTimeout(() => {
-    const userData = JSON.parse(config.data);
-    usersDB.users.get({ username: userData.username }, (user) => {
-      console.log(user);
+    usersDB.users.get({ username: params.username }, (user) => {
       resolve([200, {
         user: {
           username: user.username,
@@ -80,10 +78,9 @@ mock.onGet('/getuser').reply((config) => new Promise((resolve) => {
             ...user.likedTracksIds,
           ],
         },
-        token: 'asdasdasd',
       }]);
     });
-  }, 1000);
+  }, 10);
 }));
 
 mock.onPost('/logout').reply(() => new Promise((resolve) => {

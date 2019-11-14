@@ -30,12 +30,12 @@ export const logOut = (state) => ({
 
 export const likeTrack = (state, { payload }) => ({
   ...state,
-  user: { payload },
+  user: payload,
 });
 
 export const dislikeTrack = (state, { payload }) => ({
   ...state,
-  user: { payload },
+  user: payload,
 });
 
 export default initialState;

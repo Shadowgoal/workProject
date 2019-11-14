@@ -5,31 +5,35 @@ import { useTranslation } from 'react-i18next';
 import TracksLoading from 'components/TracksLoading';
 import { tracksRequest } from 'http/requests';
 import { actions as tracksActions } from 'redux/tracks';
-import { weeklySelector } from './helpers';
 
 import * as S from './styled';
 
 const Weekly = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [trackList, setTrackList] = useState([]);
 
-  const { currentTrack, currentPlaylist } = useSelector(weeklySelector);
+  const currentTrack = useSelector(({ tracks }) => tracks.currentTrack);
   const dispatch = useDispatch();
 
   const { t } = useTranslation();
 
-  const onTrack = (track) => dispatch(tracksActions.setCurrentTrack(track));
+  const onTrack = (track) => {
+    dispatch(tracksActions.setCurrentTrack(track));
+    dispatch(tracksActions.setCurrentPlaylist(trackList));
+  };
 
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
       const data = await tracksRequest();
-      if (!currentPlaylist.length) {
+      if (!trackList.length) {
+        setTrackList(data.tracks);
         dispatch(tracksActions.setCurrentPlaylist(data.tracks));
       }
       setIsLoading(false);
     }
     fetchData();
-  }, [currentPlaylist, dispatch]);
+  }, [trackList, setTrackList, dispatch]);
 
   return (
     <S.Container>
@@ -42,7 +46,7 @@ const Weekly = () => {
         <S.TrackContainer>
           <TracksLoading isLoading={isLoading} />
           {
-            currentPlaylist.map((track) => (
+            trackList.map((track) => (
               <S.Track
                 key={track.id}
                 onClick={() => onTrack(track)}

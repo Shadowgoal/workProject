@@ -27,6 +27,7 @@ export const Like = styled.span`
   cursor: pointer;
   color: ${({ theme, liked }) => (liked ? theme.red : theme.black)};
   margin-right: 10px;
+  z-index: 1000;
 `;
 
 export const Playlist = styled.span`
