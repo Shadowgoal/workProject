@@ -4,7 +4,7 @@ import { useToasts } from 'react-toast-notifications';
 import { useTranslation } from 'react-i18next';
 
 import { actions as trackActions } from 'redux/tracks';
-import { actions as likeActions } from 'redux/auth';
+import { actions as authActions } from 'redux/auth';
 import { dislikeRequest, getUserRequest } from 'http/requests';
 import { tracksSelector } from './helpers';
 
@@ -43,7 +43,7 @@ const Liked = () => {
     const data = await getUserRequest(username);
     addToast(`${track.artist} - ${track.name} ${t('LikeToast.Removed')}`,
       { appearance: 'info', autoDismiss: true });
-    dispatch(likeActions.dislikeTrack(data.user));
+    dispatch(authActions.dislikeTrack(data.user));
   };
 
   return (

@@ -1,19 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
+import TracksLoading from 'components/TracksLoading';
+import { getLikedRequest } from 'http/requests';
 import { actions as tracksActions } from 'redux/tracks';
+import { actions as authActions } from 'redux/auth';
 import { likedSelector } from './helpers';
 
 import * as S from './styled';
 
 const LikedTracks = () => {
-  const { likedTracks } = useSelector(likedSelector);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const { likedTracks, username, isLoggedIn } = useSelector(likedSelector);
   const dispatch = useDispatch();
 
   const count = likedTracks.length;
 
   const { t } = useTranslation();
+
+  useEffect(() => {
+    async function fetchData() {
+      if (isLoggedIn && !likedTracks.length) {
+        setIsLoading(true);
+        const data = await getLikedRequest(username);
+        dispatch(authActions.likedUpdate(data.likedTracksIds));
+      }
+      setIsLoading(false);
+    }
+    fetchData();
+  }, [dispatch, username, likedTracks, isLoggedIn]);
 
   return (
     <S.MostPopularContainer>
@@ -24,6 +41,7 @@ const LikedTracks = () => {
         </S.IconContainer>
         <S.ViewAll>{t('Liked.View all')}</S.ViewAll>
       </S.LikedTracksLink>
+      <TracksLoading isLoading={isLoading} />
       <S.LikedTracksContainer>
         {
           likedTracks.map((track) => (

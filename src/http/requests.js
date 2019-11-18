@@ -1,17 +1,40 @@
 import instance from './index';
 
-export const likeRequest = (track) => {
-  const data = instance.put('/liketrack', track).then((response) => response.data);
+export const likeRequest = (requestData) => {
+  const data = instance.put('/liketrack', requestData).then((response) => response.data);
   return data;
 };
 
-export const dislikeRequest = (track) => {
-  const data = instance.put('/disliketrack', track).then((response) => response.data);
+export const dislikeRequest = (requestData) => {
+  const data = instance.put('/disliketrack', requestData).then((response) => response.data);
+  return data;
+};
+
+export const listenedTrackRequest = (requestData) => {
+  const data = instance.put('/tracklistened', requestData).then((responce) => responce.data);
   return data;
 };
 
 export const getUserRequest = (username) => {
   const data = instance.get('/getuser', {
+    params: {
+      username,
+    },
+  }).then((response) => response.data);
+  return data;
+};
+
+export const getListenedRequest = (username) => {
+  const data = instance.get('/getlistened', {
+    params: {
+      username,
+    },
+  }).then((response) => response.data);
+  return data;
+};
+
+export const getLikedRequest = (username) => {
+  const data = instance.get('/getliked', {
     params: {
       username,
     },

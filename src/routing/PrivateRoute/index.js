@@ -1,19 +1,24 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={(props) => (
-      !sessionStorage.getItem('authToken') ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to="/discover" />
-      )
-    )}
-  />
-);
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  const isLoggedIn = useSelector(({ auth }) => auth.isLoggedIn);
+
+  return (
+    <Route
+      {...rest}
+      render={(props) => (
+        !isLoggedIn ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/discover" />
+        )
+      )}
+    />
+  );
+};
 
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,

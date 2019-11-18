@@ -22,9 +22,14 @@ export const scrubberSelector = ({
     currentPlaylist,
     isPlaying,
   },
+  auth: {
+    user: {
+      username,
+    },
+  },
 }) => (
   {
-    currentTrack, currentPlaylist, isPlaying,
+    currentTrack, currentPlaylist, isPlaying, username,
   }
 );
 

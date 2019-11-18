@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -13,7 +13,7 @@ import elements from './config';
 import * as S from './styled';
 
 const MoreBtn = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(null);
 
   const isLoggedIn = useSelector(({ auth }) => auth.isLoggedIn);
   const dispatch = useDispatch();
@@ -31,6 +31,10 @@ const MoreBtn = () => {
     history.push('/upload');
     setIsLoading(false);
   }
+
+  useEffect(() => function cleanup() {
+    setIsLoading(null);
+  }, [setIsLoading]);
 
   return (
     <S.MainContainer>

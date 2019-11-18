@@ -9,11 +9,12 @@ export const tracksSelector = ({
       username,
       likedTracksIds,
     },
+    isLoggedIn,
   },
 }) => {
   const likedTracks = currentPlaylist.filter((el) => likedTracksIds.includes(el.id));
   return {
-    currentTrack, isPlaying, likedTracks, username,
+    currentTrack, isPlaying, likedTracks, username, isLoggedIn,
   };
 };
 

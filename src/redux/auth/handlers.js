@@ -5,6 +5,7 @@ const initialState = {
   user: {
     username: getUsername(),
     likedTracksIds: [],
+    listenedTracksIds: [],
   },
 };
 
@@ -24,6 +25,7 @@ export const logOut = (state) => ({
   ...state,
   user: {
     likedTracksIds: [],
+    listenedTracksIds: [],
   },
   isLoggedIn: false,
 });
@@ -36,6 +38,27 @@ export const likeTrack = (state, { payload }) => ({
 export const dislikeTrack = (state, { payload }) => ({
   ...state,
   user: payload,
+});
+
+export const userUpdate = (state, { payload }) => ({
+  ...state,
+  user: payload,
+});
+
+export const listenedUpdate = (state, { payload }) => ({
+  ...state,
+  user: {
+    ...state.user,
+    listenedTracksIds: payload,
+  },
+});
+
+export const likedUpdate = (state, { payload }) => ({
+  ...state,
+  user: {
+    ...state.user,
+    likedTracksIds: payload,
+  },
 });
 
 export default initialState;

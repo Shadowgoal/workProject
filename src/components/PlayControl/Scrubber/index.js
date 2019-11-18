@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { listenedTrackRequest, getListenedRequest } from 'http/requests';
+import { actions as authActions } from 'redux/auth';
 import { convertTime, updateTime, scrubberSelector } from './helpers';
 
 import * as S from './styled';
@@ -18,15 +20,20 @@ const Scrubber = ({
     currentTrack,
     currentPlaylist,
     isPlaying,
+    username,
   } = useSelector(scrubberSelector);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (currentTrack && isPlaying) {
       audioPlayer.current.play();
     }
+
     if (currentTrack && !isPlaying) {
       audioPlayer.current.pause();
     }
+
     if (!scrubberInterval && isPlaying) {
       const intervalId = setInterval(() => {
         const current = audioPlayer.current.currentTime;
@@ -34,9 +41,24 @@ const Scrubber = ({
         const percent = (current / dur) * 100;
         setCurrentProgress(percent);
         updateTime(current, setCurrentTime);
+
         if (current === dur) {
           onNextUp(currentPlaylist.length - 1, +1, 0);
         }
+
+        const fetchData = async () => {
+          const requestData = {
+            currentTrack,
+            username,
+          };
+
+          if (isPlaying && audioPlayer.current.currentTime < 1) {
+            await listenedTrackRequest(requestData);
+            const data = await getListenedRequest(username);
+            dispatch(authActions.listenedUpdate(data.listenedTracksIds));
+          }
+        };
+        fetchData();
       }, 1000);
       setScrubberInterval(intervalId);
     }
@@ -47,7 +69,16 @@ const Scrubber = ({
         setScrubberInterval(null);
       }
     };
-  }, [scrubberInterval, audioPlayer, currentTrack, isPlaying, onNextUp, currentPlaylist]);
+  }, [
+    scrubberInterval,
+    audioPlayer,
+    currentTrack,
+    isPlaying,
+    onNextUp,
+    currentPlaylist,
+    username,
+    dispatch,
+  ]);
 
   const updateCurrentTime = (e) => {
     setCurrentTime(e.target.value);

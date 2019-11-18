@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import MainHeader from 'components/MainHeader';
@@ -30,4 +30,4 @@ const Register = () => {
   );
 };
 
-export default withRouter(Register);
+export default Register;

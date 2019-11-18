@@ -8,6 +8,9 @@ export const actions = createActions({
   LOG_OUT: undefined,
   LIKE_TRACK: undefined,
   DISLIKE_TRACK: undefined,
+  USER_UPDATE: undefined,
+  LISTENED_UPDATE: undefined,
+  LIKED_UPDATE: undefined,
 });
 
 const reducer = handleActions(
@@ -15,8 +18,13 @@ const reducer = handleActions(
     [actions.signIn, handlers.signIn],
     [actions.signUp, handlers.signUp],
     [actions.logOut, handlers.logOut],
+
     [actions.likeTrack, handlers.likeTrack],
     [actions.dislikeTrack, handlers.dislikeTrack],
+
+    [actions.userUpdate, handlers.userUpdate],
+    [actions.listenedUpdate, handlers.listenedUpdate],
+    [actions.likedUpdate, handlers.likedUpdate],
   ]),
   initialState,
 );

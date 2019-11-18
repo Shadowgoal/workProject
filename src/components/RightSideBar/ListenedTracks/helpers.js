@@ -1,8 +1,6 @@
-export const recentlyPlayedSelector = ({
+export const tracksSelector = ({
   tracks: {
     currentPlaylist,
-    currentTrack,
-    isPlaying,
   },
   auth: {
     user: {
@@ -14,7 +12,7 @@ export const recentlyPlayedSelector = ({
 }) => {
   const listenedTracks = currentPlaylist.filter((el) => listenedTracksIds.includes(el.id));
   return {
-    currentTrack, listenedTracks, isPlaying, username, isLoggedIn,
+    listenedTracks, username, isLoggedIn,
   };
 };
 
