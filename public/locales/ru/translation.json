@@ -1,0 +1,85 @@
+{
+  "Buttons": {
+    "Sign In": "Войти",
+    "Create Account": "Создать аккаунт"
+    },
+  "MainTitle": {
+    "Title": "Connect on SoundCloud",
+    "Description": "Discover, stream, and share a constantly expanding mix of music from emerging and major artists around the world.",
+    "Upload": "Upload your first track"
+  },
+  "Log In": {
+    "Title": "Войти",
+    "Username": "Логин",
+    "Password": "Пароль",
+    "Sign In": "Войти",
+    "Close": "Закрыть"
+  },
+  "Sign Up": {
+    "Title": "Создать аккаунт",
+    "Username": "Логин",
+    "Email": "Емейл",
+    "Password": "Пароль",
+    "Confirm": "Подтверждение"
+  },
+  "MoreBtn": {
+    "Upload": "Загрузить",
+    "About us": "О нас",
+    "Legal": "Права",
+    "Copyright": "Копирайт",
+    "Log out": "Выйти"
+  },
+  "UserNav": {
+    "Profile": "Профиль",
+    "Likes": "Понравившиеся",
+    "Playlists": "Плейлисты"
+  },
+  "NavSearch": {
+    "Search": "Поиск по артистам, бэндам, трэкам"
+  },
+  "Nav": {
+    "Home": "Домой",
+    "Stream": "Трансляция",
+    "Library": "Библиотека"
+  },
+  "Liked": {
+    "Likes_0": "{{count}} лайк",
+    "Likes_1": "{{count}} лайка",
+    "Likes_2": "{{count}} лайков",
+    "View all": "Посмотреть все"
+  },
+  "Listened": {
+    "History": "История",
+    "View all": "Посмотреть все"
+  },
+  "Weekly": {
+    "Title": "Недельная подборка",
+    "Description": "Все от SoundCloud. Для вас."
+  },
+  "Language": "Язык",
+  "SelectLanguage": "Выберите язык",
+  "LibraryNavBar": {
+    "Overview": "Обзор",
+    "Likes": "Понравившиеся",
+    "Playlists": "Плейлисты",
+    "RecentlyPlayed": "История"
+  },
+  "UploadForm": {
+    "UploadTitle": "Загрузите свои песни в SoundCloud",
+    "UploadBtn" : "Выберите файл для загрузки",
+    "UploadFooter": "Выберите FLAC, WAV, ALAC или AIFF для лучшего качества."
+  },
+  "LikeToast": {
+    "Added": "был добавлен в понравившиеся",
+    "Removed": "был удален из понравившихся"
+  },
+  "Playlist": {
+    "Next": "Следующий",
+    "Clear": "очистить"
+  },
+  "RegisterRedirect": {
+    "MainTitle": "Присоединяйся к SoundCloud и следи за исполнителями, которые тебе интересны"
+  },
+  "NoLiked": "Упс, кажется вы еще не поставили лайк ни на один трек...",
+  "NoListened": "Упс, кажется вы еще не слушали ни одного трека..."
+}
