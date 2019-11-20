@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -23,18 +23,15 @@ const MoreBtn = () => {
 
   const { t } = useTranslation();
 
-  async function onLogOutBtn() {
+  const onLogOutBtn = () => {
     setIsLoading(true);
-    const data = await logOutRequest();
-    dispatch(authActions.logOut(data));
-    removeAuth();
-    history.push('/upload');
-    setIsLoading(false);
-  }
-
-  useEffect(() => function cleanup() {
-    setIsLoading(null);
-  }, [setIsLoading]);
+    logOutRequest().then((data) => {
+      dispatch(authActions.logOut(data));
+      removeAuth();
+      setIsLoading(false);
+      history.push('/register');
+    });
+  };
 
   return (
     <S.MainContainer>

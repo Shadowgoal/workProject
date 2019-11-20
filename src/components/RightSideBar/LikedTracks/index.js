@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import TracksLoading from 'components/TracksLoading';
 import { getLikedRequest } from 'http/requests';
 import { actions as tracksActions } from 'redux/tracks';
-import { actions as authActions } from 'redux/auth';
 import { likedSelector } from './helpers';
 
 import * as S from './styled';
@@ -25,7 +24,7 @@ const LikedTracks = () => {
       if (isLoggedIn && !likedTracks.length) {
         setIsLoading(true);
         const data = await getLikedRequest(username);
-        dispatch(authActions.likedUpdate(data.likedTracksIds));
+        dispatch(tracksActions.getLiked(data.likedTracksIds));
       }
       setIsLoading(false);
     }

@@ -4,8 +4,7 @@ import { useToasts } from 'react-toast-notifications';
 import { useTranslation } from 'react-i18next';
 
 import { actions as tracksActions } from 'redux/tracks';
-import { actions as likeActions } from 'redux/auth';
-import { likeRequest, dislikeRequest, getUserRequest } from 'http/requests';
+import { likeRequest, dislikeRequest, getLikedRequest } from 'http/requests';
 import CloseIcon from 'assets/CloseIcon/closeicon.svg';
 import { trackInfoSelector } from './helpers';
 
@@ -33,12 +32,12 @@ const TrackInfo = () => {
     };
     if (isLiked(track)) {
       await dislikeRequest(requestData);
-      const data = await getUserRequest(username);
-      dispatch(likeActions.dislikeTrack(data.user));
+      const data = await getLikedRequest(username);
+      dispatch(tracksActions.dislikeTrack(data.likedTracksIds));
     } else {
       await likeRequest(requestData);
-      const data = await getUserRequest(username);
-      dispatch(likeActions.likeTrack(data.user));
+      const data = await getLikedRequest(username);
+      dispatch(tracksActions.likeTrack(data.likedTracksIds));
     }
     addToast(`${track.artist} - ${track.name} 
       ${isLiked(track) ? t('LikeToast.Removed') : t('LikeToast.Added')}`,

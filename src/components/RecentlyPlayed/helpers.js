@@ -3,11 +3,11 @@ export const recentlyPlayedSelector = ({
     currentPlaylist,
     currentTrack,
     isPlaying,
+    listenedTracksIds,
   },
   auth: {
     user: {
       username,
-      listenedTracksIds,
     },
     isLoggedIn,
   },

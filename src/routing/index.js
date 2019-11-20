@@ -24,12 +24,12 @@ const AppRouter = () => (
         <PlayerProvider>
           <Router>
             <Route exact path="/" component={App} />
-            <PrivateRoute path="/register" component={Register} />
-            <Route path="/upload" component={Upload} />
-            <Route path="/discover" component={Discover} />
-            <Route path="/you/library" component={Library} />
-            <Route path="/you/likes" component={Likes} />
-            <Route path="/you/playlists" component={Library} />
+            <Route path="/register" component={Register} />
+            <PrivateRoute path="/upload" component={Upload} />
+            <PrivateRoute path="/discover" component={Discover} />
+            <PrivateRoute path="/you/library" component={Library} />
+            <PrivateRoute path="/you/likes" component={Likes} />
+            <PrivateRoute path="/you/playlists" component={Library} />
           </Router>
         </PlayerProvider>
       </ToastProvider>

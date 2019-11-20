@@ -25,7 +25,7 @@ const PlayControl = () => {
 
   const updateRange = (value) => {
     setRangeValue(value);
-    audioPlayer.current.volume = rangeValue;
+    audioPlayer.current.volume = value;
   };
 
   const onPlayBtn = () => {

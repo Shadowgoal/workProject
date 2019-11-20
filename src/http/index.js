@@ -90,12 +90,6 @@ mock.onGet('/getuser').reply(({ params }) => new Promise((resolve) => {
         resolve([200, {
           user: {
             username: user.username,
-            likedTracksIds: [
-              ...user.likedTracksIds,
-            ],
-            listenedTracksIds: [
-              ...user.listenedTracksIds,
-            ],
           },
         }]);
       }

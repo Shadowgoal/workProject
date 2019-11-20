@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import TracksLoading from 'components/TracksLoading';
 import { getListenedRequest } from 'http/requests';
 import { actions as tracksActions } from 'redux/tracks';
-import { actions as authActions } from 'redux/auth';
 import { tracksSelector } from './helpers';
 
 import * as S from './styled';
@@ -23,7 +22,7 @@ const ListenedTracks = () => {
       if (isLoggedIn && !listenedTracks.length) {
         setIsLoading(true);
         const data = await getListenedRequest(username);
-        dispatch(authActions.listenedUpdate(data.listenedTracksIds));
+        dispatch(tracksActions.getListened(data.listenedTracksIds));
       }
       setIsLoading(false);
     }

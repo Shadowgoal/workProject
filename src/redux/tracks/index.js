@@ -8,6 +8,10 @@ export const actions = createActions({
   CLEAR_CURRENT_PLAYLIST: undefined,
   PLAY_MUSIC: undefined,
   PAUSE_MUSIC: undefined,
+  GET_LISTENED: undefined,
+  GET_LIKED: undefined,
+  LIKE_TRACK: undefined,
+  DISLIKE_TRACK: undefined,
 });
 
 const reducer = handleActions(
@@ -15,8 +19,15 @@ const reducer = handleActions(
     [actions.setCurrentTrack, handlers.setCurrentTrack],
     [actions.setCurrentPlaylist, handlers.setCurrentPlaylist],
     [actions.clearCurrentPlaylist, handlers.clearCurrentPlaylist],
+
     [actions.playMusic, handlers.playMusic],
     [actions.pauseMusic, handlers.pauseMusic],
+
+    [actions.getListened, handlers.getListened],
+    [actions.getLiked, handlers.getLiked],
+
+    [actions.likeTrack, handlers.likeTrack],
+    [actions.dislikeTrack, handlers.dislikeTrack],
   ]),
   initialState,
 );

@@ -1,11 +1,11 @@
 export const tracksSelector = ({
   tracks: {
     currentPlaylist,
+    listenedTracksIds,
   },
   auth: {
     user: {
       username,
-      listenedTracksIds,
     },
     isLoggedIn,
   },

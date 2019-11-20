@@ -12,6 +12,8 @@ const initialState = {
     duration: 184,
     cover: ZivertCover,
   },
+  likedTracksIds: [],
+  listenedTracksIds: [],
 };
 
 export const setCurrentTrack = (state, { payload }) => ({
@@ -42,6 +44,26 @@ export const playMusic = (state) => ({
 export const pauseMusic = (state) => ({
   ...state,
   isPlaying: false,
+});
+
+export const getListened = (state, { payload }) => ({
+  ...state,
+  listenedTracksIds: payload,
+});
+
+export const getLiked = (state, { payload }) => ({
+  ...state,
+  likedTracksIds: payload,
+});
+
+export const likeTrack = (state, { payload }) => ({
+  ...state,
+  likedTracksIds: payload,
+});
+
+export const dislikeTrack = (state, { payload }) => ({
+  ...state,
+  likedTracksIds: payload,
 });
 
 export default initialState;

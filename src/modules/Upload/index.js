@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import MainHeader from 'components/MainHeader';
 import UploadForm from 'components/UploadForm';
@@ -12,14 +11,11 @@ const Upload = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [isLogInModalOpened, setIsLogInModalOpened] = useState(false);
 
-  const isLoggedIn = useSelector(({ auth }) => auth.isLoggedIn);
-
   const toggleLogInModalVisibility = () => setIsLogInModalOpened(!isLogInModalOpened);
   const toggleModalVisibility = () => setIsModalOpened(!isModalOpened);
 
   return (
     <S.Container>
-      {!isLoggedIn && <Redirect to="/register" />}
       <MainHeader
         isModalOpened={isModalOpened}
         setIsModalOpened={toggleModalVisibility}
