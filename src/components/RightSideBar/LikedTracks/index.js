@@ -10,9 +10,14 @@ import { likedSelector } from './helpers';
 import * as S from './styled';
 
 const LikedTracks = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { likedTracks, username, isLoggedIn } = useSelector(likedSelector);
+  const {
+    likedTracks,
+    username,
+    isLoggedIn,
+    likedTracksIds,
+  } = useSelector(likedSelector);
   const dispatch = useDispatch();
 
   const count = likedTracks.length;
@@ -21,7 +26,7 @@ const LikedTracks = () => {
 
   useEffect(() => {
     async function fetchData() {
-      if (isLoggedIn && !likedTracks.length) {
+      if (isLoggedIn && !likedTracksIds.length) {
         setIsLoading(true);
         const data = await getLikedRequest(username);
         dispatch(tracksActions.getLiked(data.likedTracksIds));
@@ -29,7 +34,12 @@ const LikedTracks = () => {
       setIsLoading(false);
     }
     fetchData();
-  }, [dispatch, username, likedTracks, isLoggedIn]);
+  }, [likedTracksIds, isLoggedIn, username, dispatch]);
+
+  const onTrack = (track) => {
+    dispatch(tracksActions.setCurrentTrack(track));
+    dispatch(tracksActions.setCurrentPlaylist(likedTracks));
+  };
 
   return (
     <S.MostPopularContainer>
@@ -46,7 +56,7 @@ const LikedTracks = () => {
           likedTracks.map((track) => (
             <S.LikedTrack
               key={track.id}
-              onClick={() => dispatch(tracksActions.setCurrentTrack(track))}
+              onClick={() => onTrack(track)}
             >
               <S.LikedTrackCover cover={track.cover} />
               <S.LikedTrackName>

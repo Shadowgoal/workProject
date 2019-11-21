@@ -33,11 +33,13 @@ const LogInForm = ({ setIsLogInModalOpened }) => {
     const data = await signInRequest(values);
 
     if (!data.error) {
+      setIsLogInModalOpened();
+      setIsLoading(false);
       dispatch(authActions.signIn(data.user));
       getAuth(data);
-      setIsLogInModalOpened();
       history.push('/discover');
     } else {
+      setIsLoading(false);
       setErrors(data.message);
     }
     addToast(data.error ? data.message : 'Log In successful',
@@ -45,7 +47,6 @@ const LogInForm = ({ setIsLogInModalOpened }) => {
         appearance: data.error ? 'error' : 'success',
         autoDismiss: true,
       });
-    setIsLoading(false);
   }
 
   return (

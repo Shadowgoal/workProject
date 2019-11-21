@@ -13,6 +13,7 @@ export const UploadContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   border: 1px solid ${({ theme }) => (theme.grey)};
   padding: 0 100px;
   height: 300px;

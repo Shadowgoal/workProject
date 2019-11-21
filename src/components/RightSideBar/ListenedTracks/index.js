@@ -12,14 +12,19 @@ import * as S from './styled';
 const ListenedTracks = () => {
   const [isLoading, setIsLoading] = useState(true);
 
-  const { listenedTracks, username, isLoggedIn } = useSelector(tracksSelector);
+  const {
+    listenedTracks,
+    username,
+    isLoggedIn,
+    listenedTracksIds,
+  } = useSelector(tracksSelector);
   const dispatch = useDispatch();
 
   const { t } = useTranslation();
 
   useEffect(() => {
     async function fetchData() {
-      if (isLoggedIn && !listenedTracks.length) {
+      if (isLoggedIn && !listenedTracksIds.length) {
         setIsLoading(true);
         const data = await getListenedRequest(username);
         dispatch(tracksActions.getListened(data.listenedTracksIds));
@@ -27,7 +32,12 @@ const ListenedTracks = () => {
       setIsLoading(false);
     }
     fetchData();
-  }, [dispatch, username, listenedTracks, isLoggedIn]);
+  }, [dispatch, username, listenedTracksIds, isLoggedIn]);
+
+  const onTrack = (track) => {
+    dispatch(tracksActions.setCurrentTrack(track));
+    dispatch(tracksActions.setCurrentPlaylist(listenedTracks));
+  };
 
   return (
     <S.MostPopularContainer>
@@ -44,7 +54,7 @@ const ListenedTracks = () => {
           listenedTracks.map((track) => (
             <S.ListenedTrack
               key={track.id}
-              onClick={() => dispatch(tracksActions.setCurrentTrack(track))}
+              onClick={() => onTrack(track)}
             >
               <S.ListenedTrackCover cover={track.cover} />
               <S.ListenedTrackName>

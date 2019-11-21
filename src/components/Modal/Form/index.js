@@ -33,11 +33,13 @@ const RegisterForm = ({ setIsModalOpened }) => {
     const data = await signUpRequest(values);
 
     if (!data.error) {
+      setIsModalOpened();
+      setIsLoading(false);
       dispatch(authActions.signUp(data.user));
       setAuth(data);
-      setIsModalOpened();
       history.push('/discover');
     } else {
+      setIsLoading(false);
       setErrors(data.message);
     }
     addToast(data.error ? data.message : 'Registered successfully',
@@ -45,7 +47,6 @@ const RegisterForm = ({ setIsModalOpened }) => {
         appearance: data.error ? 'error' : 'success',
         autoDismiss: true,
       });
-    setIsLoading(false);
   };
 
   return (

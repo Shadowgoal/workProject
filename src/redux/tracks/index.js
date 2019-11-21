@@ -4,6 +4,7 @@ import initialState, * as handlers from './handlers';
 
 export const actions = createActions({
   SET_CURRENT_TRACK: undefined,
+  SET_TRACKS: undefined,
   SET_CURRENT_PLAYLIST: undefined,
   CLEAR_CURRENT_PLAYLIST: undefined,
   PLAY_MUSIC: undefined,
@@ -17,6 +18,7 @@ export const actions = createActions({
 const reducer = handleActions(
   new Map([
     [actions.setCurrentTrack, handlers.setCurrentTrack],
+    [actions.setTracks, handlers.setTracks],
     [actions.setCurrentPlaylist, handlers.setCurrentPlaylist],
     [actions.clearCurrentPlaylist, handlers.clearCurrentPlaylist],
 

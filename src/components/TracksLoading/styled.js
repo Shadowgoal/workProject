@@ -29,7 +29,7 @@ export const LoaderHelper = styled.div`
   position: absolute;
   width: 5px;
   height: 5px;
-  background: #fff;
+  background: ${({ theme }) => (theme.lightgrey)};
   border-radius: 50%;
   animation: ${loaderAnimation} 1.2s linear infinite;
   :nth-child(1) {
