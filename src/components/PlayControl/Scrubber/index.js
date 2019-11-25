@@ -25,6 +25,18 @@ const Scrubber = ({
 
   const dispatch = useDispatch();
 
+  const trackDuration = () => {
+    if (!audioPlayer.current) {
+      return '0:00';
+    } return convertTime(Math.trunc(audioPlayer.current.duration));
+  };
+
+  const maxValue = () => {
+    if (!audioPlayer.current) {
+      return '0';
+    } return Math.trunc(audioPlayer.current.duration);
+  };
+
   useEffect(() => {
     if (currentTrack && isPlaying) {
       audioPlayer.current.play();
@@ -96,12 +108,14 @@ const Scrubber = ({
         onChange={updateCurrentTime}
         onClick={updateCurrentTime}
         value={currentTime}
-        max={currentTrack.duration}
+        max={`${maxValue()}`}
         min="0"
         step="1"
         progress={progress}
       />
-      <S.Duration>{convertTime(currentTrack.duration)}</S.Duration>
+      <S.Duration>
+        {trackDuration()}
+      </S.Duration>
     </S.Container>
   );
 };

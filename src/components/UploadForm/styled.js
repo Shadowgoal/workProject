@@ -9,7 +9,7 @@ export const Container = styled.div`
 `;
 
 export const UploadContainer = styled.div`
-  display: flex;
+  display: ${({ visible }) => (visible ? 'none' : 'flex')};
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -39,4 +39,36 @@ export const UploadFooter = styled.span`
   padding: 20px 0;
   font-size: 12px;
   font-weight: 400;
+`;
+
+export const ButtonField = styled.div`
+  width: 180px;
+  position: relative;
+  margin-left: calc(50% - 100px);
+  padding: 10px;
+  margin-top: 20px;
+`;
+
+export const Button = styled.button`
+  background: #f50;
+  border: none;
+  border-radius: 4px;
+  height: 25px;
+  width: 75px;
+  margin-right: 15px;
+  color: ${({ theme }) => (theme.white)};
+  cursor: pointer;
+`;
+
+export const CloseButton = styled.button`
+  background: ${({ theme }) => (theme.grey)};
+  border: none;
+  border-radius: 4px;
+  height: 25px;
+  width: 75px;
+  color: black;
+  cursor: pointer;
+`;
+
+export const Form = styled.form`
 `;

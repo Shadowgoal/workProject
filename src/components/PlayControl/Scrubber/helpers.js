@@ -2,10 +2,11 @@ export const convertTime = (timestamp) => {
   if (!timestamp) {
     return '0:00';
   }
+
   const minutes = Math.floor(timestamp / 60);
   let seconds = timestamp - (minutes * 60);
   if (seconds < 10) {
-    seconds = `0${seconds}`;
+    seconds = `0${Math.ceil(seconds)}`;
   }
   const time = `${minutes}:${seconds}`;
   return time;

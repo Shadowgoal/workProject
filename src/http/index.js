@@ -1,11 +1,6 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { usersDB } from 'database';
-
-import * as Atl from '../music/Atl-Serpantin.mp3';
-import * as Zivert from '../music/Zivert-Credo.mp3';
-import * as AtlCover from '../assets/TrackIcons/Atl-Serpantin.jpg';
-import * as ZivertCover from '../assets/TrackIcons/Zivert-Credo.jpg';
+import { usersDB, tracksDB } from 'database';
 
 const instance = axios.create({
   baseURL: 'https://some-domain.com/api/',
@@ -13,30 +8,26 @@ const instance = axios.create({
 
 const mock = new MockAdapter(instance);
 mock.onGet('/tracks').reply(() => new Promise((resolve) => {
-  setTimeout(() => {
+  setTimeout(async () => {
+    const tracks = [];
+    await tracksDB.track.each((track) => {
+      tracks.push(track);
+    });
     resolve([200, {
-      tracks: [
-        {
-          id: 1,
-          src: Zivert,
-          artist: 'Zivert',
-          name: 'Credo',
-          duration: 184,
-          cover: ZivertCover,
-          listened: false,
-        },
-        {
-          id: 2,
-          src: Atl,
-          artist: 'ATL',
-          name: 'Serpantin',
-          duration: 169,
-          cover: AtlCover,
-          listened: false,
-        },
-      ],
+      tracks,
     }]);
   }, 10);
+}));
+
+mock.onPost('/uploadtrack').reply((config) => new Promise((resolve) => {
+  const data = JSON.parse(config.data);
+  tracksDB.track.add({
+    src: data.src,
+    artist: data.artist,
+    name: data.name,
+    cover: 'https://i-love-png.com/images/no-image_7299.png',
+  });
+  resolve([200]);
 }));
 
 mock.onPut('/liketrack').reply((config) => new Promise((resolve) => {

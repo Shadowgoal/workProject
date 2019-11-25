@@ -67,3 +67,9 @@ export const tracksRequest = () => {
   const data = instance.get('/tracks').then((response) => response.data);
   return data;
 };
+
+export const uploadTrackRequest = (track) => {
+  const data = instance.post('/uploadtrack', track)
+    .then((response) => response.data);
+  return data;
+};

@@ -45,6 +45,7 @@ export const TrackContainer = styled.div`
   height: 180px;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 `;
 
 export const Track = styled.div`
