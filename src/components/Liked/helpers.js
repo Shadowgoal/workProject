@@ -1,20 +1,20 @@
 export const tracksSelector = ({
   tracks: {
     currentTrack,
-    currentPlaylist,
+    tracks,
     isPlaying,
+    likedTracksIds,
   },
   auth: {
     user: {
       username,
-      likedTracksIds,
     },
     isLoggedIn,
   },
 }) => {
-  const likedTracks = currentPlaylist.filter((el) => likedTracksIds.includes(el.id));
+  const likedTracks = tracks.filter((el) => likedTracksIds.includes(el.id));
   return {
-    currentTrack, isPlaying, likedTracks, username, isLoggedIn,
+    currentTrack, isPlaying, likedTracks, username, isLoggedIn, likedTracksIds, tracks,
   };
 };
 

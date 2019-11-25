@@ -12,7 +12,7 @@ const Weekly = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [trackList, setTrackList] = useState([]);
 
-  const currentTrack = useSelector(({ tracks }) => tracks.currentTrack);
+  const currentTrack = useSelector(({ tracks }) => (tracks.currentTrack));
   const dispatch = useDispatch();
 
   const { t } = useTranslation();
@@ -28,7 +28,7 @@ const Weekly = () => {
       const data = await tracksRequest();
       if (!trackList.length) {
         setTrackList(data.tracks);
-        dispatch(tracksActions.setCurrentPlaylist(data.tracks));
+        dispatch(tracksActions.setTracks(data.tracks));
       }
       setIsLoading(false);
     }

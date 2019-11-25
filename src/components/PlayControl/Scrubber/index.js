@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { listenedTrackRequest, getListenedRequest } from 'http/requests';
-import { actions as authActions } from 'redux/auth';
+import { actions as tracksActions } from 'redux/tracks';
 import { convertTime, updateTime, scrubberSelector } from './helpers';
 
 import * as S from './styled';
@@ -24,6 +24,18 @@ const Scrubber = ({
   } = useSelector(scrubberSelector);
 
   const dispatch = useDispatch();
+
+  const trackDuration = () => {
+    if (!audioPlayer.current) {
+      return '0:00';
+    } return convertTime(Math.trunc(audioPlayer.current.duration));
+  };
+
+  const maxValue = () => {
+    if (!audioPlayer.current) {
+      return '0';
+    } return Math.trunc(audioPlayer.current.duration);
+  };
 
   useEffect(() => {
     if (currentTrack && isPlaying) {
@@ -55,7 +67,7 @@ const Scrubber = ({
           if (isPlaying && audioPlayer.current.currentTime < 1) {
             await listenedTrackRequest(requestData);
             const data = await getListenedRequest(username);
-            dispatch(authActions.listenedUpdate(data.listenedTracksIds));
+            dispatch(tracksActions.getListened(data.listenedTracksIds));
           }
         };
         fetchData();
@@ -96,12 +108,14 @@ const Scrubber = ({
         onChange={updateCurrentTime}
         onClick={updateCurrentTime}
         value={currentTime}
-        max={currentTrack.duration}
+        max={`${maxValue()}`}
         min="0"
         step="1"
         progress={progress}
       />
-      <S.Duration>{convertTime(currentTrack.duration)}</S.Duration>
+      <S.Duration>
+        {trackDuration()}
+      </S.Duration>
     </S.Container>
   );
 };

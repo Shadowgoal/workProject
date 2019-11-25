@@ -17,6 +17,7 @@ export const Container = styled.div`
 export const LikedTracksContainer = styled.div`
   display: flex;
   margin-top: 20px;
+  height: 250px;
 `;
 
 export const LikedTracksEmpty = styled.div`

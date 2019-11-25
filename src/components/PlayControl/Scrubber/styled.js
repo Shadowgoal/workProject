@@ -22,6 +22,7 @@ export const Scrubber = styled.input`
   };
   ::-webkit-slider-thumb {
     -webkit-appearance: none;
+    visibility: hidden;
     border: none;
     height: 6px;
     width: 6px;
@@ -32,6 +33,9 @@ export const Scrubber = styled.input`
   :focus {
     outline: none;
   };
+  :hover::-webkit-slider-thumb {
+    visibility: visible;
+  }
 `;
 
 export const CurrentTime = styled.span`

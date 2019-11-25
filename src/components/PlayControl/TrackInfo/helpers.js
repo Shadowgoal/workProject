@@ -2,11 +2,11 @@ export const trackInfoSelector = ({
   tracks: {
     currentTrack,
     currentPlaylist,
+    likedTracksIds,
   },
   auth: {
     user: {
       username,
-      likedTracksIds,
     },
   },
 }) => (

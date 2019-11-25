@@ -11,7 +11,9 @@ import * as S from './styled';
 const App = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [isLogInModalOpened, setIsLogInModalOpened] = useState(false);
+
   const isLoggedIn = useSelector(({ auth }) => auth.isLoggedIn);
+
   const toggleLogInModalVisibility = () => setIsLogInModalOpened(!isLogInModalOpened);
   const toggleModalVisibility = () => setIsModalOpened(!isModalOpened);
 

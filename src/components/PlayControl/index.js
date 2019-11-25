@@ -25,7 +25,7 @@ const PlayControl = () => {
 
   const updateRange = (value) => {
     setRangeValue(value);
-    audioPlayer.current.volume = rangeValue;
+    audioPlayer.current.volume = value;
   };
 
   const onPlayBtn = () => {
@@ -61,7 +61,7 @@ const PlayControl = () => {
           onClick={() => onNextUp(0, -1, currentPlaylist.length - 1)}
           disabled={!currentPlaylist.length}
         />
-        <S.PlayBtn isPlaying={isPlaying} onClick={onPlayBtn} />
+        <S.PlayBtn isPlaying={isPlaying} onClick={() => onPlayBtn()} />
         <S.NextBtn
           onClick={() => onNextUp(currentPlaylist.length - 1, +1, 0)}
           disabled={!currentPlaylist.length}

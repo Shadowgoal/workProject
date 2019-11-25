@@ -25,6 +25,7 @@ export const Slider = styled.input`
     border-radius: 3px;
   };
   ::-webkit-slider-thumb {
+    visibility: hidden;
     -webkit-appearance: none;
     border: none;
     height: 10px;
@@ -36,6 +37,9 @@ export const Slider = styled.input`
   :focus {
     outline: none;
   };
+  :hover::-webkit-slider-thumb {
+    visibility: visible;
+  }
 `;
 
 export const SliderContainer = styled.div`

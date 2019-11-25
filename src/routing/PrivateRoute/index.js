@@ -10,10 +10,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) => (
-        !isLoggedIn ? (
+        isLoggedIn ? (
           <Component {...props} />
         ) : (
-          <Redirect to="/discover" />
+          <Redirect to="/register" />
         )
       )}
     />

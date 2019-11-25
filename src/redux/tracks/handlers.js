@@ -3,6 +3,7 @@ import * as ZivertCover from 'assets/TrackIcons/Zivert-Credo.jpg';
 
 const initialState = {
   isPlaying: false,
+  tracks: [],
   currentPlaylist: [],
   currentTrack: {
     id: 1,
@@ -12,6 +13,8 @@ const initialState = {
     duration: 184,
     cover: ZivertCover,
   },
+  likedTracksIds: [],
+  listenedTracksIds: [],
 };
 
 export const setCurrentTrack = (state, { payload }) => ({
@@ -20,6 +23,11 @@ export const setCurrentTrack = (state, { payload }) => ({
     ...payload,
   },
   isPlaying: true,
+});
+
+export const setTracks = (state, { payload }) => ({
+  ...state,
+  tracks: payload,
 });
 
 export const setCurrentPlaylist = (state, { payload }) => ({
@@ -42,6 +50,26 @@ export const playMusic = (state) => ({
 export const pauseMusic = (state) => ({
   ...state,
   isPlaying: false,
+});
+
+export const getListened = (state, { payload }) => ({
+  ...state,
+  listenedTracksIds: payload,
+});
+
+export const getLiked = (state, { payload }) => ({
+  ...state,
+  likedTracksIds: payload,
+});
+
+export const likeTrack = (state, { payload }) => ({
+  ...state,
+  likedTracksIds: payload,
+});
+
+export const dislikeTrack = (state, { payload }) => ({
+  ...state,
+  likedTracksIds: payload,
 });
 
 export default initialState;

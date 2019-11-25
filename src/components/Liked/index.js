@@ -1,21 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useToasts } from 'react-toast-notifications';
 import { useTranslation } from 'react-i18next';
 
+import TracksLoading from 'components/TracksLoading';
 import { actions as trackActions } from 'redux/tracks';
-import { actions as authActions } from 'redux/auth';
-import { dislikeRequest, getUserRequest } from 'http/requests';
+import { dislikeRequest, getLikedRequest, tracksRequest } from 'http/requests';
 import { tracksSelector } from './helpers';
 
 import * as S from './styled';
 
 const Liked = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     currentTrack,
     isPlaying,
     likedTracks,
     username,
+    isLoggedIn,
+    likedTracksIds,
+    tracks,
   } = useSelector(tracksSelector);
 
   const dispatch = useDispatch();
@@ -23,6 +28,24 @@ const Liked = () => {
   const { t } = useTranslation();
 
   const { addToast } = useToasts();
+
+  useEffect(() => {
+    async function fetchData() {
+      setIsLoading(true);
+      if (!tracks.length) {
+        const data = await tracksRequest();
+        setIsLoading(false);
+        dispatch(trackActions.setTracks(data.tracks));
+      }
+      if (isLoggedIn && !likedTracksIds.length) {
+        const data = await getLikedRequest(username);
+        setIsLoading(false);
+        dispatch(trackActions.getLiked(data.likedTracksIds));
+      }
+      setIsLoading(false);
+    }
+    fetchData();
+  }, [tracks, likedTracksIds, isLoggedIn, username, dispatch]);
 
   const onPlay = (track) => {
     if (isPlaying && track.id === currentTrack.id) {
@@ -40,10 +63,10 @@ const Liked = () => {
       username,
     };
     await dislikeRequest(requestData);
-    const data = await getUserRequest(username);
+    const data = await getLikedRequest(username);
     addToast(`${track.artist} - ${track.name} ${t('LikeToast.Removed')}`,
       { appearance: 'info', autoDismiss: true });
-    dispatch(authActions.dislikeTrack(data.user));
+    dispatch(trackActions.dislikeTrack(data.likedTracksIds));
   };
 
   return (
@@ -68,6 +91,7 @@ const Liked = () => {
             </S.TrackContainer>
           )).reverse()
         }
+        <TracksLoading isLoading={isLoading} />
       </S.LikedTracksContainer>
 
     </S.Container>
